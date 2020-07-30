@@ -1,0 +1,8 @@
+.logo, .head, .navigation, .head_big, .foot .srvinfo {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.content {
+    width: 100%;
+}

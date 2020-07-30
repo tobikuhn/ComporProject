@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>{{ application }} Aufwandserfassung</title>
+    <script type="text/javascript">
+        //<![CDATA[
+        let gui_focus_id;
+
+        function SetFocusId(i_id) {
+            gui_focus_id = i_id;
+        }
+
+        function SetFocus() {
+            el = document.getElementById(gui_focus_id);
+            if (el) {
+                el.focus();
+                if (el.select) {
+                    el.select();
+                }
+
+            }
+
+        }
+
+        //]]>
+    </script>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/print.css" media="print">
+
+    <style type="text/css">
+        .bgclr {
+            background-color: white;
+        }
+
+        .head, .head_big {
+            border-color: white;
+        }
+    </style>
+    <script type="text/javascript" src="../static/prost.js"></script>
+</head>
+<body onload="setKalender()">
+<table class="default_layout main_layout">
+    <tbody>
+    <tr>
+        <td class="bgclr" rowspan="2">
+            <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
+                    src="../static/logo.gif" alt="{{ application }} Hauptmenü"
+                    title="{{ application }} Hauptmenü"></a>
+        </td>
+        <td class="head">
+            <div class="left"><a href="{{ url_for("expense_recording.expense_recording") }}">Sicht:
+                {{ company }}</a>
+            </div>
+            <div class="right"><a href="{{ url_for("expense_recording.expense_recording") }}"
+                                  title="Öffnet die Informations-Seite in einem neuen Fenster."
+                                  target="_blank">{{ application }}-Info</a>
+                <a href="{{ url_for("expense_recording.expense_recording") }}-Erfassung.29">Hilfe</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="head_big">
+            <div class="left">{{ application }}</div>
+            <div class="right"><a href="#" onclick="set_lang('DEU');"><img
+                    src="../static/deu.gif" alt="Deutsch" title="Deutsch"></a>
+                <a href="#" onclick="set_lang('ENG');"><img src="../static/eng.gif"
+                                                            alt="English" title="English"></a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="head">
+        </td>
+        <td class="head">
+            <div class="left">Sie sind hier:
+                <a href="{{ url_for("expense_recording.expense_recording") }}">Zeitmanagement</a>
+                &gt;
+                Aufwandserfassung
+            </div>
+            <div class="right">Nutzer: {{ username }}
+                <a href="{{ url_for("user_routes.logout") }}" title="zur Abmeldung vom Who-is-Who Anmeldeverbund">Abmelden</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="navigation">
+            <ul class="navigation">
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1"><a
+                            href="{{ url_for("expense_recording.expense_recording") }}" id="MEI_M110"
+                            class="navigation" accesskey="Z">Zeitmanagement</a>
+                    </div>
+                    <ul class="navigation">
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_024" class="navigation" accesskey="O"> Objektübersicht</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_158" class="navigation" accesskey="A"> Arbeitsvorrat</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_active menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_190" class="navigation" accesskey="A"> Aufwandserfassung</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_023" class="navigation" accesskey="A"> Aufgabenübersicht</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("reports.reports") }}"
+                                    id="MEI_022" class="navigation" accesskey="B"> Berichte</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_M316" class="navigation" accesskey="V"> Verfügbarkeitsübersicht MA</a>
+                            </div>
+                        </li>
+                        <li class="navigation">
+                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
+                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    id="MEI_950" class="navigation" accesskey="E"> Einsatzblatt sichern Vertreter</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_am1"><a
+                            href="{{ url_for("expense_recording.expense_recording") }}" id="MEI_M130"
+                            class="navigation" accesskey="A">Auftragsmanagement</a>
+                    </div>
+                    <div class="navig_comment">Auftrag (pers.), Mgmt-Report (pers.), Monatsreport (pers.), Report
+                        Ressourcenplanung, Beri...
+                    </div>
+                </li>
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_pm1"><a
+                            href="{{ url_for("expense_recording.expense_recording") }}" id="MEI_M120"
+                            class="navigation" accesskey="O">Objektmanagement</a>
+                    </div>
+                    <div class="navig_comment">Objektplanung, Ressourcenplanung Programm, Objektdownload, Mgmt-Report
+                        (pers.), , Obj-Repo...
+                    </div>
+                </li>
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_prf1"><a
+                            href="{{ url_for("expense_recording.expense_recording") }}"
+                            id="MEI_M310" class="navigation" accesskey="E">Einstellungen</a>
+                    </div>
+                    <div class="navig_comment">Vertretung definieren, Vertretung wahrnehmen, Benutzereinstellungen</div>
+                </li>
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_info1"><a
+                            href="{{ url_for("expense_recording.expense_recording") }}" id="MEI_M300"
+                            class="navigation" accesskey="I">Infosystem</a>
+                    </div>
+                    <div class="navig_comment">Benutzerdaten, Organisationsstruktur</div>
+                </li>
+            </ul>
+        </td>
+        <td class="content">
+            <noscript>Java Script ist deaktiviert.</noscript>
+            <br>
+            <noscript>Bitte aktivieren Sie Java Script.</noscript>
+            <div id="waitDisplay" class="content" style="display: none;"><br>
+                Die Daten werden geladen. Bitte haben Sie etwas Geduld.
+            </div>
+            <div id="delayedDisplay" class="content" style="display: inline;">
+                <script type="text/javascript" src="../static/epoch_calendar.js"></script>
+                <script type="text/javascript" src="../static/parse_time.js"></script>
+                <script type="text/javascript">
+                    //<![CDATA[
+
+                    function DecodeSpecialChars(str) {
+                        let decoded_str;
+                        let el = document.createElement("textarea");
+                        el.innerHTML = str;
+                        decoded_str = el.value;
+                        return decoded_str;
+                    }
+
+                    let inside_SubmitForm = false;
+                    let form_Submitted = false;
+                    let str = 'Buchungen wurden schon gesendet. Sollte zuviel Zeit vergangen sein, dann bet&auml;tigen Sie bitte den Refresh-Button.';
+                    let dstr = DecodeSpecialChars(str);
+
+                    function SubmitForm(i_action, chkSubmit) {
+                        if (inside_SubmitForm) {
+                            return;
+                        }
+                        if (chkSubmit == undefined) {
+                            chkSubmit = true
+                        }
+                        if (form_Submitted && chkSubmit) {
+                            alert(dstr);
+                            return;
+                        }
+                        inside_SubmitForm = true;
+                        try {
+                            let id = "hidden_action";
+                            let frm = document.forms[0];
+                            let inp1 = document.getElementById(id);
+                            if (!inp1) {
+                                inp1 = document.createElement("input");
+                                inp1.type = "hidden";
+                                inp1.name = "i_action";
+                                inp1.id = id;
+                                frm.appendChild(inp1);
+                            }
+
+                            inp1.value = i_action;
+                            frm.submit();
+                            form_Submitted = true;
+                            return 1;
+                        } catch (e) {
+                            frm.removeChild(inp1);
+                            alert(e.message);
+                            return 0;
+                        } finally {
+                            inside_SubmitForm = false;
+                        }
+                    }
+
+                    //]]>
+                </script>
+                <script type="text/javascript">
+                    //<![CDATA[
+
+                    //to skip hidden
+                    function get_az_inputs() {
+                        let la_az_el = Array();
+                        for (i = 0; i < document.pform.i_az.length; i++) {
+                            if (document.pform.i_az[i].type != 'hidden') {
+                                la_az_el[la_az_el.length] = document.pform.i_az[i];
+                            }
+                        }
+                        return la_az_el;
+                    }
+
+                    function get_az(thisfield, i_c, i_pause) {
+                        let l_c = i_c - 1;
+                        let sumZahl = 0;
+                        let Feldwert;
+                        let Anfang = 0;
+                        let Ende = 0;
+                        let i_kommt;
+                        let i_geht;
+
+                        //i_kommt can be hidden
+                        for (i = 0, j = 0; i < document.pform.i_kommt.length && j < i_c; i++) {
+                            i_kommt = document.pform.i_kommt[i];
+                            i_geht = document.pform.i_geht[i];
+                            if (i_kommt.type != "hidden") {
+                                j++;
+                            }
+                        }
+                        parseTime(i_kommt);
+                        parseTime(i_geht);
+                        Anfang = get_number(i_kommt.value);
+                        Ende = get_number(i_geht.value);
+
+                        if (Anfang > 0) {
+                            if (Ende > 0) {
+                                if (Ende < Anfang) {
+                                    Ende = Ende + (24 * 60);
+                                }
+                                sumZahl = Ende - Anfang - get_number(i_pause);
+                            }
+                            let anzahl = document.pform.i_dummy_az.length / 4;
+                            if (sumZahl > 0) {
+                                document.pform.i_dummy_az[l_c].value = makeHour(sumZahl);
+                            } else {
+                                document.pform.i_dummy_az[l_c].value = "";
+                            }
+                            try {
+                                if (document.getElementById("tableBox0")) {
+                                    document.pform.i_dummy_az[l_c + anzahl].value = document.pform.i_dummy_az[l_c].value;
+                                    document.pform.i_dummy_az[l_c + (2 * anzahl)].value = document.pform.i_dummy_az[l_c].value;
+                                    document.pform.i_dummy_az[l_c + (3 * anzahl)].value = document.pform.i_dummy_az[l_c].value;
+                                }
+                            } catch (e) {
+                            }
+                        }
+
+                        // Spaltensumme
+                        let l_rows = parseFloat(i_rows);
+                        let l_cols = parseFloat(i_cols);
+                        let l_value = 0;
+                        let l_sum = 0;
+                        l_sum = 0;
+                        let la_az_el = get_az_inputs();
+                        for (i = 0; i < l_rows; i++) {
+                            l_value = get_number(la_az_el[i * l_cols + l_c].value);
+                            l_sum = l_sum + l_value;
+                        }
+                        document.pform.i_col_sum[1 + l_c].value = makeHour(l_sum);
+
+                        // Buchung vs. Arbeitszeit
+                        let arbeitsZeit = get_number(document.pform.i_dummy_az[l_c].value);
+
+                        if (l_sum < arbeitsZeit) {
+                            document.pform.i_col_sum[1 + l_c].className = "tc_wt_lt";
+                        } else {
+                            if (l_sum > arbeitsZeit) {
+                                document.pform.i_col_sum[1 + l_c].className = "tc_wt_gt";
+                            } else {
+                                document.pform.i_col_sum[1 + l_c].className = "tc_wt_eq";
+                            }
+                        }
+                    }
+
+                    function get_sum(i_r, i_c) {
+                        let l_r = parseFloat(i_r) - 1;
+                        let l_c = parseFloat(i_c) - 1;
+                        let l_rows = parseFloat(i_rows);
+                        let l_cols = parseFloat(i_cols);
+                        let l_value = 0;
+                        let l_sum = 0;
+
+                        let la_az_el = get_az_inputs();
+                        let rawEntry = la_az_el[l_r * l_cols + l_c].value;
+                        if ((rawEntry.indexOf(":") == 0) || (rawEntry.indexOf(".") == 0) || (rawEntry.indexOf(",") == 0) || (rawEntry.indexOf("/") == 0)) {
+                            rawEntry = "0" + rawEntry;
+                        }
+                        if ((rawEntry.indexOf(":") < 0) && (rawEntry.length >= 3)) {
+                            if ((rawEntry.indexOf(",") >= 0) || (rawEntry.indexOf(".") >= 0) || (rawEntry.indexOf("/") >= 0)) {
+                                rawEntry = convertToPoint(rawEntry);
+                            }
+                            let minuten = rawEntry.substr(rawEntry.length - 2, 2);
+                            let stunden = rawEntry.substr(0, rawEntry.length - 2);
+                            stunden = "0" + stunden;
+                            stunden = stunden.substr(stunden.length - 2, 2);
+                            la_az_el[l_r * l_cols + l_c].value = makeHour(get_number(stunden.concat(":").concat(minuten)));
+                        } else {
+                            if (rawEntry != "") la_az_el[l_r * l_cols + l_c].value = makeHour(get_number(rawEntry));
+                        }
+// Zeilensumme
+                        l_sum = 0;
+                        for (i = 0; i < l_cols; i++) {
+                            l_value = get_number(la_az_el[l_r * l_cols + i].value);
+                            l_sum = l_sum + l_value;
+                        }
+                        document.pform.i_row_sum[l_r].value = makeHour(l_sum);
+
+// Spaltensumme
+                        l_sum = 0;
+                        for (i = 0; i < l_rows; i++) {
+                            l_value = get_number(la_az_el[i * l_cols + l_c].value);
+                            l_sum = l_sum + l_value;
+                        }
+                        document.pform.i_col_sum[1 + l_c].value = makeHour(l_sum);
+
+// Buchung vs. Arbeitszeit
+                        let arbeitsZeit = get_number(document.pform.i_dummy_az[l_c].value);
+
+                        if (l_sum < arbeitsZeit) {
+                            document.pform.i_col_sum[1 + l_c].className = "tc_wt_lt";
+                        } else {
+                            if (l_sum > arbeitsZeit) {
+                                document.pform.i_col_sum[1 + l_c].className = "tc_wt_gt";
+                            } else {
+                                document.pform.i_col_sum[1 + l_c].className = "tc_wt_eq";
+                            }
+                        }
+// Gesamtsumme
+                        l_sum = 0;
+                        for (i = 0; i < l_rows; i++) {
+                            l_value = get_number(document.pform.i_row_sum[i].value);
+                            l_sum = l_sum + l_value;
+                        }
+                        document.pform.i_col_sum[0].value = makeHour(l_sum);
+                    }
+
+
+                    function setKalender() {
+                        cs_next_month = "Nächster Monat";
+                        cs_prev_month = "Voriger Monat";
+                        cs_max_range = "Dies ist die maximale Zeitspanne";
+                        ps_access_key = "1";
+                        pi_tab_offset = 20;
+                        cs_calender_dy = "Di-";
+                        cs_calender_wk = "Mo-";
+
+                        MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+                        DAY_NAMES_SHORT = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+
+                        let container = document.getElementById("calendar_container");
+                        new Epoch("cal1", "flat", container, true, new Date());
+                    }
+
+                    //]]>
+                </script>
+                <h1>Aufwandserfassung</h1>
+                <form method="post" action="/compor+/aufwands-erfassung/data" name="pform">
+                    <h2>{{ generate_week_period_caption() }}</h2>
+                    <hr>
+                    <input type="hidden" name="i_von" value="27.07.2020"><input type="hidden" name="i_bis"
+                                                                                value="31.07.2020">
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        let i_cols = 5;
+                        //]]>
+                    </script>
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        let i_rows = 3;
+                        //]]>
+                    </script>
+                    <input type="hidden" name="i_redirectto" value=""><input type="hidden" name="i_redirectmodus"
+                                                                             value=""><input type="hidden"
+                                                                                             name="i_user_tasks"
+                                                                                             value="3"><input
+                        type="hidden" name="i_sel" value="">
+                    <table class="pweek_layout">
+                        <tbody>
+                        <tr>
+                            <td rowspan="6">
+                                <div id="calendar_container"></div>
+                            </td>
+
+                            <td>
+                            </td>
+                            {% for day in generate_array_of_current_weekdays() %}
+                                <td>
+                                    <input type="hidden" name="i_datum" value="27.07.2020"><input type="hidden"
+                                                                                                  name="i_kg_id"
+                                                                                                  value="">{{ format_date_day_month(day) }}
+                                </td>
+                            {% endfor %}
+
+
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td class="col_btn">
+                                <input type="button" id="button1" class="tc_day_btn" tabindex="118" value="Mo+"></td>
+                            <td class="col_btn">
+                                <input type="button" id="button2" class="tc_day_btn" tabindex="150" value="Di+"></td>
+                            <td class="col_btn">
+                                <input type="button" id="button3" class="tc_day_btn" tabindex="182" value="Mi+"></td>
+                            <td class="col_btn">
+                                <input type="button" id="button4" class="tc_day_btn" tabindex="214" value="Do+"></td>
+                            <td class="col_btn">
+                                <input type="button" id="button5" class="tc_day_btn" tabindex="246" value="Fr+"></td>
+                        </tr>
+                        <tr>
+                            <td class="tc_row_caption">
+                                Anfang
+                            </td>
+                            <td>
+                                <input type="text" name="i_kommt" size="5" maxlength="5"
+                                       onchange="get_az(this, '1', ',5');" tabindex="119" value="06:00"></td>
+                            <td>
+                                <input type="text" name="i_kommt" size="5" maxlength="5"
+                                       onchange="get_az(this, '2', ',5');" tabindex="151" value="06:00"></td>
+                            <td>
+                                <input type="text" name="i_kommt" size="5" maxlength="5"
+                                       onchange="get_az(this, '3', ',5');" tabindex="183" value="06:00"></td>
+                            <td>
+                                <input type="text" name="i_kommt" size="5" maxlength="5"
+                                       onchange="get_az(this, '4', ',5');" tabindex="215" value="06:00"></td>
+                            <td>
+                                <input type="text" name="i_kommt" size="5" maxlength="5"
+                                       onchange="get_az(this, '5', ',5');" tabindex="247" value="06:00"></td>
+                        </tr>
+                        <tr>
+                            <td class="tc_row_caption">
+                                Ende
+                            </td>
+                            <td>
+                                <input type="text" name="i_geht" size="5" maxlength="5"
+                                       onchange="get_az(this, '1', ',5');" tabindex="120" value="20:00"></td>
+                            <td>
+                                <input type="text" name="i_geht" size="5" maxlength="5"
+                                       onchange="get_az(this, '2', ',5');" tabindex="152" value="20:00"></td>
+                            <td>
+                                <input type="text" name="i_geht" size="5" maxlength="5"
+                                       onchange="get_az(this, '3', ',5');" tabindex="184" value="20:00"></td>
+                            <td>
+                                <input type="text" name="i_geht" size="5" maxlength="5"
+                                       onchange="get_az(this, '4', ',5');" tabindex="216" value="20:00"></td>
+                            <td>
+                                <input type="text" name="i_geht" size="5" maxlength="5"
+                                       onchange="get_az(this, '5', ',5');" tabindex="248" value="20:00"></td>
+                        </tr>
+                        <tr>
+                            <td class="tc_row_caption">
+                                Arbeitszeit bei 00:30 Pause
+                            </td>
+                            <td>
+                                <input type="text" name="i_dummy_az" size="5" disabled="disabled" value="13:30"></td>
+                            <td>
+                                <input type="text" name="i_dummy_az" size="5" disabled="disabled" value="13:30"></td>
+                            <td>
+                                <input type="text" name="i_dummy_az" size="5" disabled="disabled" value="13:30"></td>
+                            <td>
+                                <input type="text" name="i_dummy_az" size="5" disabled="disabled" value="13:30"></td>
+                            <td>
+                                <input type="text" name="i_dummy_az" size="5" disabled="disabled" value="13:30"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_arr" value="0"><label for="i_ts_rt_la_id_1"
+                                                                                           class="invisible"
+                                                                                           accesskey="2">Aktivität</label>
+                                <select name="i_ts_rt_la_id" size="1" id="i_ts_rt_la_id_1" tabindex="86">
+                                    {% for project in projects %}
+                                        <option value="" selected="selected">{{ project.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="tc_row_caption">
+                                <input type="text" name="i_row_sum" size="5" disabled="disabled" value="00:00"></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              id="focus_control_id"
+                                                                                              accesskey="3"
+                                                                                              onchange="get_sum(1, 1);"
+                                                                                              tabindex="129">
+                                <script type="text/javascript">
+                                    //<![CDATA[
+                                    SetFocusId('focus_control_id');
+                                    //]]>
+                                </script>
+                                <input type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(1, 2);"
+                                                                                              tabindex="161"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(1, 3);"
+                                                                                              tabindex="193"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(1, 4);"
+                                                                                              tabindex="225"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(1, 5);"
+                                                                                              tabindex="257"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_arr" value="0">
+                                <select name="i_ts_rt_la_id" size="1" id="i_ts_rt_la_id_2" tabindex="87">
+                                    {% for project in projects %}
+                                        <option value="1997994#2665878#LA_103960#"
+                                                selected="selected">{{ project.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="tc_row_caption">
+                                <input type="text" name="i_row_sum" size="5" disabled="disabled" value="00:00"></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(2, 1);"
+                                                                                              tabindex="131"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(2, 2);"
+                                                                                              tabindex="163"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(2, 3);"
+                                                                                              tabindex="195"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(2, 4);"
+                                                                                              tabindex="227"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(2, 5);"
+                                                                                              tabindex="259"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_arr" value="0">
+                                <select name="i_ts_rt_la_id" size="1" id="i_ts_rt_la_id_3" tabindex="88">
+                                    {% for project in projects %}
+                                        <option value="1997994#2665878#LA_103960#"
+                                                selected="selected">{{ project.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td class="tc_row_caption">
+                                <input type="text" name="i_row_sum" size="5" disabled="disabled" value="00:00"></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(3, 1);"
+                                                                                              tabindex="133"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(3, 2);"
+                                                                                              tabindex="165"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(3, 3);"
+                                                                                              tabindex="197"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(3, 4);"
+                                                                                              tabindex="229"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                            <td>
+                                <input type="hidden" name="i_ts_lock_az_arr" value="0"><input type="text" name="i_az"
+                                                                                              size="5" maxlength="5"
+                                                                                              onchange="get_sum(3, 5);"
+                                                                                              tabindex="261"><input
+                                    type="hidden" name="i_kommentar" value=""></td>
+                        </tr>
+                        <tr>
+                            <td class="tc_row_caption" colspan="2">
+                                <input type="text" name="i_col_sum" size="5" disabled="disabled" value="00:00"></td>
+                            <td>
+                                <input type="text" name="i_col_sum" size="5" class="tc_wt_lt" disabled="disabled"
+                                       value="00:00"></td>
+                            <td>
+                                <input type="text" name="i_col_sum" size="5" class="tc_wt_lt" disabled="disabled"
+                                       value="00:00"></td>
+                            <td>
+                                <input type="text" name="i_col_sum" size="5" class="tc_wt_lt" disabled="disabled"
+                                       value="00:00"></td>
+                            <td>
+                                <input type="text" name="i_col_sum" size="5" class="tc_wt_lt" disabled="disabled"
+                                       value="00:00"></td>
+                            <td>
+                                <input type="text" name="i_col_sum" size="5" class="tc_wt_lt" disabled="disabled"
+                                       value="00:00"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                            </td>
+                            <td colspan="5">
+                                <input type="button" id="button9" class="tc_submit" onclick="SubmitForm('Speichern')"
+                                       tabindex="279" value="Speichern"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="navigation">
+        </td>
+        <td class="foot" id="foot_td_id">
+            {{ generate_server_timestamp() }} © {{ company }} 2020, v13517
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    //<![CDATA[
+    Init();
+    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    SetFocus();
+    //]]>
+</script>
+
+
+</body>
+</html>

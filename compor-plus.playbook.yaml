@@ -1,0 +1,30 @@
+---
+- hosts: localhost
+  vars: "compor-plus.vars.yaml"
+
+
+  tasks:
+    - name: Install MySQL Server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Set root Password
+      command: "sudo mysql -u root -e \"SET PASSWORD FOR root@localhost = PASSWORD({{ mysql_root_password }}')\";"
+      become: yes
+
+    - name: Create Admin User for MySQL Server
+      mysql_user:
+        login_user: root
+        login_password: toor
+        name: "{{ mysql_user }}"
+        password: "{{ mysql_password }}"
+        priv: '*.*:ALL'
+        state: present
+
+    - name: Expose MySQL Serve ron 3306
+      mysql_variables:
+        login_host: 0.0.0.0
+        login_port: 3306
+        login_user: "{{ mysql_root_user }}"
+        login_password: "{{ mysql_root_password }}"

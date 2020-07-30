@@ -1,0 +1,767 @@
+/* Pseudo Classes */
+
+:disabled {color: black; background-color: #F0F0F0; border: 1px solid #CCCCCC;}
+img:focus, a:focus, input:focus, select:focus, textarea:focus {outline:#0000C0 solid 2px;}
+
+/* Font Definitions */
+
+body {font-family:verdana,arial,helvetica,sans-serif; font-size:90%;}
+
+/* Color Definitions */
+
+body, .gui_checkbox, .gui_radiobutton                           {color:#000000; background-color:#FFFFFF;}
+.head_big                                                       {color:#FFFFFF; background-color:#E20074;}
+.head, ul.navigation, a.navigation, label                       {color:#000000; background-color:#F0F0F0;}
+
+td {text-align:left;}
+td a:link, a:visited, a:active
+{
+background-color:inherit !important;
+color:inherit !important;
+font-size:inherit !important;
+font-weight:inherit !important;
+}
+th, .th, .required, .highlight,
+td.label, th.label, tr.label, td.active, th.active, td.rsum, th.rsum
+                                                                {color:black; background-color:#D0D0D0;}
+/* Navigation */
+
+.navigation        {vertical-align:top; margin:0; padding:0;}
+ul.navigation      {list-style:none;}
+a.navigation       {text-decoration:none;}
+a.navigation:hover {text-decoration:underline;}
+
+/* Abstände */
+td > ul.navigation   {padding-top: 3px; padding-bottom:10px;}
+div.navig_lev1       {margin-top:6px;}
+.navig_after_divider {padding-top:6px;}
+
+/* Einzüge und Border */
+div.navigation       {margin-left:6px; border-left-style:solid; padding-right:3px;}
+div.navig_active     {border-left-width:12px; padding-left:6px; }
+div.navig_inactive   {border-left-width:6px;  padding-left:12px;}
+.navig_comment       {margin-left:24px;}
+
+/* Schrift */
+.navig_lev1    {font-weight:bold;}
+.navig_lev2    {font-weight:normal; font-size:95%;}
+.navig_lev3    {font-weight:normal; font-size:95%;}
+.navig_comment {font-weight:normal; font-size:80%;}
+
+/* Farbliche Markierung der Rubriken */
+
+/* Kurzmitteilung */
+.menu_clr_sm1{border-color:#FF80B4;}
+.menu_clr_sm2{border-color:#FF80B4;}
+.menu_clr_sm3{border-color:#FF80B4;}
+
+/* Zeitmanagement */
+.menu_clr_ma1{border-color:#6F82B4;}
+.menu_clr_ma2{border-color:#91A0C2;}
+.menu_clr_ma3{border-color:#B1C0E2;}
+
+/* Projektmanagement */
+.menu_clr_pm1{border-color:#6F2829;}
+.menu_clr_pm2{border-color:#9F4849;}
+.menu_clr_pm3{border-color:#BF6869;}
+
+/* Auftragsmanagement */
+.menu_clr_am1{border-color:#418264;}
+.menu_clr_am2{border-color:#61A284;}
+.menu_clr_am3{border-color:#81C2A4;}
+
+/* Benutzeradministration */
+.menu_clr_uadm1{border-color:#666633;}
+.menu_clr_uadm2{border-color:#CCCC99;}
+.menu_clr_uadm3{border-color:#FFBE72;}
+
+/* Systemadministration */
+.menu_clr_sa1{border-color:#339900;}
+.menu_clr_sa2{border-color:#66CC33;}
+.menu_clr_sa3{border-color:#99FF66;}
+
+/* Schnittstellen */
+.menu_clr_ifc1{border-color:#F6DD4A;}
+.menu_clr_ifc2{border-color:#FFFFCC;}
+.menu_clr_ifc3{border-color:#FFFFCC;}
+
+/* Einstellungen */
+.menu_clr_prf1{border-color:#DC6E32;}
+.menu_clr_prf2{border-color:#FC9E52;}
+.menu_clr_prf3{border-color:#FFBE72;}
+
+/* Infosystem */
+.menu_clr_info1{border-color:#003366;}
+.menu_clr_info2{border-color:#0999CC;}
+.menu_clr_info3{border-color:#0999CC;}
+
+/*Hintergrund Farbe -> grün*/
+.bkgrd_color_adb      {background-color:#366602;}
+/*Farbe- > grün*/
+.color_font_adb_info_txt   {color:#366602;}
+
+/*
+ * Das wird in pspj.pbk benutzt, funktioniert aber nicht.
+a.white:link          {background-color:#ffffff; white-space:nowrap; color:#000000;}
+a.white:visited       {background-color:#ffffff; white-space:nowrap; color:#000000;}
+a.white:active        {background-color:#ffffff; white-space:nowrap; color:#AD0059;}
+a.white:hover         {background-color:#ffffff; white-space:nowrap; color:#AD0059;}
+*/
+
+.preformatted {font-family:monospace;}
+.highlight {font-weight:bold}
+.weekend    {color: #000000; background-color:#dddddd;}
+.holyday    {color: #000000; background-color:#cccccc;}
+.missday    {color: #FFFFFF; background-color:#cccccc;}
+
+h1, h2, h3, h4,h5 {text-align:center}
+.nowrap     {white-space:nowrap}
+.dowrap     {white-space:normal}
+
+table.tree                     {margin-right:1em; text-align:left;}
+
+td.label, th.label, tr.label   {font-weight:bold}
+td.active, th.active           {text-align:center; font-weight:bold}
+td.lsum, th.lsum               {text-align:left; font-weight:normal}
+td.lbsum, th.lbsum             {text-align:left; font-weight:bold}
+td.rsum, th.rsum               {text-align:right; font-weight:normal}
+td.rbsum, th.rbsum             {text-align:right; font-weight:bold}
+
+td.bg, th.bg                   {background-color:#C0C0C0; color:#000000; font-weight:normal}
+td.difference, th.difference   {background-color:#dddddd; color:#000000; text-align:right; font-weight:bold}
+td.tdi, th.tdi                 {background-color:#E0E0E0; color:#000000; text-align:center; font-weight:normal}
+td.tbh, th.tbh                 {background-color:#FFFFC0; color:#000000; font-weight:normal}
+td.tbv, th.tbv                 {background-color:#E0E0E0; color:#000000; font-weight:normal}
+td.lightgrey, th.lightgrey     {background-color:#E0E0E0; color:#000000; text-align:left; font-weight:normal}
+td.clightgrey, th.clightgrey   {background-color:#E0E0E0; color:#000000; text-align:center; font-weight:normal}
+td.rlightgrey, th.rlightgrey   {background-color:#E0E0E0; color:#000000; text-align:right; font-weight:normal}
+td.lwhite, th.lwhite           {background-color:#FFFFFF; color:#000000; text-align:left; font-weight:normal}
+td.rwhite, th.rwhite           {background-color:#FFFFFF; color:#000000; text-align:right; font-weight:normal}
+td.blightgrey, th.blightgrey   {background-color:#E0E0E0; color:#000000; text-align:left; font-weight:bold}
+td.rblightgrey, th.rblightgrey {background-color:#E0E0E0; color:#000000; text-align:right; font-weight:bold}
+td.grey, th.grey               {background-color:#B0B0B0; color:#000000; text-align:left; font-weight:normal}
+td.navy, th.navy               {background-color:navy; color:#000000; font-weight:normal}
+
+th.thi                         {text-align:center}
+th.thl                         {text-align:left}
+th.thr                         {text-align:right}
+td.tdbd, th.tdbd               {font-weight:bold}
+td.tdc, th.tdc                 {text-align:center; font-weight:normal}
+td.tdem, th.tdem               {font-style:italic; font-weight:normal}
+td.tdr, th.tdr, input.tdr      {text-align:right; font-weight:normal}
+td.tdrb, th.tdrb               {text-align:right; font-weight:bold}
+td.big, th.big                 {font-size:large; white-space:nowrap; font-weight:normal}
+td.marked_error                {font-weight:bold}
+
+hr {display:block; color:black; height:1px; margin:auto;}
+.hr_middle{width:30%;margin-top:10px;margin-bottom:20px;}
+
+input.submit10  {width:10em;}
+input.submit15  {width:15em;}
+input.submit20  {width:20em;}
+input.submit25  {width:25em;}
+input.submit30  {width:30em;}
+input.submit35  {width:35em;}
+input.submit40  {width:40em;}
+input.submit45  {width:45em;}
+input.submit50  {width:50em;}
+
+/*
+ * head and menu
+ */
+
+/* Kopfzeilen Font und Ausrichtung */
+.head       {
+  white-space:nowrap;
+  padding:3px;
+  border-top-style:solid;
+  border-bottom-style:solid;
+  border-width:5px;
+}
+.head_big   {
+  white-space:nowrap;
+  padding-left:3px;
+  padding-right:3px;
+  font-size:150%;
+}
+.left       {float:left;}
+.right      {float:right; text-align:right}
+.bigger     {font-size:120%}
+.plus_label {font-size:medium; font-style:italic; vertical-align:top;}
+
+.head_big a:focus    {outline:white solid 2px;}
+
+/*Header - Vertretung-Meldung*/
+.ver_message{color:#E20074;}
+
+/*
+ * Content
+ */
+#delayedDisplay  {display:none}
+#waitDisplay  {text-align:center; font-size:120%}
+
+.content        {vertical-align:top;}
+td.content      {padding:10px;}
+.centered       {text-align:center;}
+td.centered     {white-space:nowrap;}
+.centered_table {margin:auto}
+
+.vertical_margin_small {margin-top:1em; margin-bottom:1em;}
+input[type="submit"]   {margin-top:1em;}
+input[type="submit"].compact {margin-top:0;}
+
+/*
+ * Footer
+ */
+
+.foot {text-align:center; font-size:75%;}
+
+.bold      {font-weight:bold;}
+.marktext {background-color:rgb(255,255,0); color:black; border:1px solid black}
+table.srvinfo{margin-left:auto; margin-right:auto;}
+
+/* Table for datasets*/
+table.dataset{width:95%}
+table.dataset_nested{margin: auto; width: 99%; border-collapse: collapse;}
+
+/* Styles used by pgui */
+
+/* inline-block is not handled correctly by IEx
+ * "zoom:1; *display:inline;" is a hack to fix this, but is not valid,
+ * classes with "* html" are.
+ */
+div.gui_centered        {text-align:center;}
+div.gui_block           {display:inline-block; margin:auto;}
+* html div.gui_block    {display:inline;       margin:auto; height:1px;}
+div.gui_label_and_input {text-align:left;}
+#show_inline .gui_label_and_input{
+  display:inline;
+  vertical-align:bottom;
+}
+div.gui_label, div.gui_input, label.gui_checkbox, label.gui_radiobutton, span.gui_remark {vertical-align: middle;}
+
+       label,        div.gui_label,        div.gui_input,        label.gui_checkbox,        label.gui_radiobutton {display:inline-block;}
+* html label, * html div.gui_label, * html div.gui_input, * html label.gui_checkbox, * html label.gui_radiobutton {display:inline; height:1px;}
+
+select, label, div.gui_label, div.gui_input, label.gui_checkbox, label.gui_radiobutton {text-align:left;}
+
+/* Definitions for Tags */
+
+img                   {vertical-align:middle; border-style:none; border:0;}
+
+input, select, label         {margin-top:0.1em; margin-bottom:0.1em;}
+input, select, button        {font-family:inherit; font-size:inherit;}
+input, select, button, label {vertical-align: middle;}
+
+label             {padding:2px;}
+label.gui_label_tiny   {width:4em}
+label.gui_label_short  {width:8em}
+label.gui_label_normal {width:12em}
+label.gui_label_middle {width:16em}
+label.gui_label_long   {width:20em}
+label.gui_label_wide   {width:24em}
+.cap_tiny    {display:inline-block; width:4em; font-weight:bold;}
+.cap_short  {display:inline-block; width:8em; font-weight:bold;}
+.cap_normal {display:inline-block; width:12em; font-weight:bold;}
+.cap_middle {display:inline-block; width:16em; font-weight:bold;}
+.cap_long   {display:inline-block; width:20em; font-weight:bold;}
+.cap_wide   {display:inline-block; width:24em; font-weight:bold;}
+.gui_radiobutton  {padding:0; margin:0;}
+
+/* group levels for f.e. Steuerungsinformationen PV, Verfuegbarkeitsuebersicht MA/PV */
+.lvl_0_wrng  {color:#A00000; background-color: white; border-color: inherit;}
+.lvl_0_wrng1 {color:blue;    background-color: white; border-color: inherit;}
+.lvl_1       {color:black;   background-color: #F0F0F0; border-color: inherit;}
+.lvl_1_wrng  {color:#A00000; background-color: #F0F0F0; border-color: inherit;}
+.lvl_2       {color:black;   background-color: pink; border-color: inherit;}
+.lvl_3       {color:white;   background-color: #505050; border-color: inherit;}
+.lvl_4       {color:white;   background-color: black; border-color: inherit;}
+
+.color_listsel {background-color: #D0FFD0}
+
+.comment_box             {border-style:ridge; text-align:left; padding:5px;}
+.comment_box .cap        {display:inline-block; width:45%; text-align:left; font-weight:bold;}
+.comment_box .text_value {margin-left: 4em;}
+.box_thin {border: 1px solid; padding:10px;}
+
+/* Texte mit Labels */
+.group_box{
+   text-align:left;
+}
+.group_box .label{
+   display:         inline-block;
+   width:           300px;
+   text-align:      right;
+   font-weight:     bold;
+}
+
+/* Server info  */
+.srvinfo{
+  border-style:solid;
+  border-width:1px;
+}
+.srvinfo span.label{
+  font-weight: bold;
+  padding-left:3px;
+  padding-right:3px;
+}
+
+/*Fehler, Warnung, Hinweis*/
+.msg_header { color: #FF0000; background-color: #FFFFFF; font-weight: bold; text-align: center;}
+a:link.msg_header      { color: #FF0000 !important; background-color: #FFFFFF; font-weight: bold !important;}
+a:visited.msg_header  { color: #FF0000 !important; background-color: #FFFFFF; font-weight: bold !important;}
+a:active.msg_header   { color: #FF0000 !important; background-color: #FFFFFF; font-weight: bold !important;}
+.msg_text { text-align: center;}
+.msg_footer { font-weight: bold;  text-align: center;}
+.msg_success { color: #008800; background-color: #FFFFFF; font-weight: bold; text-align: center;}
+
+/* bg colors for inputs in  Verfuegbarkeitsuebersicht PV*/
+.not_approved {background-color: #00C8FF;  color:black;}
+.emp_not_avail {background-color: #FFA500;  color:black;}
+
+/*column with link icon*/
+td.btn_col{text-align:center; width: 0px;}
+td.btn_col input{margin: 0;}
+td.cbx_col{text-align:center; width: 0px;}
+td.btn_log_off {background-color:#E0E0E0; color:#000000; text-align:center; font-weight:normal}
+
+fieldset {white-space:nowrap; margin:0.2em;}
+* html fieldset {height:1px;}
+fieldset.legend_caption legend{font-weight: bold; font-size: 150%;}
+fieldset.legend_caption fieldset legend{font-weight: normal; font-size: 100%;}
+
+/*formatted cells for Activity sheet*/
+td.mam_transmit{background-color: #33CCFF; color: #000000; text-align: center; font-weight: normal}
+td.mam_active{background-color: #66FF99; color: #000000; text-align: center; font-weight: normal}
+td.mam_inactive{background-color: #C0C0C0; color: #000000; text-align: center; font-weight: normal}
+td.booked_hours     {text-align:right; font-weight:normal}
+td.sum_booked_hours {text-align:right; font-weight:bold}
+.changed_posting{background-color:#FFFFFF; color:#AD0059;}
+.btn_save{font-weight:normal; text-align:center; width:0px;}
+.act_sheets_bg{background-color: #F0F0F0; color:black;}
+td.overview_lateral_board{background-color:#E0E0E0; color:#000000; text-align:center; font-weight:normal}
+td.overview_hours{text-align:right; font-weight:normal}
+td.overview_hours_sum{text-align:right; font-weight:bold}
+
+/* vertical and horizontal spacing */
+.vertical_spacer_top_small {margin-top:10px !important;}
+.vertical_spacer_top_medium {margin-top:20px !important;}
+.vertical_spacer_top_large {margin-top:30px !important;}
+
+.vertical_spacer_bottom_small {margin-bottom:10px !important;}
+.vertical_spacer_bottom_medium {margin-bottom:20px !important;}
+.vertical_spacer_bottom_large {margin-bottom:30px !important;}
+
+.horizontal_spacer_right_small {margin-right:10px;}
+.horizontal_spacer_left_medium {margin-left:20px;}
+.cleared_row{clear: both}
+.indivisible_row {white-space:nowrap;}
+.blocks_in_row {display:inline; margin-right:5px;}
+
+.vsplit {border-color: black;  border-left: 2px solid black; border-right: 2px solid black; border-style: solid;}
+
+/* classes for html-reports */
+.italic {font-style: italic}
+.tdtop {vertical-align: top}
+.tdbottom {vertical-align: bottom}
+.tdcenter {text-align: center}
+.tdright {text-align: right}
+.active_hours{background-color:#FFFFCC; color:black;}
+.productive_hours{background-color:#F6DD4A; color:black;}
+.weekly_rep_activities{white-space:nowrap}
+.avail_empl_rep_projects{white-space:nowrap}
+
+/*TimeCapturing*/
+td.tc_act_conf_wrk_hrs {text-align:right}
+.tc_day_btn{width:4em; color:black; background-color:#E0E0E0;}
+td.tc_row_caption {text-align:right}
+input.tc_submit {width:20em;}
+.invisible {display:none}       /* not shown in any way */
+label.hidden    {visibility:hidden;} /* just reserve space */
+input.tc_wt_lt {color:black; background-color:lightyellow;}
+input.tc_wt_gt {color:black; background-color:#FFCC99;}
+input.tc_wt_eq {color:black; background-color:lightgreen;}
+.freelancer  {font-style:italic; font-weight:normal}
+td.tc_group_title  {font-weight:bold}
+input.kg_out_of_date{color:magenta; font-weight: bold;}
+
+/*Auftragsmanagement*/
+div.adb_selection_updater {margin-left:12.5em;margin-top:0.1em; margin-bottom:1em}
+div.adb_selection_updater input{margin-top:0em; margin-bottom:0em}
+
+/*Classes for Management report*/
+mgmt_sum       {text-align:right; font-weight:bold}
+mgmt_group_sum {text-align:right; font-weight:normal}
+mgmt_strong    {font-weight:bold}
+mgmt_date      {background-color:#E0E0E0; color:#000000; text-align:center; font-weight:normal}
+mgmt_number    {text-align:right; font-weight:normal}
+/*Classes for Resource planning report*/
+td.rspl_char_bld   {font-weight:bold}
+td.rspl_date       {text-align:center;}
+td.rspl_number     {text-align:right}
+td.rspl_number_bld {text-align:right; font-weight:bold}
+div.rspl_tab_with_buttons{display: inline-block; text-align:center}
+
+table.default_table
+   {border-collapse: collapse;}
+table.default_table td, th
+   {border: 1px solid black;}
+
+table.pweek_table > thead > tr:first-child > th:first-child
+   {width:50%;}
+table.pweek_table > thead > tr:first-child > th:first-child + *
+   {width:10%;}
+table.pweek_table > thead > tr:first-child > th:first-child + * + *
+   {width:40%;}
+
+table.prjf_table > thead > tr:first-child > th:first-child
+   {width:10%;}
+table.prjf_table > thead > tr:first-child > th:first-child + *
+   {width:30%;}
+table.prjf_table > thead > tr:first-child > th:first-child + * + *
+   {width:39%;}
+table.prjf_table > thead > tr:first-child > th:first-child + * + * + *
+   {width:20%;}
+table.prjf_table > thead > tr:first-child > th:first-child + * + * + * + *
+   {width:1%;}
+
+table.pifc_table > thead > tr:first-child > th:first-child
+   {width:30%;}
+table.pifc_table > thead > tr:first-child > th:first-child + *
+   {width:10%;}
+table.pifc_table > thead > tr:first-child > th:first-child + * + *
+   {width:22%;}
+table.pifc_table > thead > tr:first-child > th:first-child + * + * + *
+   {width:10%;}
+table.pifc_table > thead > tr:first-child > th:first-child + * + * + * + *
+   {width:18%;}
+table.pifc_table > thead > tr:first-child > th:first-child + * + * + * + * + *
+   {width:10%;}
+
+table.main_layout > tbody > tr:first-child > td:first-child
+   {width:15%;}
+table.main_layout > tbody > tr:first-child > td:last-child
+   {width:85%;}
+
+table.default_layout
+   {border-spacing:0; width:100%;}
+table.pweek_layout td
+   {padding:2px; border-spacing:0;}
+
+table.unbordered{
+   border-collapse: collapse;
+   border-width:0px;
+}
+
+table.unbordered th, table.unbordered td{
+   border-width: 2px;
+   border-style: ridge;
+}
+
+table.unbordered td.noborder{
+   border-width: 0px;
+   background-color:white;
+}
+
+ul.fields_group{
+   padding-left:0px;
+   margin-top:0px;
+}
+li.fields_group{
+   list-style-type:none;
+   white-space:nowrap;
+   margin-bottom:1px;
+}
+/* Separated label */
+label.td_label {width:95%; padding:0; margin:0; color:inherit; background-color:inherit}
+
+/* User Groups Organisational Unit*/
+.usr_grp_org_unit {white-space:nowrap}
+
+
+/*!!
+Epoch DHTML JavaScript Calendar - Version 2.0.2
+Deutsche Ausgabe
+CSS Style File
+(c) 2006-2007 MeanFreePath
+Free for NON-COMMERCIAL use - see website for details and updates
+http://www.meanfreepath.com/javascript_calendar/index.html
+!!*/
+table.calendar {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 80%;
+	border-collapse: collapse;
+	background-color: white;
+	border: solid #999999 1px;
+	background-color: white;
+	width: 215px;
+	text-align: center;
+	/*prevent user from selecting text in Mozilla & Safari - check calendar constructor for IE code)*/
+	-moz-user-select: none;
+    /*-khtml-user-select: none;*/
+}
+table.calendar a:link, a:visited{
+   text-decoration: none;
+}
+
+table.calendar a:hover {
+}
+table.calendar td {
+	border: 0;
+	text-align: center;
+}
+div.mainheading {
+	margin: 2px;
+}
+TABLE.calendar TH {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px; TEXT-ALIGN: center
+}
+DIV.mainheading {
+	MARGIN: 2px 0px
+}
+TABLE.cells {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; MARGIN:  1px 0px 3px 0px; BORDER-LEFT: #cccccc 1px solid; CURSOR: pointer; BORDER-BOTTOM: #cccccc 1px solid; BORDER-COLLAPSE: collapse; empty-cells: show
+}
+TABLE.cells TH {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; FONT-WEIGHT: bold; BORDER-LEFT: #cccccc 1px solid; WIDTH: 22px; COLOR: #ffffff; background-color: #555555; BORDER-BOTTOM: #cccccc 1px solid; TEXT-ALIGN: left
+}
+
+table.cells th.wkhead {
+	border-right: double #CCCCCC 3px;
+	cursor: default;
+	width: 22px;
+}
+/*The date cells*/
+table.cells td {
+	border: solid #CCCCCC 1px;
+	vertical-align: top;
+	text-align: left;
+/*	font-weight: bold;*/
+	height: 20px; /*IE doesn''t like ems*/
+}
+table.cells td.wkhead {
+	background-color: white;
+	text-align: center;
+	border-right: double #CCCCCC 3px;
+	color: #0043d2;
+}
+table.cells td.noselect {
+	background-color: #EEEEEE;
+	color: #BBBBBB;
+	text-decoration: line-through;
+	cursor: default;
+}
+table.cells td.hlday {
+	background-color: #99FF99;
+}
+table.cells td.wkday {
+	background-color: #DDDDDD;
+}
+table.cells td.wkend {
+	background-color: #DDDDDD;
+	font-weight: bold;
+}
+table.cells td.curdate {
+	background-color: #99FF99;
+}
+table.cells td.cell_selected {
+	background-color: #99CCFF;
+	color: black;
+}
+table.cells td.notmnth {
+	background-color: #FFFFFF;
+	color: #CCCCCC;
+}
+table.cells td.notallowed {
+	background-color: white;
+	color: #EEEEEE;
+	font-style: italic;
+}
+table.cells td.hover {
+	background-color: black;
+	color: #DDDDDD;
+}
+table.cells td div {
+	padding: 1px;
+	margin: 0;
+}
+.minimized_col_width{
+   width:0px;
+}
+/* Project Management > Define Project Manager */
+th.pgmo_header_left{text-align:left;}
+td.pgmo_cb{text-align:center;}
+/* Time Management > Availability Summary Supervisor */
+td.availsum_num {text-align:right}
+td.availsum_link{text-align:center}
+/* Schnittstellenlogbuch und GoB reports */
+td.error_counter {text-align:center; font-weight:bold; color:black}
+.gob_sap_row_sum {text-align:right; font-weight:normal}
+td.gob_sap_total_sum {text-align:right; font-weight:bold; color:black; background-color:#D0D0D0}
+td.gob_sap_total_sum_label {text-align:left; font-weight:bold; color:black; background-color:#D0D0D0}
+.gob_biss_total_sum  {text-align:left; font-weight:bold; color:black; background-color:#D0D0D0}
+td.gob_biss_row_sum  {text-align:left; font-weight:bold; color:black}
+/*Objektmanagement > Abwesenheitsreport*/
+td.absence_emp {font-weight: bold}
+td.absence_prj {font-weight: bold}
+td.absence_work_hours {text-align:right}
+td.absence_abs_hours {text-align:right; font-weight:bold}
+/*Project Management > Project Overview*/
+td.prj_overview_time {text-align:right}
+td.prj_overview_headings {font-weight:bold; text-align:LEFT; color:black; background-color:#D0D0D0}
+/*Objektmanagement > Mappingreport*/
+td.map_sum {font-weight: bold; text-align:right}
+td.map_hours {text-align:right}
+/*Objektmanagement > Objektdefinition*/
+tr.obj_def_row {vertical-align: top}
+.obj_def_ma_ff {font-style: italic}
+/*Objektmanagement > Assigned Budget*/
+.obj_budget_hrs{text-align:right}
+.obj_budget_sum{font-weight: bold; text-align:left}
+.obj_budget_hrs_sum{font-weight: bold; text-align:right}
+.obj_budget_hrs_wrng{font-weight: bold; text-align:right; color:#000000; background-color: #D0D0D0}
+/*Objektmanagement > KST-Report*/
+.obj_kst_hrs{text-align:right}
+.obj_kst_hrs_wrng{text-align:right; color:#FF0000; background-color: #FFFFFF}
+.obj_kst_sum_hrs{font-weight: bold; text-align:right}
+.obj_kst_sum_hrs_wrng{font-weight: bold; text-align:right; color:#FF0000; background-color: #FFFFFF}
+.obj_kst_sum{font-weight: bold; text-align:center; color:#000000; background-color: #D0D0D0}
+/*Objektmanagement > Strukture-Report*/
+.obj_str_hrs{text-align:center}
+.obj_str_sum_hrs{text-align:center; font-weight: bold}
+.obj_str_sum_ist_hrs{text-align:right; font-weight: bold}
+.obj_str_hrs_pos{text-align:center; color:#215E21; background-color: #FFFFFF; border-color: inherit}
+.obj_str_hrs_neg{text-align:center; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_str_sum_hrs_pos{text-align:center; font-weight: bold; color:#215E21; background-color: #FFFFFF; border-color: inherit}
+.obj_str_sum_hrs_neg{text-align:center; font-weight: bold; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+/*Objektmanagement > Aktivitaet-Report*/
+.obj_act_act_name{text-align:left; font-weight: bold}
+.obj_act_act_date{text-align:center; font-weight: bold}
+.obj_act_act_date_wrng{text-align:center; font-weight: bold; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_act_act_date_input{text-align:center; font-weight: bold}
+.obj_act_act_hrs_input{text-align:right; font-weight: bold}
+.obj_act_act_hrs{text-align:right; font-weight: bold}
+.obj_act_act_hrs_wrng{text-align:right; font-weight: bold; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_act_status{text-align:left; font-weight: bold}
+.obj_act_status_wrng{text-align:left; font-weight: bold; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_act_actsum{text-align:right; font-weight: bold}
+.obj_act_tasksum{text-align:right}
+.obj_act_tasksum_hrs{text-align:right; font-style:italic}
+.obj_act_tasksum_hrs_wrng{text-align:right; font-style:italic; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_act_task_name{text-align:left}
+.obj_act_task_date{text-align:center}
+.obj_act_task_date_wrng{text-align:center; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+.obj_act_task_hrs_input{text-align:right}
+.obj_act_task_hrs{text-align:right}
+.obj_act_task_hrs_wrng{text-align:right; color:#FF0000; background-color: #FFFFFF; border-color: inherit}
+/*Objektmanagement > Objektteam*/
+.objteam_org{text-align:center}
+.objteam_pl{background-color: #D0FFD0; color: #000000}
+.objteam_btn{background-color: #FFFFFF; color: #000000}
+/*Objektmanagement > Verfuegbarkeitsuebersicht OL*/
+td.marked_empl {font-weight:bold; color:black}
+td.booked_hrs {text-align:right}
+td.sum_overbooked {text-align:right; font-weight:bold; color:red}
+td.sum_rest_hrs {text-align:right; font-weight:bold; color:black}
+td.sum_hrs {text-align:right; font-weight:bold; color:black}
+td.total_sum_label {font-weight:bold; color:black}
+/*Objektmanagement > Comparison Task*/
+.obj_comp_task{text-align:right}
+/*Ressourcenplanung*/
+td.rp_cell  {background-color: #F0F0F0; color: #000000; text-align: left; font-weight: normal; white-space: nowrap}
+td.rp_after {background-color: #F0F0F0; color: #000000; font-weight: bold}
+td.rp_num   {background-color: #F0F0F0; color: #000000; text-align: right; font-weight: normal; white-space: nowrap}
+td.rp_ff    {font-style:italic}
+/*ADB*/
+.tab{
+   float: left;
+   width: 220px;
+   line-height: 27px;
+   background-position: center center;
+   vertical-align: middle;
+   text-align: center;
+   cursor: pointer;
+   color: white;
+   font-weight: 900;
+   background-repeat: no-repeat;
+}
+.adb_bk_actual {color:black; background-color:#D0D0D0}
+fieldset.legend_caption_bld legend{font-weight: bold;}
+fieldset.legend_caption_bld fieldset legend{font-weight: normal;}
+
+th small{font-size: 62.5%}
+.inp_cntr{ margin-top: 1em}
+
+/*Schnittstellen > Deletemas*/
+td.ma_message{text-align: center}
+
+/*Objektmanagement > Objektplanung > SAP-Mapping*/
+td.spj_closed{color:red;}
+
+/*Auftragsmanagement > Auftrag (pers.) > Auftrag (Pers.) bearbeiten*/
+.spj_pay_plan_fail{color:red; font-weight: bold;}
+
+/*Benutzeradministration > Benutzerpflege*/
+section {
+   position:    relative;
+   border:      1px solid #000;
+   padding-top: 37px;
+   overflow-x:  auto;
+   background-color: #D0D0D0;
+}
+
+.container {
+   overflow-y: auto;
+   overflow-x: hidden;
+   max-height: 600px;
+   display:    block;
+}
+
+th div{
+   position: absolute;
+   padding: 9px 0px;
+   top: 0%;
+   line-height: normal;
+   color: black;
+   border-left: 1px solid black;
+}
+
+th:first-child div{
+   border: none;
+}
+
+table.scroll{
+   background-color: white;
+}
+
+table.scroll td{
+   border-left: none;
+   border-bottom: none;
+}
+
+th.scroll{
+  height:         0;
+  line-height:    0;
+  padding-top:    0;
+  padding-bottom: 0;
+  padding-left:   0;
+  color:          transparent;
+  border:         none;
+  white-space:    nowrap;
+}
+
+.pointer{
+  cursor:pointer;
+}
+
+/*Verfuegbarkeitsuebersicht MA*/
+table.avail_sum_emp th{
+  text-align: left;
+  vertical-align: top;
+  white-space:    nowrap;
+}
+
+/*Verfuegbarkeitsuebersicht PV*/
+table.avail_sum_cv input[type="text"]{
+  text-align: right;
+}
