@@ -25,8 +25,8 @@
 
         //]]>
     </script>
-    <link rel="stylesheet" type="text/css" href="../static/performance_report.style.css">
-    <link rel="stylesheet" type="text/css" href="../static/performance_report.print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.style.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.print.css") }}" media="print">
 
 </head>
 <body>
@@ -34,80 +34,59 @@
 <h2>Mitarbeiter: {{ user_name }}</h2>
 <div class="vertical_spacer_bottom_medium horizontal_spacer_left_medium">
     <div class="vertical_spacer_bottom_medium">
-        <div class="vertical_spacer_bottom_small"><span class="cap_long">Objekt:</span>
-            <span>{{ project }}</span></div>
-        <div class="vertical_spacer_bottom_small"><span class="cap_long">Aktivität:</span>
-            <span>Gesamtobjekt
-</span></div>
+
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Mitarbeiter:</span>
             <span>{{ user_name }}
 </span></div>
-        <div><span class="cap_long">Monat:</span>
-            <span>04.2020
+        <div><span class="cap_long">KW:</span>
+            <span>{{ calendar_week }}
 </span></div>
     </div>
     <table class="default_table dataset vertical_spacer_bottom_small data">
         <tbody>
         <tr>
-            <th colspan="2">Tag</th>
+            <th>Tag</th>
             <th>Aktivität</th>
             <th>geleistete<br>Stunden</th>
             <th>Erbrachte Leistung, Bemerkung</th>
         </tr>
+        {% for w in work %}
+            <tr>
+                <td class=" tdtop">
+                    {{ w.day|safe }}
+                </td>
+                <td class=" tdtop">
+                    {{ w.project|safe }}
+                </td>
+                <td class=" tdright tdtop">
+                    {{ w.work|safe }}
+                </td>
+                <td class=" tdtop">
+
+                </td>
+            </tr>
+        {% endfor %}
+        <tr></tr>
         <tr>
             <td class=" tdtop">
-                Mo
-            </td>
-            <td class=" tdright tdtop">
-                06.04.
+                Summe KW15
             </td>
             <td class=" tdtop">
                 Consulting
-                <br>
-                M-T5C-110029911-01
             </td>
             <td class=" tdright tdtop">
-                05:30
+                {{ sum_work|safe }}
             </td>
             <td class=" tdtop">
 
             </td>
         </tr>
-        <tr>
-            <td class=" tdright tdtop" colspan="3">
 
-<span class="bold">Summe KW15
-</span>
-            </td>
-            <td class=" tdright tdtop">
-
-<span class="bold">05:30
-</span>
-            </td>
-            <td class=" tdtop">
-
-            </td>
-        </tr>
-        <tr>
-            <td class=" tdright tdtop" colspan="3">
-
-<span class="bold">Summe
-</span>
-            </td>
-            <td class=" tdright tdtop">
-
-<span class="bold">05:30
-</span>
-            </td>
-            <td class=" tdtop">
-
-            </td>
-        </tr>
         </tbody>
     </table>
     <div class="vertical_spacer_bottom_medium"><br>
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Datum</span>
-            <span>28.07.2020
+            <span>{{ get_current_date() }}
 </span></div>
         <br>
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Unterschrift Mitarbeiter</span>
@@ -123,8 +102,9 @@
 </span></div>
     </div>
 </div>
+<br/><br/>
 <div class="gui_centered">
-    <div class="gui_block">{{ generate_server_timestamp() }} © {{ company }} 2020, v13571
+    <div class="gui_block">{{ generate_server_signature() }}
     </div>
 </div>
 </body>

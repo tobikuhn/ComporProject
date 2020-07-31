@@ -4,7 +4,7 @@ from flask.globals import request
 from flask.helpers import url_for
 from flask_login.utils import login_user, logout_user
 
-from extensions import login_manager, mysql
+from extensions import login_manager
 from services.user_service import get_user_by_id, get_user_by_email
 
 user_routes = Blueprint('user_routes', __name__)
@@ -12,7 +12,7 @@ user_routes = Blueprint('user_routes', __name__)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return get_user_by_id(mysql, user_id)
+    return get_user_by_id(user_id)
 
 
 @user_routes.route("/compor+/logout")
@@ -28,7 +28,7 @@ def login():
     password = request.form["password"]
 
     if username and password:
-        user = get_user_by_email(mysql, request.form["username"])
+        user = get_user_by_email(request.form["username"])
         if user:
             if user.password == password:
                 login_user(user)

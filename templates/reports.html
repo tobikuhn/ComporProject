@@ -25,8 +25,8 @@
 
         //]]>
     </script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <link rel="stylesheet" type="text/css" href="../static/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
 
     <style type="text/css">
         .bgclr {
@@ -37,7 +37,7 @@
             border-color: white;
         }
     </style>
-    <script type="text/javascript" src="../static/prost.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="prost.js") }}"></script>
 </head>
 <body>
 <table class="default_layout main_layout">
@@ -45,26 +45,26 @@
     <tr>
         <td class="bgclr" rowspan="2">
             <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
-                    src="../static/logo.gif" alt="{{ application }} Hauptmenü"
+                    src="{{ url_for('static', filename="logo.gif") }}" alt="{{ application }} Hauptmenü"
                     title="{{ application }} Hauptmenü"></a>
         </td>
         <td class="head">
-            <div class="left"><a href="{{url_for("reports.reports")}}">Sicht:
+            <div class="left"><a href="/berichte">Sicht:
                 {{ company }}</a>
             </div>
-            <div class="right"><a href="{{url_for("reports.reports")}}"
+            <div class="right"><a href="/berichte"
                                   title="Öffnet die Informations-Seite in einem neuen Fenster."
                                   target="_blank">{{ application }}-Info</a>
-                <a href="{{url_for("reports.reports")}}">Hilfe</a>
+                <a href="/berichte">Hilfe</a>
             </div>
         </td>
     </tr>
     <tr>
         <td class="head_big">
             <div class="left">{{ application }}</div>
-            <div class="right"><a href="#" onclick="set_lang('DEU');"><img src="../static/deu.gif"
+            <div class="right"><a href="#" onclick="set_lang('DEU');"><img src="{{ url_for('static', filename="deu.gif") }}"
                                                                            alt="Deutsch" title="Deutsch"></a>
-                <a href="#" onclick="set_lang('ENG');"><img src="../static/eng.gif" alt="English"
+                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}" alt="English"
                                                             title="English"></a>
             </div>
         </td>
@@ -74,11 +74,11 @@
         </td>
         <td class="head">
             <div class="left">Sie sind hier:
-                <a href="{{url_for("reports.reports")}}">Zeitmanagement</a>
+                <a href="/berichte">Zeitmanagement</a>
                 &gt;
                 Berichte
             </div>
-            <div class="right">Nutzer: {{ username }}
+            <div class="right">Nutzer: {{ user.generate_username() }}
                 <a href="/compor+/logout" title="zur Abmeldung vom Who-is-Who Anmeldeverbund">zur
                     Abmeldung</a>
             </div>
@@ -89,49 +89,49 @@
             <ul class="navigation">
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_ma1"><a
-                            href="{{url_for("reports.reports")}}" id="MEI_M110"
+                            href="/berichte" id="MEI_M110"
                             class="navigation" accesskey="Z">Zeitmanagement</a>
                     </div>
                     <ul class="navigation">
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{url_for("reports.reports")}}"
+                                    href="/berichte"
                                     id="MEI_024" class="navigation" accesskey="O"> Objektübersicht</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{url_for("reports.reports")}}"
+                                    href="/berichte"
                                     id="MEI_158" class="navigation" accesskey="A"> Arbeitsvorrat</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{ url_for("expense_recording.expense_recording") }}"
+                                    href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
                                     id="MEI_190" class="navigation" accesskey="A"> Aufwandserfassung</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{url_for("reports.reports")}}"
+                                    href="/berichte"
                                     id="MEI_023" class="navigation" accesskey="A"> Aufgabenübersicht</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_active menu_clr_ma2"><a
-                                    href="{{ url_for("reports.reports") }}"
+                                    href="/berichte"
                                     id="MEI_022" class="navigation" accesskey="B"> Berichte</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{url_for("reports.reports")}}"
+                                    href="/berichte"
                                     id="MEI_M316" class="navigation" accesskey="V"> Verfügbarkeitsübersicht MA</a>
                             </div>
                         </li>
                         <li class="navigation">
                             <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{url_for("reports.reports")}}"
+                                    href="/berichte"
                                     id="MEI_950" class="navigation" accesskey="E"> Einsatzblatt sichern Vertreter</a>
                             </div>
                         </li>
@@ -139,7 +139,7 @@
                 </li>
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_am1"><a
-                            href="{{url_for("reports.reports")}}" id="MEI_M130"
+                            href="/berichte" id="MEI_M130"
                             class="navigation" accesskey="A">Auftragsmanagement</a>
                     </div>
                     <div class="navig_comment">Auftrag (pers.), Mgmt-Report (pers.), Monatsreport (pers.), Report
@@ -148,7 +148,7 @@
                 </li>
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_pm1"><a
-                            href="{{url_for("reports.reports")}}" id="MEI_M120"
+                            href="/berichte" id="MEI_M120"
                             class="navigation" accesskey="O">Objektmanagement</a>
                     </div>
                     <div class="navig_comment">Objektplanung, Ressourcenplanung Programm, Objektdownload, Mgmt-Report
@@ -157,14 +157,14 @@
                 </li>
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_prf1"><a
-                            href="{{url_for("reports.reports")}}"
+                            href="/berichte"
                             id="MEI_M310" class="navigation" accesskey="E">Einstellungen</a>
                     </div>
                     <div class="navig_comment">Vertretung definieren, Vertretung wahrnehmen, Benutzereinstellungen</div>
                 </li>
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_info1"><a
-                            href="{{url_for("reports.reports")}}" id="MEI_M300"
+                            href="/berichte" id="MEI_M300"
                             class="navigation" accesskey="I">Infosystem</a>
                     </div>
                     <div class="navig_comment">Benutzerdaten, Organisationsstruktur</div>
@@ -179,637 +179,37 @@
                 Die Daten werden geladen. Bitte haben Sie etwas Geduld.
             </div>
             <div id="delayedDisplay" class="content" style="display: inline;"><h1>Berichte</h1>
-                <script type="text/javascript">
-                    //<![CDATA[
 
-                    date_OK = true;
-                    obj = null;
-                    //
-                    // Validiert ein datum in einem Eingabefeld
-                    // Param1 "oNewDateValue" - Typ: String: der Wert des ¿bergebenen Feldes - Ueblich: This.Value
-                    // Param2 "myfeld"- Typ: Inputfeld: das Feld selber - Ueblich: This
-                    //
-                    function goValidDate(oNewDateValue, myfeld) {
-                        var msg = "";
-                        var ret = "";
-                        var bDatum;
-                        if (oNewDateValue.length > 0) {
-                            oNewDateValue = reConstructDate(oNewDateValue, myfeld);
-                            if (oNewDateValue.length > 0) {
-                                bDatum = isDate(oNewDateValue, "dd.MM.yyyy")
-                                if (bDatum == false) {
-                                    msg = "Das Datum ist ungültig: " + oNewDateValue + ".";
-                                }
-                            } else {
-                                msg = "Das Datum ist ungültig: " + oNewDateValue + ".";
-                            }
-                        }
-                        if (msg) {
-                            alert(msg)
-                            myfeld.focus();
-                            myfeld.focus()
-                            myfeld.select();
-                            var elem_num = 0;
-                            return false
-                        } else {
-                            return true
-                        }
-                    }
-
-                    // wird von checkDate() aufgerufen
-                    // Parameter identisch zu checkDate()
-                    function checkDateDiff(myObj, datefield1_obj, datefield2_obj) {
-                        var mytest = true;
-                        mytest = goValidDate(myObj.value, myObj);
-                        if (!mytest) {
-                            return mytest;
-                        }
-                        var change = false;
-                        if (datefield1_obj instanceof String) {
-                            var datefield3 = datefield2_obj;
-                            datefield2_obj = datefield1_obj;
-                            datefield1_obj = datefield3;
-                            change = true;
-                        }
-                        var msg = "";
-                        var myname = datefield1_obj.name;
-                        var elem_num = 0;
-                        for (var i = 0; i < document.getElementsByName(myname).length; i++) {
-                            if (document.getElementsByName(myname)[i] == datefield1_obj) {
-                                elem_num = i;
-                                break;
-                            }
-                        }
-                        var date1 = (change) ? document.getElementsByName(datefield2_obj)[elem_num].value : datefield1_obj.value;
-                        var date2 = (change) ? datefield1_obj.value : document.getElementsByName(datefield2_obj)[elem_num].value;
-                        var ret = "";
-                        if (date1.length > 0 && date2.length > 0) {
-                            ret = compareDates(date1, "dd.MM.yyyy", date2, "dd.MM.yyyy");
-                            if (ret == 1) {
-                                msg = "Das eingegebene Datum von " + date1 + " ist größer als das Datum bis " + date2 + ".";
-                            }
-                            var mytest = true;
-                            if (msg) {
-                                alert(msg);
-                                datefield1_obj.focus();
-                                datefield1_obj.select();
-                                mytest = false;
-                            } else {
-                                mytest = true;
-                            }
-                            if (!mytest) {
-                                return mytest;
-                            }
-                        }
-                        return true;
-                    }
-
-                    // Param1 "myObj" - Typ: Inputfeld: das Feld selber - Ueblich: This
-                    // Param2 "datefield1_obj" - Typ: Inputfeld oder String: Das Feld mit dem Datum "von" - Entweder
-                    //  das Feld selber "This", oder der Feldname, wenn es nicht "This" ist
-                    //
-                    // Param3 "datefield2_obj" - Typ: Inputfeld oder String: Das Feld mit dem Datum "bis" - Entweder
-                    //  das Feld selber "This", oder der Feldname, wenn es nicht "This" ist
-                    //
-                    // Beispiel: onChange="checkDate(this, this, 'i_ts_enddate')
-                    // ODER:    onChange="checkDate(this, 'i_ts_begindate', this)
-                    //
-                    function checkDate(myObj, datefield1_obj, datefield2_obj) {
-                        var test1 = true;
-                        obj = myObj;
-                        test1 = goValidDate(myObj.value, myObj);
-                        if (test1) {
-                            test1 = Boolean(checkDateDiff(myObj, datefield1_obj, datefield2_obj));
-                        }
-                        date_OK = test1;
-                        return test1;
-                    }
-
-                    function checkDateDiffBetween(datefield1_obj, datefield2_obj, datefield3_obj) {
-                        var msg = "";
-                        var date1 = datefield1_obj.value;
-                        var date2 = datefield2_obj.value;
-                        var date3 = datefield3_obj.value;
-                        var ret = "";
-                        if (date1.length > 0 && date2.length > 0) {
-                            ret = compareDates(date1, "dd.MM.yyyy", date2, "dd.MM.yyyy");
-                            if (ret == 0) {
-                                msg = "Hinweis!\n\nDas Datum ist kleiner " + date2 + ".";
-                            }
-                        }
-                        if (date1.length > 0 && date3.length > 0) {
-                            ret = compareDates(date1, "dd.MM.yyyy", date3, "dd.MM.yyyy");
-                            if (ret == 1) {
-                                msg = "Hinweis!\n\nDas Datum ist gr&oumls;ßer " + date3 + ".";
-                            }
-                        }
-                        if (msg) {
-                            alert(msg);
-                        }
-                        return true;
-                    }
-
-                    // Param1 "o_aufg_start" - Typ: Inputfeld oder String: Das Feld mit dem Datum "von" - Entweder
-                    //  das Feld selber "This", oder der Feldname, wenn es nicht "This" ist
-                    //
-                    // Param2 "o_aufg_ende" - Typ: Inputfeld oder String: Das Feld mit dem Datum "bis" - Entweder
-                    //  das Feld selber "This", oder der Feldname, wenn es nicht "This" ist
-                    //
-                    // Param3 "datefield1_obj" - Typ: Inputfeld: das Feld selber - Ueblich: This
-                    // Param4 "dateBegin" - Typ: String: Feldname f¿r Datumsbereich Untergrenze (-> in Between min)
-                    // Param5 "dateEnd" - Typ: String: Feldname f¿r Datumsbereich Obergrenze (-> in Between max)
-                    function checkDateBetween(o_aufg_start, o_aufg_ende, datefield1_obj, dateBegin, dateEnd) {
-                        var ergebnis = true;
-                        obj = datefield1_obj;
-                        ergebnis = checkDateDiff(datefield1_obj, o_aufg_start, o_aufg_ende);
-                        if (!ergebnis) {
-                            return false;
-                        }
-                        if (datefield1_obj.value != "") {
-                            var dateItemNo = 0;
-                            for (var i = 0; i < document.getElementsByName(datefield1_obj.name).length; i++) {
-                                if (document.getElementsByName(datefield1_obj.name)[i] == datefield1_obj) {
-                                    dateItemNo = i;
-                                    break;
-                                }
-                            }
-                            ergebnis = checkDateDiffBetween(datefield1_obj, document.getElementsByName(dateBegin)[dateItemNo], document.getElementsByName(dateEnd)[dateItemNo]);
-                        }
-                        date_OK = ergebnis;
-                        return ergebnis;
-                    }
-
-                    //]]>
-                </script>
-                <script type="text/javascript">
-                    //<![CDATA[
-
-                    function checkDatum(datefield) {
-                        var eDatum = datum_today;
-                        var msg = "";
-                        if (datefield.length > 0) {
-                            ret = compareDates(eDatum, "dd.MM.yyyy", datefield, "dd.MM.yyyy")
-                            if (ret != 0) {
-                                msg = "";
-                            }
-                            if (msg) {
-                                alert(msg);
-                                return false;
-                            } else {
-                                return true;
-                            }
-                        }
-                        return true;
-                    }
-
-                    // isDate ( date_string, format_string )
-                    // Returns true if date string matches format of format string and
-                    // is a valid date. Else returns false.
-                    // It is recommended that you trim whitespace around the value before
-                    // passing it to this function, as whitespace is NOT ignored!
-                    function isDate(val, format) {
-                        var date = getDateFromFormat(val, format);
-                        if (date == 0) {
-                            return false;
-                        }
-                        return true;
-                    }
-
-                    // compareDates(date1,date1format,date2,date2format)
-                    // Compare two date strings to see which is greater.
-                    // Returns:
-                    // 1 if date1 is greater than date2
-                    // 0 if date2 is greater than date1 of if they are the same
-                    // -1 if either of the dates is in an invalid format
-                    function compareDates(date1, dateformat1, date2, dateformat2) {
-                        var d1 = getDateFromFormat(date1, dateformat1);
-                        var d2 = getDateFromFormat(date2, dateformat2);
-                        if (d1 == 0 || d2 == 0) {
-                            return -1;
-                        } else if (d1 > d2) {
-                            return 1;
-                        } else if (d1 == d2) {
-                            return 2;
-                        }
-                        return 0;
-                    }
-
-                    // formatDate (date_object, format)
-                    // Returns a date in the output format specified.
-                    // The format string uses the same abbreviations as in getDateFromFormat()
-                    function formatDate(date, format) {
-                        format = format + "";
-                        var result = "";
-                        var i_format = 0;
-                        var c = "";
-                        var token = "";
-                        var y = date.getYear() + "";
-                        var M = date.getMonth() + 1;
-                        var d = date.getDate();
-                        var H = date.getHours();
-                        var m = date.getMinutes();
-                        var s = date.getSeconds();
-                        var yyyy, yy, MMM, MM, dd, hh, h, mm, ss, ampm, HH, H, KK, K, kk, k;
-                        // Convert real date parts into formatted versions
-                        var value = {};
-                        if (y.length < 4) {
-                            y = "" + (y - 0 + 2000);
-                        }
-                        value["y"] = "" + y;
-                        value["yyyy"] = y;
-                        value["yy"] = y.substring(2, 4);
-                        value["M"] = M;
-                        value["MM"] = LZ(M);
-                        value["MMM"] = MONTH_NAMES[M - 1];
-                        value["d"] = d;
-                        value["dd"] = LZ(d);
-                        value["H"] = H;
-                        value["HH"] = LZ(H);
-                        if (H == 0) {
-                            value["h"] = 12;
-                        } else if (H > 12) {
-                            value["h"] = H - 12;
-                        } else {
-                            value["h"] = H;
-                        }
-                        value["hh"] = LZ(value["h"]);
-                        if (H > 11) {
-                            value["K"] = H - 12;
-                        } else {
-                            value["K"] = H;
-                        }
-                        value["k"] = H + 1;
-                        value["KK"] = LZ(value["K"]);
-                        value["kk"] = LZ(value["k"]);
-                        if (H > 11) {
-                            value["a"] = "PM";
-                        } else {
-                            value["a"] = "AM";
-                        }
-                        value["m"] = m;
-                        value["mm"] = LZ(m);
-                        value["s"] = s;
-                        value["ss"] = LZ(s);
-                        while (i_format < format.length) {
-                            c = format.charAt(i_format);
-                            token = "";
-                            while ((format.charAt(i_format) == c) && (i_format < format.length)) {
-                                token += format.charAt(i_format++);
-                            }
-                            if (value[token] != null) {
-                                result = result + value[token];
-                            } else {
-                                result = result + token;
-                            }
-                        }
-                        return result;
-                    }
-
-                    // Utility functions for parsing in getDateFromFormat()
-                    function _isInteger(val) {
-                        var digits = "1234567890";
-                        for (var i1 = 0; i1 < val.length; i1++) {
-                            if (digits.indexOf(val.charAt(i1)) == -1) {
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-
-                    //
-                    function _getInt(str, i, minlength, maxlength) {
-                        for (var x = maxlength; x >= minlength; x--) {
-                            var token = str.substring(i, i + x);
-                            if (token.length < minlength) {
-                                return null;
-                            }
-                            if (_isInteger(token)) {
-                                return token;
-                            }
-                        }
-                        return null;
-                    }
-
-                    //]]>
-                </script>
-                <script type="text/javascript">
-                    //<![CDATA[
-
-                    // getDateFromFormat( date_string , format_string )
-                    // This function takes a date string and a format string. It matches
-                    // If the date string matches the format string, it returns the
-                    // getTime() of the date. If it does not match, it returns 0.
-                    function getDateFromFormat(val, format) {
-                        val = val + "";
-                        format = format + "";
-                        var i_val = 0;
-                        var i_format = 0;
-                        var c = "";
-                        var token = "";
-                        var token2 = "";
-                        var x, y;
-                        var now = new Date();
-                        var year = now.getYear();
-                        var month = now.getMonth() + 1;
-                        var date = 1;
-                        var hh = now.getHours();
-                        var mm = now.getMinutes();
-                        var ss = now.getSeconds();
-                        var ampm = "";
-                        while (i_format < format.length) {
-                            // Get next token from format string
-                            c = format.charAt(i_format);
-                            token = "";
-                            while ((format.charAt(i_format) == c) && (i_format < format.length)) {
-                                token += format.charAt(i_format++);
-                            }
-                            // Extract contents of value based on format token
-                            if (token == "yyyy" || token == "yy" || token == "y") {
-                                if (token == "yyyy") {
-                                    x = 4;
-                                    y = 4;
-                                }
-                                if (token == "yy") {
-                                    x = 2;
-                                    y = 2;
-                                }
-                                if (token == "y") {
-                                    x = 2;
-                                    y = 4;
-                                }
-                                year = _getInt(val, i_val, x, y);
-                                if (year == null) {
-                                    return 0;
-                                }
-                                i_val += year.length;
-                                if (year.length == 2) {
-                                    if (year > 70) {
-                                        year = 1900 + (year - 0);
-                                    } else {
-                                        year = 2000 + (year - 0);
-                                    }
-                                }
-                            } else if (token == "MMM") {
-                                month = 0;
-                                for (var i = 0; i < MONTH_NAMES.length; i++) {
-                                    var month_name = MONTH_NAMES[i];
-                                    if (val.substring(i_val, i_val + month_name.length).toLowerCase() == month_name.toLowerCase()) {
-                                        month = i + 1;
-                                        if (month > 12) {
-                                            month -= 12;
-                                        }
-                                        i_val += month_name.length;
-                                        break;
-                                    }
-                                }
-                                if ((month < 1) || (month > 12)) {
-                                    return 0;
-                                }
-                            } else if (token == "MM" || token == "M") {
-                                month = _getInt(val, i_val, token.length, 2);
-                                if (month == null || (month < 1) || (month > 12)) {
-                                    return 0;
-                                }
-                                i_val += month.length;
-                            } else if (token == "dd" || token == "d") {
-                                date = _getInt(val, i_val, token.length, 2);
-                                if (date == null || (date < 1) || (date > 31)) {
-                                    return 0;
-                                }
-                                i_val += date.length;
-                            } else if (token == "hh" || token == "h") {
-                                hh = _getInt(val, i_val, token.length, 2);
-                                if (hh == null || (hh < 1) || (hh > 12)) {
-                                    return 0;
-                                }
-                                i_val += hh.length;
-                            } else if (token == "HH" || token == "H") {
-                                hh = _getInt(val, i_val, token.length, 2);
-                                if (hh == null || (hh < 0) || (hh > 23)) {
-                                    return 0;
-                                }
-                                i_val += hh.length;
-                            } else if (token == "KK" || token == "K") {
-                                hh = _getInt(val, i_val, token.length, 2);
-                                if (hh == null || (hh < 0) || (hh > 11)) {
-                                    return 0;
-                                }
-                                i_val += hh.length;
-                            } else if (token == "kk" || token == "k") {
-                                hh = _getInt(val, i_val, token.length, 2);
-                                if (hh == null || (hh < 1) || (hh > 24)) {
-                                    return 0;
-                                }
-                                i_val += hh.length;
-                                hh--;
-                            } else if (token == "mm" || token == "m") {
-                                mm = _getInt(val, i_val, token.length, 2);
-                                if (mm == null || (mm < 0) || (mm > 59)) {
-                                    return 0;
-                                }
-                                i_val += mm.length;
-                            } else if (token == "ss" || token == "s") {
-                                ss = _getInt(val, i_val, token.length, 2);
-                                if (ss == null || (ss < 0) || (ss > 59)) {
-                                    return 0;
-                                }
-                                i_val += ss.length;
-                            } else if (token == "a") {
-                                if (val.substring(i_val, i_val + 2).toLowerCase() == "am") {
-                                    ampm = "AM";
-                                } else if (val.substring(i_val, i_val + 2).toLowerCase() == "pm") {
-                                    ampm = "PM";
-                                } else {
-                                    return 0;
-                                }
-                                i_val += 2;
-                            } else {
-                                if (val.substring(i_val, i_val + token.length) != token) {
-                                    return 0;
-                                } else {
-                                    i_val += token.length;
-                                }
-                            }
-                        }
-                        // If there are any trailing characters left in the value, it doesn't match
-                        if (i_val != val.length) {
-                            return 0;
-                        }
-                        // Is date valid for month?
-                        if (month == 2) {
-                            // Check for leap year
-                            if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) {
-                                // leap year
-                                if (date > 29) {
-                                    return false;
-                                }
-                            } else {
-                                if (date > 28) {
-                                    return false;
-                                }
-                            }
-                        }
-                        if ((month == 4) || (month == 6) || (month == 9) || (month == 11)) {
-                            if (date > 30) {
-                                return false;
-                            }
-                        }
-                        // Correct hours value
-                        if (hh < 12 && ampm == "PM") {
-                            hh = hh - 0 + 12;
-                        } else if (hh > 11 && ampm == "AM") {
-                            hh -= 12;
-                        }
-                        var newdate = new Date(year, month - 1, date, hh, mm, ss);
-                        return newdate.getTime();
-                    }
-
-                    //]]>
-                </script>
-                <script type="text/javascript">
-                    //<![CDATA[
-
-                    function doSelection(fld) {
-                        //fld.value="";
-                        fld.focus();
-                        fld.select();
-                    }
-
-                    function reConstructDate(datum, feld, number) {
-                        if (datum.length > 0) {
-                            var digits = "1234567890.";
-                            var tag = "0";
-                            var monat = "0";
-                            var jahr = "200";
-                            for (var i1 = 0; i1 < datum.length; i1++) {
-                                if (datum.charAt(i1) == ",") datum = datum.replace(/,/, ".");
-                                if (digits.indexOf(datum.charAt(i1)) == -1) {
-                                    return datum;
-                                }
-                            }
-                            var testDate = datum.split(".");
-                            if (testDate.length != 3) {
-                                var newDate = datum.substring(0, 2);
-                                newDate += "." + datum.substring(2, 4) + ".";
-                                if (datum.length == 6) {
-                                    newDate += "20";
-                                }
-                                datum = newDate + datum.substring(4, datum.length);
-                            }
-                            var myDate = datum.split(".");
-                            if (myDate.length == 3) {
-                                tag += myDate[0];
-                                monat += myDate[1];
-                                if (myDate[2].length == 1) jahr = "200";
-                                if (myDate[2].length == 2) jahr = "20";
-                                jahr += myDate[2];
-                                datum = tag.substring(tag.length - 2, tag.length);
-                                datum += "." + monat.substring(monat.length - 2, monat.length);
-                                datum += "." + jahr.substring(jahr.length - 4, jahr.length);
-                                var elem_num = 0;
-                                for (var i = 0; i < document.getElementsByName(feld.name).length; i++) {
-                                    if (document.getElementsByName(feld.name)[i] == feld) {
-                                        elem_num = i;
-                                        break;
-                                    }
-                                }
-                                document.getElementsByName(feld.name)[elem_num].value = datum;
-                            } else {
-                                datum = "";
-                                //feld.value="";
-                            }
-                        }
-                        return datum;
-                    }
-
-                    //]]>
-                </script>
                 <div class="gui_centered">
                     <div class="vertical_spacer_bottom_small gui_block">
-                        <fieldset class="legend_caption">
-                            <legend>Einsatzblatt</legend>
-                            <form method="post"
-                                  action="{{url_for("reports.reports")}}">
-                                <div class="gui_label_and_input">
-                                    <div class="gui_label"><label for="i_bumo_id_eb"
-                                                                  class="gui_label_normal">Monat</label>
-                                    </div>
-                                    <div class="gui_input">
-                                        <script type="text/javascript">
-                                            //<![CDATA[
-                                            SetFocusId('i_bumo_id_eb');
-                                            //]]>
-                                        </script>
-                                        <select name="i_bumo_id" size="1" id="i_bumo_id_eb">
-                                            {% for i in range(12) %}
-                                                <option>{{ generate_date_from_month(month=i) }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                </div>
-                                <input type="submit" value="Anzeigen">
-                            </form>
-                        </fieldset>
-                        <br>
-                        <fieldset class="legend_caption">
-                            <legend>Einsatzblattliste</legend>
-                            <form method="post"
-                                  action="{{url_for("reports.reports")}}">
-                                <input type="submit" value="Anzeigen">
-                            </form>
-                        </fieldset>
-                        <br>
+
                         <fieldset class="legend_caption">
                             <legend>Leistungsnachweis</legend>
-                            <form method="post"
-                                  action="{{url_for("reports.reports")}}">
+                            <script>
+                                function onOpenPerformanceRecord() {
+                                    let selected = document.getElementById("i_bumo_id_ma").value
+                                    let redirect_to = "{{ url_for("reports.performance_record", user_id=user.id, calendar_week="")}}" + selected
+                                    console.log(redirect_to)
+                                    window.open(redirect_to)
+                                }
+                            </script>
+                            <form onsubmit="onOpenPerformanceRecord()">
                                 <div class="left horizontal_spacer_right_small">
                                     <div class="gui_label_and_input">
                                         <div class="gui_label"><label for="i_bumo_id_ma"
-                                                                      class="gui_label_short">Monat</label>
-                                        </div>
-                                        <div class="gui_input"><select name="i_bumo_id" size="1" id="i_bumo_id_ma"
-                                                                       class="gui_label_short">
-                                            {% for i in range(12) %}
-                                                <option>{{ generate_date_from_month(month=i) }}</option>
-                                            {% endfor %}
-                                        </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="left vertical_spacer_bottom_small">
-                                    <div class="gui_label_and_input">
-                                        <div class="gui_label"><label for="i_von_ma"
-                                                                      class="gui_label_short">Von: </label>
-                                        </div>
-                                        <div class="gui_input"><input type="text" name="i_von" size="9" maxlength="10"
-                                                                      id="i_von_ma" class="gui_label_short"
-                                                                      onchange="checkDate(this, this, String('i_bis'))">
-                                        </div>
-                                    </div>
-                                    <div class="gui_label_and_input">
-                                        <div class="gui_label"><label for="i_bis_ma"
-                                                                      class="gui_label_short">Bis: </label>
-                                        </div>
-                                        <div class="gui_input"><input type="text" name="i_bis" size="9" maxlength="10"
-                                                                      id="i_bis_ma" class="gui_label_short"
-                                                                      onchange="checkDate(this, String('i_von'), this)">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cleared_row">
-                                    <div class="gui_label_and_input">
-                                        <div class="gui_label"><label for="i_prj_ts_ma" class="gui_label_normal">Aktivität</label>
+                                                                      class="gui_label_short">Kalenderwoche</label>
                                         </div>
                                         <div class="gui_input">
-                                            <select name="i_prj_ts" size="1" id="i_prj_ts_ma">
-                                                {% for project in projects %}
-                                                    <option value="{{ project.name }}">{{ project.name }}</option>
+                                            <select name="i_bumo_id" size="1" id="i_bumo_id_ma"
+                                                    class="gui_label_short">
+                                                {% for week  in calendar_weeks %}
+                                                    <option>{{ week.calendar_week }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="cleared_row"></div>
                                 <div class="gui_label_and_input"><input type="checkbox" name="i_act" value="datum"
                                                                         checked="checked" id="i_act_ma">
                                     <label for="i_act_ma" class="gui_checkbox">Druckdatum als Unterschriftsdatum
@@ -850,36 +250,14 @@
                                     <label for="i_null_wert_ma" class="gui_checkbox">Aktivitäten ohne Stundensatz
                                         unterdrücken</label>
                                 </div>
-                                <div class="gui_label_and_input">
-                                    <div class="gui_label"><label for="i_lan_ma" class="gui_label_normal">Ausgabe
-                                        in: </label>
-                                    </div>
-                                    <div class="gui_input"><select name="i_lan" size="1" id="i_lan_ma">
-                                        <option value="DEU" selected="selected">Deutsch</option>
-                                        <option value="ENG">Englisch</option>
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="gui_label_and_input">
-                                    <div class="gui_label"><label class="gui_label_normal">Ausgabe als:</label>
-                                    </div>
-                                    <div class="gui_input"><input type="radio" name="i_printcode" value="2"
-                                                                  id="i_printcode_ma:1" checked="checked">
-                                        <label for="i_printcode_ma:1" class="gui_radiobutton">HTML</label>
-                                        <input type="radio" name="i_printcode" value="1" id="i_printcode_ma:2">
-                                        <label for="i_printcode_ma:2" class="gui_radiobutton">PDF</label>
-                                        <input type="radio" name="i_printcode" value="3" id="i_printcode_ma:3">
-                                        <label for="i_printcode_ma:3" class="gui_radiobutton">txt</label>
-                                    </div>
-                                </div>
                                 <input type="submit" value="Anzeigen">
                             </form>
                         </fieldset>
                         <br>
                         <fieldset class="legend_caption">
                             <legend>Monatsbericht</legend>
-                            <form method="post"
-                                  action="{{url_for("reports.reports")}}">
+                            <form method="get"
+                                  action="{{ url_for("reports.reports", user_id=user.id) }}">
                                 <div class="gui_label_and_input">
                                     <div class="gui_label"><label for="i_bumo_mb_id"
                                                                   class="gui_label_normal">Monat</label>
@@ -930,15 +308,7 @@
                                 <input type="submit" value="Anzeigen">
                             </form>
                         </fieldset>
-                        <br>
-                        <fieldset class="legend_caption">
-                            <legend>AZ-Übersicht</legend>
-                            <form method="post"
-                                  action="{{url_for("reports.reports")}}">
-                                <input type="submit" value="Anzeigen">
-                            </form>
-                            <br>
-                        </fieldset>
+
                     </div>
                 </div>
             </div>
@@ -948,7 +318,7 @@
         <td class="navigation">
         </td>
         <td class="foot" id="foot_td_id">
-            {{ generate_server_timestamp() }} © {{ company }} 2020, v13540
+            {{ generate_server_signature() }}
         </td>
     </tr>
     </tbody>

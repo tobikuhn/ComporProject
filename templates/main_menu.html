@@ -25,8 +25,8 @@
 
         //]]>
     </script>
-    <link rel="stylesheet" type="text/css" href="../static/style.css">
-    <link rel="stylesheet" type="text/css" href="../static/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
 
     <style type="text/css">
         .bgclr {
@@ -37,7 +37,7 @@
             border-color: white;
         }
     </style>
-    <script type="text/javascript" src="../static/prost.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="prost.js") }}"></script>
 </head>
 <body>
 <table class="default_layout main_layout">
@@ -45,7 +45,8 @@
     <tr>
         <td class="bgclr" rowspan="2">
             <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
-                    src="../static/logo.gif" alt="{{ application }} Hauptmenü" title="{{ application }} Hauptmenü"></a>
+                    src="{{ url_for('static', filename="logo.gif") }}" alt="{{ application }} Hauptmenü"
+                    title="{{ application }} Hauptmenü"></a>
         </td>
         <td class="head">
             <div class="left"><a href="{{ url_for("main_menu.main_menu") }}">Sicht:
@@ -61,9 +62,11 @@
     <tr>
         <td class="head_big">
             <div class="left">{{ application }}</div>
-            <div class="right"><a href="#" onclick="set_lang('DEU');"><img src="../static/deu.gif"
-                                                                           alt="Deutsch" title="Deutsch"></a>
-                <a href="#" onclick="set_lang('ENG');"><img src="../static/eng.gif" alt="English"
+            <div class="right"><a href="#" onclick="set_lang('DEU');"><img
+                    src="{{ url_for('static', filename="deu.gif") }}"
+                    alt="Deutsch" title="Deutsch"></a>
+                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}"
+                                                            alt="English"
                                                             title="English"></a>
             </div>
         </td>
@@ -88,7 +91,7 @@
             <ul class="navigation">
                 <li class="navigation">
                     <div class="navigation navig_lev1 navig_inactive menu_clr_ma1"><a
-                            href="{{ url_for("main_menu.main_menu") }}"
+                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
                             id="MEI_M110"
                             class="navigation" accesskey="Z">Zeitmanagement</a>
                         <script type="text/javascript">
@@ -182,7 +185,7 @@
                     <h3 style="margin-top:0em; margin-bottom:0em" align="center">Abschlusstermine für die
                         Aufwandserfassung in {{ generate_date_from_month() }}</h3><br><br>
 
-                    <img src="../static/bn-d.gif" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }}:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-d.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }}:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin zur Aufwandserfassung und Sicherung des
                     Einsatzblattes {{ generate_date_from_now(-8, 12)|safe }} MESZ (UTC+2)
                     <br>
@@ -192,13 +195,14 @@
                     (UTC+2)
                     <br><br>
 
-                    <img src="../static/bn-ch.gif" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Schweiz:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-ch.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Schweiz:</b></span><br>
                     <b>Mitarbeiter:</b> Aufwandserfassung und Sicherung des
                     Einsatzblattes {{ generate_date_from_month() }}: {{ generate_date_from_now(3, 18)|safe }} MESZ
                     (UTC+2)<br>
                     <br>
 
-                    <img src="../static/bn-nl.gif" height="12"> <span style="color:red;"><strong> Termine und Aktivitäten für die {{ company }} Niederlande:</strong></span><br>
+                    <img src="{{ url_for('static', filename="bn-nl.gif") }}" height="12"> <span
+                            style="color:red;"><strong> Termine und Aktivitäten für die {{ company }} Niederlande:</strong></span><br>
                     <strong>Übertragung</strong> der
                     Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 12)|safe }} MESZ
                     (UTC+2)
@@ -213,8 +217,9 @@
                     <br>
                     <br>
 
-                    <img src="../static/bn-usa.gif" height="12"> <img
-                            src="../static/bn-cdn.gif" height="12"> <span style="color:red;"><b> Termine und Aktivitäten für die {{ company }} Nord Amerika:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-usa.gif") }}" height="12"> <img
+                            src="{{ url_for('static', filename="bn-cdn.gif") }}" height="12"> <span
+                            style="color:red;"><b> Termine und Aktivitäten für die {{ company }} Nord Amerika:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin der
                     Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 16)|safe }} CST
                     (UST-6)<br>
@@ -223,7 +228,7 @@
                     Korrekturen für den
                     Buchungszeitraum mehr möglich. <br><br>
 
-                    <img src="../static/bn-mal.gif" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Malaysia:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-mal.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Malaysia:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin der Arbeitszeiten
                     (Reporting) {{ generate_date_from_month() }}: {{ generate_date_from_now(-5, 18)|safe }} MYT (UTC+8)
                     <br>
@@ -291,7 +296,7 @@
 <span>29.06.2020</span>
 </span><br>
             <br>
-            {{ generate_server_timestamp() }} © {{ company }} 2020, v13571
+            {{ generate_server_signature() }}
         </td>
     </tr>
     </tbody>
