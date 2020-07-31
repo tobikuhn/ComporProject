@@ -9,10 +9,10 @@ from services.projects_service import get_projects_for_user
 from services.user_service import get_user_by_id
 from services.working_hours_service import get_project_hours_per_day, get_available_calendar_weeks
 
-reports_routes = Blueprint('reports', __name__)
+reports_routes = Blueprint('reports', __name__, url_prefix="/compor+/user/<user_id>/")
 
 
-@reports_routes.route("/compor+/user/<user_id>/berichte", methods=["GET"])
+@reports_routes.route("/berichte", methods=["GET"])
 @login_required
 def reports(user_id):
     user = get_user_by_id(user_id)
@@ -26,7 +26,7 @@ def reports(user_id):
                            calendar_week=get_current_week_number())
 
 
-@reports_routes.route("/compor+/user/<user_id>/berichte/leistungsnachweis/week/<calendar_week>",
+@reports_routes.route("/berichte/leistungsnachweis/week/<calendar_week>",
                       methods=["GET", "POST"])
 @login_required
 def performance_record(user_id, calendar_week):

@@ -13,10 +13,10 @@ from services.projects_service import get_projects_for_user
 from services.user_service import get_user_by_id
 from services.working_hours_service import get_working_hour_for_user, put_working_hour
 
-expense_recording_routes = Blueprint('performance_recording', __name__)
+expense_recording_routes = Blueprint('performance_recording', __name__, url_prefix="/compor+/user/<user_id>/")
 
 
-@expense_recording_routes.route("/compor+/user/<user_id>/aufwands-erfassung/week/<calendar_week>", methods=["GET"])
+@expense_recording_routes.route("/aufwands-erfassung/week/<calendar_week>", methods=["GET"])
 @login_required
 def performance_recording(user_id, calendar_week=get_current_week_number()):
     user = get_user_by_id(user_id)
@@ -40,7 +40,7 @@ def performance_recording(user_id, calendar_week=get_current_week_number()):
                            weekdays=generate_array_of_weekdays_for_week())
 
 
-@expense_recording_routes.route("/compor+/user/<user_id>/aufwands-erfassung/week/<calendar_week>", methods=["POST"])
+@expense_recording_routes.route("/aufwands-erfassung/week/<calendar_week>", methods=["POST"])
 @login_required
 def expense_recording_submit(user_id, calendar_week=get_current_week_number()):
     user = get_user_by_id(user_id)
