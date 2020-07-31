@@ -90,10 +90,14 @@
         <td class="navigation">
             <ul class="navigation">
                 <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1"><a
-                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                            id="MEI_M110"
-                            class="navigation" accesskey="Z">Zeitmanagement</a>
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
+                        {% if user.is_authenticated %}
+                            <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
+                        {% else %}
+                            <a href="{{ url_for("main_menu.main_menu") }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
+                        {% endif %}
                         <script type="text/javascript">
                             //<![CDATA[
                             SetFocusId('MEI_M110');

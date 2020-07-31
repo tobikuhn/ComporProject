@@ -36,6 +36,7 @@ def performance_record(user_id, calendar_week):
 
     for day in [("monday", "Montag"), ("tuesday", "Dienstag"),
                 ("wednesday", "Mittwoch"), ("thursday", "Donnerstag"), ("friday", "Freitag")]:
+
         for w in get_project_hours_per_day(user_id, calendar_week, day[0]):
             work_per_days.append({"day": day[1], "project": w["name"], "work": w[day[0]]})
 
@@ -44,6 +45,7 @@ def performance_record(user_id, calendar_week):
         try:
             sum_work += int(w["work"])
         except ValueError:
+            # for invalid time strings
             pass
 
     return render_template("reports.performance_report.html",
