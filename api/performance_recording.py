@@ -40,12 +40,12 @@ def performance_recording(user_id, calendar_week=get_current_week_number()):
                            weekdays=generate_array_of_weekdays_for_week())
 
 
-@expense_recording_routes.route("/compor+/user/<user_id>/aufwands-erfassung", methods=["POST"])
+@expense_recording_routes.route("/compor+/user/<user_id>/aufwands-erfassung/week/<calendar_week>", methods=["POST"])
 @login_required
 def expense_recording_submit(user_id, calendar_week=get_current_week_number()):
     user = get_user_by_id(user_id)
 
-    working_hours = dict(map(lambda v: (v.project_id, v), get_working_hour_for_user(user.id, calendar_week)))
+    working_hours = dict(map(lambda v: (v.project_id, v), get_working_hour_for_user(user.id, calendar_week) or []))
 
     for key in request.form.keys():
         # Cleanup irrelevant form data

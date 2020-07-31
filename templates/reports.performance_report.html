@@ -3,30 +3,10 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>{{ application }} Leistungsnachweis</title>
-    <script type="text/javascript">
-        //<![CDATA[
-        var gui_focus_id;
-
-        function SetFocusId(i_id) {
-            gui_focus_id = i_id;
-        }
-
-        function SetFocus() {
-            el = document.getElementById(gui_focus_id);
-            if (el) {
-                el.focus();
-                if (el.select) {
-                    el.select();
-                }
-
-            }
-
-        }
-
-        //]]>
-    </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.style.css") }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.print.css") }}" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.print.css") }}"
+          media="print">
+
 
 </head>
 <body>

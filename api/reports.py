@@ -2,7 +2,7 @@ from flask.blueprints import Blueprint
 from flask.templating import render_template
 from flask_login.utils import login_required, current_user
 
-from api.context_processors import generate_date_from_month, generate_server_signature, get_current_date, \
+from api.context_processors import generate_month_year_display, generate_server_signature, get_current_date, \
     get_current_week_number
 from extensions import config
 from services.projects_service import get_projects_for_user
@@ -56,6 +56,6 @@ def performance_record(user_id, calendar_week):
 
 @reports_routes.context_processor
 def faking_processor():
-    return dict(generate_date_from_month=generate_date_from_month,
+    return dict(generate_date_from_month=generate_month_year_display,
                 generate_server_signature=generate_server_signature,
                 get_current_date=get_current_date)

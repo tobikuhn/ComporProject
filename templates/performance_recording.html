@@ -238,7 +238,7 @@
                 </script>
                 <h1>Aufwandserfassung</h1>
                 <form method="post"
-                      action="{{ url_for("performance_recording.expense_recording_submit", user_id=user.id) }}"
+                      action="{{ url_for("performance_recording.expense_recording_submit", user_id=user.id, calendar_week=calendar_week) }}"
                       name="pform">
                     <h2>KW {{ calendar_week }}: {{ generate_week_period_caption(calendar_week) }}</h2>
                     <hr>

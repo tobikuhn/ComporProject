@@ -1,6 +1,6 @@
+from api.context_processors import get_current_week_number
 from entities.WorkingHour import WorkingHour
 from extensions import get_mysql_connection
-from api.context_processors import get_current_week_number
 
 
 def get_working_hour_for_user(user_id, calendar_week=get_current_week_number()):
@@ -22,7 +22,7 @@ def get_working_hour_for_user(user_id, calendar_week=get_current_week_number()):
         cursor.execute(sql)
         result = cursor.fetchall()
         if result:
-            return [WorkingHour(**r) for r in result]
+            return [WorkingHour(**r) for r in result] or []
 
 
 def put_working_hour(working_hours):

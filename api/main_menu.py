@@ -2,7 +2,7 @@ from flask.blueprints import Blueprint
 from flask.templating import render_template
 from flask_login.utils import current_user
 
-from api.context_processors import generate_date_from_now, generate_date_from_month, generate_server_signature, \
+from api.context_processors import generate_date_from_now, generate_month_year_display, generate_server_signature, \
     get_current_week_number
 from extensions import config
 
@@ -22,5 +22,5 @@ def main_menu():
 @main_menu_routes.context_processor
 def faking_processor():
     return dict(generate_date_from_now=generate_date_from_now,
-                generate_date_from_month=generate_date_from_month,
+                generate_date_from_month=generate_month_year_display,
                 generate_server_signature=generate_server_signature)

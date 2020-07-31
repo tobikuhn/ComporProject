@@ -62,9 +62,11 @@
     <tr>
         <td class="head_big">
             <div class="left">{{ application }}</div>
-            <div class="right"><a href="#" onclick="set_lang('DEU');"><img src="{{ url_for('static', filename="deu.gif") }}"
-                                                                           alt="Deutsch" title="Deutsch"></a>
-                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}" alt="English"
+            <div class="right"><a href="#" onclick="set_lang('DEU');"><img
+                    src="{{ url_for('static', filename="deu.gif") }}"
+                    alt="Deutsch" title="Deutsch"></a>
+                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}"
+                                                            alt="English"
                                                             title="English"></a>
             </div>
         </td>
@@ -189,7 +191,6 @@
                                 function onOpenPerformanceRecord() {
                                     let selected = document.getElementById("i_bumo_id_ma").value
                                     let redirect_to = "{{ url_for("reports.performance_record", user_id=user.id, calendar_week="")}}" + selected
-                                    console.log(redirect_to)
                                     window.open(redirect_to)
                                 }
                             </script>
