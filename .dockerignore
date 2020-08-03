@@ -1,5 +1,0 @@
-venv
-.gitignore
-compor-plus.playbook.yaml
-requirements.yaml
-setup_ansible.sh

@@ -1,11 +1,10 @@
 class User:
 
-    def __init__(self, id, username, password, name, role):
+    def __init__(self, id, username, password, name):
         self.id = id
         self.username = username
         self.password = password
         self.name = name
-        self.role = role
 
     def generate_username(self):
         split = self.name.split(" ")
