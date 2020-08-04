@@ -9,7 +9,7 @@ from extensions import config
 main_menu_routes = Blueprint('main_menu', __name__)
 
 
-@main_menu_routes.route("/compor+", methods=["GET"])
+@main_menu_routes.route("/", methods=["GET"])
 def main_menu():
     return render_template("main_menu.html",
                            company=config.company_name,

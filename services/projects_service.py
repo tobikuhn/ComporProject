@@ -13,3 +13,4 @@ def get_projects_for_user(user_id):
         result = cursor.fetchall()
         if result:
             return [Project(**r) for r in result]
+        return []

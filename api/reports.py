@@ -9,19 +9,19 @@ from services.projects_service import get_projects_for_user
 from services.user_service import get_user_by_id
 from services.working_hours_service import get_project_hours_per_day, get_available_calendar_weeks
 
-reports_routes = Blueprint('reports', __name__, url_prefix="/compor+/user/<user_id>/")
+reports_routes = Blueprint('reports', __name__, url_prefix="/user/<user_id>/")
 
 
 @reports_routes.route("/berichte", methods=["GET"])
 @login_required
 def reports(user_id):
     user = get_user_by_id(user_id)
-    calendar_weeks = get_available_calendar_weeks(user_id)
+    calendar_weeks = get_available_calendar_weeks(user_id) or []
     return render_template("reports.html",
                            company=config.company_name,
                            application=config.app_name,
                            user=current_user,
-                           projects=get_projects_for_user(user.id),
+                           projects=get_projects_for_user(user.id) or [],
                            calendar_weeks=calendar_weeks,
                            calendar_week=get_current_week_number())
 

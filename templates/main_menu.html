@@ -5,14 +5,14 @@
     <title>{{ application }} Hauptmenü</title>
     <script type="text/javascript">
         //<![CDATA[
-        var gui_focus_id;
+        let gui_focus_id;
 
         function SetFocusId(i_id) {
             gui_focus_id = i_id;
         }
 
         function SetFocus() {
-            el = document.getElementById(gui_focus_id);
+            let el = document.getElementById(gui_focus_id);
             if (el) {
                 el.focus();
                 if (el.select) {
@@ -27,7 +27,6 @@
     </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
-
     <style type="text/css">
         .bgclr {
             background-color: white;
@@ -37,7 +36,6 @@
             border-color: white;
         }
     </style>
-    <script type="text/javascript" src="{{ url_for('static', filename="prost.js") }}"></script>
 </head>
 <body>
 <table class="default_layout main_layout">
@@ -45,7 +43,7 @@
     <tr>
         <td class="bgclr" rowspan="2">
             <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
-                    src="{{ url_for('static', filename="logo.gif") }}" alt="{{ application }} Hauptmenü"
+                    src="{{ url_for('static', filename="compor-plus.logo.png") }}" alt="{{ application }} Hauptmenü"
                     title="{{ application }} Hauptmenü"></a>
         </td>
         <td class="head">
@@ -62,13 +60,6 @@
     <tr>
         <td class="head_big">
             <div class="left">{{ application }}</div>
-            <div class="right"><a href="#" onclick="set_lang('DEU');"><img
-                    src="{{ url_for('static', filename="deu.gif") }}"
-                    alt="Deutsch" title="Deutsch"></a>
-                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}"
-                                                            alt="English"
-                                                            title="English"></a>
-            </div>
         </td>
     </tr>
     <tr>
@@ -79,9 +70,9 @@
                 Hauptmenü
             </div>
             {% if user.is_authenticated %}
-                <div class="right">Nutzer: {{ user.generate_username() }}
-                    <a href="{{ url_for("main_menu.main_menu") }}/logout"
-                       title="zur Abmeldung vom Who-is-Who Anmeldeverbund">Abmelden</a>
+                <div class="right">
+                    Nutzer: {{ user.generate_username() }}
+                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
                 </div>
             {% endif %}
         </td>
@@ -104,41 +95,20 @@
                             //]]>
                         </script>
                     </div>
-                    <div class="navig_comment">Objektübersicht, Arbeitsvorrat, Aufwandserfassung, Aufgabenübersicht,
-                        Berichte, Verfügbark...
+                 <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
+                        {% if user.is_authenticated %}
+                            <a href="{{ url_for("reports.reports", user_id=user.id) }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
+                        {% else %}
+                            <a href="{{ url_for("main_menu.main_menu") }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
+                        {% endif %}
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            SetFocusId('MEI_M110');
+                            //]]>
+                        </script>
                     </div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_am1"><a
-                            href="{{ url_for("main_menu.main_menu") }}" id="MEI_M130"
-                            class="navigation" accesskey="A">Auftragsmanagement</a>
-                    </div>
-                    <div class="navig_comment">Auftrag (pers.), Mgmt-Report (pers.), Monatsreport (pers.), Report
-                        Ressourcenplanung, Beri...
-                    </div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_pm1"><a
-                            href="{{ url_for("main_menu.main_menu") }}" id="MEI_M120"
-                            class="navigation" accesskey="O">Objektmanagement</a>
-                    </div>
-                    <div class="navig_comment">Objektplanung, Ressourcenplanung Programm, Objektdownload, Mgmt-Report
-                        (pers.), , Obj-Repo...
-                    </div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_prf1"><a
-                            href="{{ url_for("main_menu.main_menu") }}"
-                            id="MEI_M310" class="navigation" accesskey="E">Einstellungen</a>
-                    </div>
-                    <div class="navig_comment">Vertretung definieren, Vertretung wahrnehmen, Benutzereinstellungen</div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_info1"><a
-                            href="{{ url_for("main_menu.main_menu") }}" id="MEI_M300"
-                            class="navigation" accesskey="I">Infosystem</a>
-                    </div>
-                    <div class="navig_comment">Benutzerdaten, Organisationsstruktur</div>
                 </li>
             </ul>
         </td>
@@ -153,43 +123,47 @@
                 <div>
                     <fieldset class="legend_caption">
                         <legend>Login</legend>
-                        <form method="post" action="{{ url_for("main_menu.main_menu") }}/login">
+                        <form method="post" action="{{ url_for("user_routes.login") }}">
                             <label for="username" class="gui_label_normal">E-Mail Adresse</label>
                             <input id="username" name="username" type="text"/>
                             <br/>
                             <label for="password" class="gui_label_normal">Passwort</label>
-                            <input id="password" name="password" type="text"/>
+                            <input id="password" name="password" type="password"/>
                             <br/>
                             <input type="submit" value="Anmelden">
                         </form>
                     </fieldset>
                 </div>
             {% endif %}
-
-            <div id="delayedDisplay" class="content" style="display: inline;"><h1>WILLKOMMEN bei {{ application }}</h1>
+            <div id="delayedDisplay" class="content" style="display: inline;">
+                <h1>WILLKOMMEN bei {{ application }}</h1>
                 <h2>Bitte beachten Sie:</h2>
-                <div><h3>An {{ application }} bestehen keine besonderen
-                    Anforderungen in Bezug auf sensible Betriebs- oder Geschäftsdaten. <br>
-                    Falls Sie Beratung im Zusammenhang mit {{ application }}
-                    als Abrechnungstool für Verträge mit "German Eyes Only"-Vermerk benötigen, wenden Sie sich bitte an
-                    <span style="color:blue;"><a
-                            href="mailto:{{ email }}">{{ email }}</a></span>
-                </h3>
+                <div>
+                    <h3>An {{ application }} bestehen keine besonderen
+                        Anforderungen in Bezug auf sensible Betriebs- oder Geschäftsdaten. <br>
+                        Falls Sie Beratung im Zusammenhang mit {{ application }}
+                        als Abrechnungstool für Verträge mit "German Eyes Only"-Vermerk benötigen, wenden Sie sich bitte
+                        an
+                        <span style="color:#01ACE4;"><a
+                                href="mailto:{{ email }}">{{ email }}</a></span>
+                    </h3>
                     <hr>
                     <h3 align="center">Die Produktivsetzung des {{ application }} Releases 4.24 p1 wurde
                         erfolgreich abgeschlossen.<br>
                         Sie können sich über die Inhalte in unseren <a target="_blank"
                                                                        href="{{ url_for("main_menu.main_menu") }}"><u>Releasenotes</u></a>
-                        informieren.</h3>
+                        informieren.
+                    </h3>
                     <hr>
                     <br>
                     <br>
-
                     <!--Vorlage, Termine siehe unter AM_SharePoint\Monatsabschlusstermine\_Monatsabschlusstermine_Vorlage_für_Info_an_alle_MOH.docx-->
                     <h3 style="margin-top:0em; margin-bottom:0em" align="center">Abschlusstermine für die
-                        Aufwandserfassung in {{ generate_date_from_month() }}</h3><br><br>
-
-                    <img src="{{ url_for('static', filename="bn-d.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }}:</b></span><br>
+                        Aufwandserfassung in {{ generate_date_from_month() }}
+                    </h3>
+                    <br><br>
+                    <img src="{{ url_for('static', filename="bn-d.gif") }}" height="12"> <span
+                        style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }}:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin zur Aufwandserfassung und Sicherung des
                     Einsatzblattes {{ generate_date_from_now(-8, 12)|safe }} MESZ (UTC+2)
                     <br>
@@ -198,15 +172,14 @@
                     Einsatzblätter {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 12)|safe }} MESZ
                     (UTC+2)
                     <br><br>
-
-                    <img src="{{ url_for('static', filename="bn-ch.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Schweiz:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-ch.gif") }}" height="12"> <span
+                        style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }} Schweiz:</b></span><br>
                     <b>Mitarbeiter:</b> Aufwandserfassung und Sicherung des
                     Einsatzblattes {{ generate_date_from_month() }}: {{ generate_date_from_now(3, 18)|safe }} MESZ
                     (UTC+2)<br>
                     <br>
-
                     <img src="{{ url_for('static', filename="bn-nl.gif") }}" height="12"> <span
-                            style="color:red;"><strong> Termine und Aktivitäten für die {{ company }} Niederlande:</strong></span><br>
+                        style="color:#01ACE4;"><strong> Termine und Aktivitäten für die {{ company }} Niederlande:</strong></span><br>
                     <strong>Übertragung</strong> der
                     Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 12)|safe }} MESZ
                     (UTC+2)
@@ -220,10 +193,9 @@
                     (UTC+2)<br>
                     <br>
                     <br>
-
                     <img src="{{ url_for('static', filename="bn-usa.gif") }}" height="12"> <img
-                            src="{{ url_for('static', filename="bn-cdn.gif") }}" height="12"> <span
-                            style="color:red;"><b> Termine und Aktivitäten für die {{ company }} Nord Amerika:</b></span><br>
+                        src="{{ url_for('static', filename="bn-cdn.gif") }}" height="12"> <span
+                        style="color:#01ACE4;"><b> Termine und Aktivitäten für die {{ company }} Nord Amerika:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin der
                     Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 16)|safe }} CST
                     (UST-6)<br>
@@ -231,8 +203,7 @@
                     Keinerlei Buchungen und
                     Korrekturen für den
                     Buchungszeitraum mehr möglich. <br><br>
-
-                    <img src="{{ url_for('static', filename="bn-mal.gif") }}" height="12"> <span style="color:red;"><b>Termine und Aktivitäten für die {{ company }} Malaysia:</b></span><br>
+                    <img src="{{ url_for('static', filename="bn-mal.gif") }}" height="12"> <span style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }} Malaysia:</b></span><br>
                     <b>Mitarbeiter:</b> Abschlusstermin der Arbeitszeiten
                     (Reporting) {{ generate_date_from_month() }}: {{ generate_date_from_now(-5, 18)|safe }} MYT (UTC+8)
                     <br>
@@ -240,65 +211,66 @@
                     (Reporting) {{ generate_date_from_month() }}: {{ generate_date_from_now(-2, 12)|safe }} MYT
                     (UTC+8)<br>
                     <br>
-
                     Sie finden die aktuellen Termine auch im <a
-                            href="{{ url_for("main_menu.main_menu") }}"
-                            target="_blank"
-                            style="color:blue"><u>Monatsabschlussplan</u></a>.<br>
+                        href="{{ url_for("main_menu.main_menu") }}"
+                        target="_blank"
+                        style="color:blue"><u>Monatsabschlussplan</u></a>.<br>
                     <br>
                 </div>
                 <hr>
                 <br>
-
                 <h3 style=" margin-top:0em; margin-bottom:0em">Funktionseinschränkungen bei Nutzung des Internet
-                    Explorers in der Kompatibilitätsansicht</h3><br>
+                    Explorers in der Kompatibilitätsansicht
+                </h3>
+                <br>
                 Durch das <a
-                        href="{{ url_for("main_menu.main_menu") }}"
-                        target="_blank" style="color:blue"><u> Ausschalten der Kompatibilitätsansicht</u></a> oder den
+                    href="{{ url_for("main_menu.main_menu") }}"
+                    target="_blank" style="color:blue"><u> Ausschalten der Kompatibilitätsansicht</u></a> oder den
                 Wechsel auf alternative Browser (<a href="{{ url_for("main_menu.main_menu") }}" target="_blank"
                                                     style="color:blue"><u>Firefox</u></a> oder <a
-                        href="{{ url_for("main_menu.main_menu") }}" target="_blank"
-                        style="color:blue"><u> Chrome</u></a>) treten Probleme zu <strong>inaktive Buttons</strong>
+                    href="{{ url_for("main_menu.main_menu") }}" target="_blank"
+                    style="color:blue"><u> Chrome</u></a>) treten Probleme zu <strong>inaktive Buttons</strong>
                 nicht mehr auf.<br>
                 <a href="{{ url_for("main_menu.main_menu") }}" target="_blank" style="color:blue"><u>Weitere
                     Informationen</u></a><br>
                 <br>
                 <hr>
                 <br>
-
                 <h3 style="margin-top:0em; margin-bottom:0em" align="center">Bei Fragen, Problemen und Anregungen zu
-                    {{ application }}</h3>
+                    {{ application }}
+                </h3>
                 <p align="center"> wenden Sie sich bitte an Ihre {{ application }}-<a
                         href="{{ url_for("main_menu.main_menu") }}" target="_blank"
-                        style="color:blue"><u>Ansprechpartner</u></a>.</p>
+                        style="color:blue"><u>Ansprechpartner</u></a>.
+                </p>
                 <hr>
                 <br>
-
                 <h3 style="margin-top:0em; margin-bottom:0em" align="center">Im Rahmen der <a
                         href="{{ url_for("main_menu.main_menu") }}"
                         target="_blank"><u>GBV</u></a> ist die <a
                         href="{{ url_for("main_menu.main_menu") }}" target="_blank">Download
-                    Policy</a> beim Download von personenbezogenen Daten zu berücksichtigen</h3><br>
+                    Policy</a> beim Download von personenbezogenen Daten zu berücksichtigen
+                </h3>
+                <br>
                 <hr>
             </div>
-
         </td>
     </tr>
     <tr>
         <td class="navigation">
         </td>
         <td class="foot" id="foot_td_id">
-<span class="srvinfo"><span class="label">Server:</span>
-<span>mptp</span>
-<span class="label">Version:</span>
-<span>mp_04_24</span>
-<span class="label">Revision:</span>
-<span>13865</span>
-<span class="label">Patchlevel:</span>
-<span>p1</span>
-<span class="label">Installationsdatum:</span>
-<span>29.06.2020</span>
-</span><br>
+                  <span class="srvinfo"><span class="label">Server:</span>
+                  <span>mptp</span>
+                  <span class="label">Version:</span>
+                  <span>mp_04_24</span>
+                  <span class="label">Revision:</span>
+                  <span>13865</span>
+                  <span class="label">Patchlevel:</span>
+                  <span>p1</span>
+                  <span class="label">Installationsdatum:</span>
+                  <span>29.06.2020</span>
+                  </span><br>
             <br>
             {{ generate_server_signature() }}
         </td>
@@ -315,7 +287,5 @@
     SetFocus();
     //]]>
 </script>
-
-
 </body>
 </html>

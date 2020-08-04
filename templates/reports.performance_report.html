@@ -6,21 +6,20 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.style.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="performance_report.print.css") }}"
           media="print">
-
-
 </head>
 <body>
 <h1>Leistungsnachweis</h1>
 <h2>Mitarbeiter: {{ user_name }}</h2>
 <div class="vertical_spacer_bottom_medium horizontal_spacer_left_medium">
     <div class="vertical_spacer_bottom_medium">
-
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Mitarbeiter:</span>
             <span>{{ user_name }}
-</span></div>
+               </span>
+        </div>
         <div><span class="cap_long">KW:</span>
             <span>{{ calendar_week }}
-</span></div>
+               </span>
+        </div>
     </div>
     <table class="default_table dataset vertical_spacer_bottom_small data">
         <tbody>
@@ -42,44 +41,45 @@
                     {{ w.work|safe }}
                 </td>
                 <td class=" tdtop">
-
                 </td>
             </tr>
         {% endfor %}
         <tr></tr>
         <tr>
             <td class=" tdtop">
-                Summe KW15
+                <b>Summe KW15</b>
             </td>
             <td class=" tdtop">
-                Consulting
             </td>
             <td class=" tdright tdtop">
-                {{ sum_work|safe }}
+                <b>{{ sum_work|safe }}</b>
             </td>
             <td class=" tdtop">
-
             </td>
         </tr>
-
         </tbody>
     </table>
-    <div class="vertical_spacer_bottom_medium"><br>
+    <div class="vertical_spacer_bottom_medium">
+        <br>
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Datum</span>
             <span>{{ get_current_date() }}
-</span></div>
+               </span>
+        </div>
         <br>
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Unterschrift Mitarbeiter</span>
             <span>________________________________________
-</span></div>
+               </span>
+        </div>
         <br>
         <div class="vertical_spacer_bottom_small"><span class="cap_long">Unterschrift Auftraggeber</span>
             <span>________________________________________
-</span></div>
+               </span>
+        </div>
         <br>
         <div><span class="cap_long">Auftraggeber Name, Vorname</span>
             <span>________________________________________
-</span></div>
+               </span>
+        </div>
     </div>
 </div>
 <br/><br/>

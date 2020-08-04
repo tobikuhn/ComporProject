@@ -30,7 +30,7 @@ def put_working_hour(working_hours):
               working_hours.monday, working_hours.tuesday, working_hours.wednesday,
               working_hours.thursday, working_hours.friday]
 
-    values_sql = ", ".join(map(lambda x: str(x), values))
+    values_sql = "'" + "', '".join(map(lambda x: str(x), values)) + "'"
 
     sql = """ REPLACE INTO WorkingHour (user_id, project_id, calendar_week, monday, tuesday, wednesday, thursday, friday)
               VALUES(""" + values_sql + ")"
@@ -52,6 +52,8 @@ def get_project_hours_per_day(user_id, calendar_week, day):
         if result:
             return result
 
+        return []
+
 
 def get_available_calendar_weeks(user_id):
     sql = "SELECT DISTINCT WorkingHour.calendar_week FROM WorkingHour WHERE WorkingHour.user_id = " + str(user_id)
@@ -61,3 +63,5 @@ def get_available_calendar_weeks(user_id):
         result = cursor.fetchall()
         if result:
             return result
+
+        return []

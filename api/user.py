@@ -2,12 +2,14 @@ from flask import redirect
 from flask.blueprints import Blueprint
 from flask.globals import request
 from flask.helpers import url_for
+from flask.wrappers import Response
 from flask_login.utils import login_user, logout_user
+from werkzeug.exceptions import BadRequestKeyError
 
 from extensions import login_manager
-from services.user_service import get_user_by_id, get_user_by_email
+from services.user_service import get_user_by_id, verify_user_by_email
 
-user_routes = Blueprint('user_routes', __name__, url_prefix="/compor+")
+user_routes = Blueprint('user_routes', __name__, url_prefix="/")
 
 
 @login_manager.user_loader
@@ -22,15 +24,18 @@ def logout():
     return redirect(url_for("main_menu.main_menu"))
 
 
-@user_routes.route("/login", methods=["GET", "POST"])
+@user_routes.route("/login", methods=["POST"])
 def login():
-    username = request.form["username"]
-    password = request.form["password"]
+    try:
+        username = request.form["username"]
+        password = request.form["password"]
+    except BadRequestKeyError:
+        return Response(status=400)
 
     if username and password:
-        user = get_user_by_email(request.form["username"])
+        user = verify_user_by_email(username, password)
         if user:
             if user.password == password:
-                login_user(user)
+                login_user(user, remember=True)
 
     return redirect(url_for("main_menu.main_menu"))

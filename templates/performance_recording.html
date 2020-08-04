@@ -4,8 +4,6 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>{{ application }} Aufwandserfassung</title>
     <script type="text/javascript" src="{{ url_for('static', filename="epoch_calendar.js") }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename="prost.js") }}"></script>
-
     <script type="text/javascript">
         //<![CDATA[
         let gui_focus_id;
@@ -15,7 +13,7 @@
         }
 
         function SetFocus() {
-            el = document.getElementById(gui_focus_id);
+            let el = document.getElementById(gui_focus_id);
             if (el) {
                 el.focus();
                 if (el.select) {
@@ -30,7 +28,6 @@
     </script>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
-
     <style type="text/css">
         .bgclr {
             background-color: white;
@@ -47,7 +44,7 @@
     <tr>
         <td class="bgclr" rowspan="2">
             <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
-                    src="{{ url_for('static', filename="logo.gif") }}" alt="{{ application }} Hauptmenü"
+                    src="{{ url_for('static', filename="compor-plus.logo.png") }}" alt="{{ application }} Hauptmenü"
                     title="{{ application }} Hauptmenü"></a>
         </td>
         <td class="head">
@@ -66,11 +63,7 @@
     <tr>
         <td class="head_big">
             <div class="left">{{ application }}</div>
-            <div class="right"><a href="#" onclick="set_lang('DEU');"><img
-                    src="{{ url_for('static', filename="deu.gif") }}" alt="Deutsch" title="Deutsch"></a>
-                <a href="#" onclick="set_lang('ENG');"><img src="{{ url_for('static', filename="eng.gif") }}"
-                                                            alt="English" title="English"></a>
-            </div>
+
         </td>
     </tr>
     <tr>
@@ -82,8 +75,8 @@
                 &gt;
                 Aufwandserfassung
             </div>
-            <div class="right">Nutzer: {{ user.username }}}
-                <a href="{{ url_for("user_routes.logout") }}" title="zur Abmeldung vom Who-is-Who Anmeldeverbund">Abmelden</a>
+            <div class="right">Nutzer: {{ user.generate_username() }}
+                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
             </div>
         </td>
     </tr>
@@ -121,60 +114,15 @@
                                     id="MEI_023" class="navigation" accesskey="A"> Aufgabenübersicht</a>
                             </div>
                         </li>
-                        <li class="navigation">
-                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{ url_for("reports.reports", user_id=user.id) }}"
-                                    id="MEI_022" class="navigation" accesskey="B"> Berichte</a>
-                            </div>
-                        </li>
-                        <li class="navigation">
-                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                                    id="MEI_M316" class="navigation" accesskey="V"> Verfügbarkeitsübersicht MA</a>
-                            </div>
-                        </li>
-                        <li class="navigation">
-                            <div class="navigation navig_lev2 navig_inactive menu_clr_ma2"><a
-                                    href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                                    id="MEI_950" class="navigation" accesskey="E"> Einsatzblatt sichern Vertreter</a>
-                            </div>
-                        </li>
                     </ul>
+
                 </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_am1"><a
-                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                            id="MEI_M130"
-                            class="navigation" accesskey="A">Auftragsmanagement</a>
+                <li>
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1"><a
+                            href="{{ url_for("reports.reports", user_id=user.id) }}"
+                            id="MEI_022"
+                            class="navigation" accesskey="B">Berichte</a>
                     </div>
-                    <div class="navig_comment">Auftrag (pers.), Mgmt-Report (pers.), Monatsreport (pers.), Report
-                        Ressourcenplanung, Beri...
-                    </div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_pm1"><a
-                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                            id="MEI_M120"
-                            class="navigation" accesskey="O">Objektmanagement</a>
-                    </div>
-                    <div class="navig_comment">Objektplanung, Ressourcenplanung Programm, Objektdownload, Mgmt-Report
-                        (pers.), , Obj-Repo...
-                    </div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_prf1"><a
-                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                            id="MEI_M310" class="navigation" accesskey="E">Einstellungen</a>
-                    </div>
-                    <div class="navig_comment">Vertretung definieren, Vertretung wahrnehmen, Benutzereinstellungen</div>
-                </li>
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_info1"><a
-                            href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                            id="MEI_M300"
-                            class="navigation" accesskey="I">Infosystem</a>
-                    </div>
-                    <div class="navig_comment">Benutzerdaten, Organisationsstruktur</div>
                 </li>
             </ul>
         </td>
@@ -205,16 +153,21 @@
                     }
 
                     function SubmitForm(action) {
+                        console.log(action)
                         if (action === "Speichern")
                             document.forms[0].submit();
-                        else {
+                        else if (action === "clickOnDay") {
                             // Tue Jul 14 2020 00:00:00 GMT+0200 (Mitteleuropäische Sommerzeit)
                             let selectedDate = cal.selectedDates[0];
                             let date = new Date(selectedDate);
                             let weekNumber = getWeekNumber(date)[1];
-                            let redirect_to = "{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week="")}}" + weekNumber
+                            if (typeof weekNumber === "number") {
+                                if (window.location.href.endsWith(weekNumber.toString()))
+                                    return
 
-                            window.open(redirect_to, "_self")
+                                let redirect_to = "{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week="")}}" + weekNumber
+                                window.open(redirect_to, "_self");
+                            }
                         }
                     }
 
@@ -225,13 +178,13 @@
                         ps_access_key = "1";
                         pi_tab_offset = 20;
                         cs_calender_dy = "Di-";
-                        cs_calender_wk = "Mo-";
-
+                        cs_calender_wk = "Mo";
                         MONTH_NAMES_SHORT = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
                         DAY_NAMES_SHORT = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
-
                         let container = document.getElementById("calendar_container");
-                        cal = new Epoch('cal', 'flat', container, false, new Date());
+                        console.log(new Date())
+                        cal = new Epoch('cal', 'flat', container, false);
+                        console.log(cal)
                     }
 
                     //]]>
@@ -244,29 +197,19 @@
                     <hr>
                     <input type="hidden" value="27.07.2020"><input type="hidden"
                                                                    value="31.07.2020">
-                    <script type="text/javascript">
-                        //<![CDATA[
-                        let i_cols = 5;
-                        //]]>
-                    </script>
-                    <script type="text/javascript">
-                        //<![CDATA[
-                        let i_rows =
-                        {{ working_hours }}.length;
-                        //]]>
-                    </script>
+
                     <input type="hidden" value=""><input type="hidden"
                                                          value=""><input type="hidden"
-
                                                                          value="3"><input
                         type="hidden" value="">
                     <table class="pweek_layout">
                         <tbody>
                         <tr>
                             <td rowspan="6">
-                                <div id="calendar_container"></div>
-                            </td>
+                                <div id="calendar_container" onclick="SubmitForm('clickOnDay')">
 
+                                </div>
+                            </td>
                             <td>
                             </td>
                             {% for day in generate_array_of_weekdays_for_week(calendar_week) %}
@@ -275,42 +218,50 @@
                                     <input type="hidden" value="">{{ format_date_day_month(day) }}
                                 </td>
                             {% endfor %}
-
-
                         </tr>
                         <tr>
                             <td>
                             </td>
                             <td class="col_btn">
-                                <input type="button" id="button1" class="tc_day_btn" tabindex="118" value="Mo+"></td>
+                                <input type="button" id="button1" class="tc_day_btn" tabindex="118" value="Mo+">
+                            </td>
                             <td class="col_btn">
-                                <input type="button" id="button2" class="tc_day_btn" tabindex="150" value="Di+"></td>
+                                <input type="button" id="button2" class="tc_day_btn" tabindex="150" value="Di+">
+                            </td>
                             <td class="col_btn">
-                                <input type="button" id="button3" class="tc_day_btn" tabindex="182" value="Mi+"></td>
+                                <input type="button" id="button3" class="tc_day_btn" tabindex="182" value="Mi+">
+                            </td>
                             <td class="col_btn">
-                                <input type="button" id="button4" class="tc_day_btn" tabindex="214" value="Do+"></td>
+                                <input type="button" id="button4" class="tc_day_btn" tabindex="214" value="Do+">
+                            </td>
                             <td class="col_btn">
-                                <input type="button" id="button5" class="tc_day_btn" tabindex="246" value="Fr+"></td>
+                                <input type="button" id="button5" class="tc_day_btn" tabindex="246" value="Fr+">
+                            </td>
                         </tr>
                         <tr>
                             <td class="tc_row_caption">
                                 Anfang
                             </td>
                             <td>
-                                <input type="text" name="start_monday" size="5"
-                                       onchange="get_az(this, '1', ',5');" tabindex="119" value="06:00"></td>
+                                <input name="start_monday" onchange="get_az(this, '1', ',5');" size="5"
+                                       tabindex="119" type="text" value="06:00">
+                            </td>
                             <td>
                                 <input type="text" name="start_monday" size="5"
-                                       onchange="get_az(this, '2', ',5');" tabindex="151" value="06:00"></td>
+                                       onchange="get_az(this, '2', ',5');" tabindex="151" value="06:00">
+                            </td>
                             <td>
                                 <input type="text" name="start_monday" size="5"
-                                       onchange="get_az(this, '3', ',5');" tabindex="183" value="06:00"></td>
+                                       onchange="get_az(this, '3', ',5');" tabindex="183" value="06:00">
+                            </td>
                             <td>
                                 <input type="text" name="start_monday" size="5"
-                                       onchange="get_az(this, '4', ',5');" tabindex="215" value="06:00"></td>
+                                       onchange="get_az(this, '4', ',5');" tabindex="215" value="06:00">
+                            </td>
                             <td>
                                 <input type="text" name="start_monday" size="5"
-                                       onchange="get_az(this, '5', ',5');" tabindex="247" value="06:00"></td>
+                                       onchange="get_az(this, '5', ',5');" tabindex="247" value="06:00">
+                            </td>
                         </tr>
                         <tr>
                             <td class="tc_row_caption">
@@ -318,34 +269,44 @@
                             </td>
                             <td>
                                 <input type="text" name="end_monday" size="5"
-                                       onchange="get_az(this, '1', ',5');" tabindex="120" value="20:00"></td>
+                                       onchange="get_az(this, '1', ',5');" tabindex="120" value="20:00">
+                            </td>
                             <td>
                                 <input type="text" name="end_tuesday" size="5"
-                                       onchange="get_az(this, '2', ',5');" tabindex="152" value="20:00"></td>
+                                       onchange="get_az(this, '2', ',5');" tabindex="152" value="20:00">
+                            </td>
                             <td>
                                 <input type="text" name="end_wednesday" size="5"
-                                       onchange="get_az(this, '3', ',5');" tabindex="184" value="20:00"></td>
+                                       onchange="get_az(this, '3', ',5');" tabindex="184" value="20:00">
+                            </td>
                             <td>
                                 <input type="text" name="end_thursday" size="5"
-                                       onchange="get_az(this, '4', ',5');" tabindex="216" value="20:00"></td>
+                                       onchange="get_az(this, '4', ',5');" tabindex="216" value="20:00">
+                            </td>
                             <td>
                                 <input type="text" name="end_friday" size="5"
-                                       onchange="get_az(this, '5', ',5');" tabindex="248" value="20:00"></td>
+                                       onchange="get_az(this, '5', ',5');" tabindex="248" value="20:00">
+                            </td>
                         </tr>
                         <tr>
                             <td class="tc_row_caption">
                                 Arbeitszeit bei 00:30 Pause
                             </td>
                             <td>
-                                <input type="text" size="5" disabled="disabled" value="13:30"></td>
+                                <input type="text" size="5" disabled="disabled" value="13:30">
+                            </td>
                             <td>
-                                <input type="text" size="5" disabled="disabled" value="13:30"></td>
+                                <input type="text" size="5" disabled="disabled" value="13:30">
+                            </td>
                             <td>
-                                <input type="text" size="5" disabled="disabled" value="13:30"></td>
+                                <input type="text" size="5" disabled="disabled" value="13:30">
+                            </td>
                             <td>
-                                <input type="text" size="5" disabled="disabled" value="13:30"></td>
+                                <input type="text" size="5" disabled="disabled" value="13:30">
+                            </td>
                             <td>
-                                <input type="text" size="5" disabled="disabled" value="13:30"></td>
+                                <input type="text" size="5" disabled="disabled" value="13:30">
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="6">
@@ -358,7 +319,8 @@
                                            value="{{ working_hour.project_name|safe }}">
                                 </td>
                                 <td class="tc_row_caption">
-                                    <input type="text" size="5" disabled="disabled" value="00:00"></td>
+                                    <input type="text" size="5" disabled="disabled" value="00:00">
+                                </td>
                                 <td>
                                     <input type="text" name="{{ working_hour.project_id }}_monday"
                                            size="5" tabindex="131"
@@ -390,9 +352,9 @@
                             </td>
                             <td colspan="5">
                                 <input type="button" id="button9" class="tc_submit" onclick="SubmitForm('Speichern')"
-                                       tabindex="279" value="Speichern"></td>
+                                       tabindex="279" value="Speichern">
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </form>
@@ -410,15 +372,8 @@
 </table>
 <script type="text/javascript">
     //<![CDATA[
-    Init();
-    //]]>
-</script>
-<script type="text/javascript">
-    //<![CDATA[
     SetFocus();
     //]]>
 </script>
-
-
 </body>
 </html>

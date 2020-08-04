@@ -26,7 +26,7 @@ body, .gui_checkbox, .gui_radiobutton {
 
 .head_big {
     color: #FFFFFF;
-    background-color: #E20074;
+    background-color: #01ACE4;
 }
 
 .head, ul.navigation, a.navigation, label {
@@ -566,7 +566,7 @@ input.submit50 {
 
 /*Header - Vertretung-Meldung*/
 .ver_message {
-    color: #E20074;
+    color: #01ACE4;
 }
 
 /*

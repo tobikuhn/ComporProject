@@ -10,7 +10,7 @@ body {font-family:verdana,arial,helvetica,sans-serif; font-size:90%;}
 /* Color Definitions */
 
 body, .gui_checkbox, .gui_radiobutton                           {color:#000000; background-color:#FFFFFF;}
-.head_big                                                       {color:#FFFFFF; background-color:#E20074;}
+.head_big                                                       {color:#FFFFFF; background-color:#01ACE4;}
 .head, ul.navigation, a.navigation, label                       {color:#000000; background-color:#F0F0F0;}
 
 td {text-align:left;}
@@ -192,7 +192,7 @@ input.submit50  {width:50em;}
 .head_big a:focus    {outline:white solid 2px;}
 
 /*Header - Vertretung-Meldung*/
-.ver_message{color:#E20074;}
+.ver_message{color:#01ACE4;}
 
 /*
  * Content

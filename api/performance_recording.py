@@ -13,7 +13,7 @@ from services.projects_service import get_projects_for_user
 from services.user_service import get_user_by_id
 from services.working_hours_service import get_working_hour_for_user, put_working_hour
 
-expense_recording_routes = Blueprint('performance_recording', __name__, url_prefix="/compor+/user/<user_id>/")
+expense_recording_routes = Blueprint('performance_recording', __name__, url_prefix="/user/<user_id>/")
 
 
 @expense_recording_routes.route("/aufwands-erfassung/week/<calendar_week>", methods=["GET"])
@@ -22,7 +22,7 @@ def performance_recording(user_id, calendar_week=get_current_week_number()):
     user = get_user_by_id(user_id)
 
     working_hours = get_working_hour_for_user(user.id, calendar_week) or []
-    projects = get_projects_for_user(user.id)
+    projects = get_projects_for_user(user.id) or []
 
     projects_with_hours = list(map(lambda wh: wh.project_id, working_hours))
 

@@ -1,26 +1,14 @@
-class User:
+from flask_login.mixins import UserMixin
 
-    def __init__(self, id, username, password, name):
+
+class User(UserMixin):
+
+    def __init__(self, id, email, password, name):
         self.id = id
-        self.username = username
+        self.email = email
         self.password = password
         self.name = name
 
     def generate_username(self):
-        split = self.name.split(" ")
-        return split[0][:1].lower() + split[1].lower()
-
-    @staticmethod
-    def is_authenticated(self):
-        return True
-
-    @staticmethod
-    def is_active(self):
-        return True
-
-    @staticmethod
-    def is_anonymous(self):
-        return False
-
-    def get_id(self):
-        return self.id
+        split = self.email.split("@")
+        return split[0]
