@@ -2,7 +2,7 @@
 
 ## Requirements
 ```
-sudo apt install -y apache2-dev, mysql-server, python3, python3-pip, python3-dev, python3-venv, make
+sudo apt install -y apache2, apache2-dev, mysql-server, python3, python3-pip, python3-dev, python3-venv, make
 ```
 ## Setup
 ##### Copy files to `/var/www/compor-plus`
@@ -30,8 +30,8 @@ a2enmod mod_wsgi
 
 ##### Create virtualenv
 ```bash
-python3 -m venv /var/www/compor-plus/venv
 cd /var/www/compor-plus
+python3 -m venv /venv
 ./venv/bin/python3 install -r requirements.txt
 ```
 
