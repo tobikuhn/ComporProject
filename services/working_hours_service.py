@@ -65,3 +65,6 @@ def get_available_calendar_weeks(user_id):
             return result
 
         return []
+def clear_working_hours():
+    with get_mysql_connection().cursor() as cursor:
+        cursor.execute("TRUNCATE TABLE WorkingHour")
