@@ -43,19 +43,15 @@ def login():
     return redirect(url_for("main_menu.main_menu"))
 
 
-@user_routes.route("/user-editor", methods=["GET", "POST"])
+@user_routes.route("/user-editor")
 @login_required
 def user_editor():
     msg = None
-    if request.method == "POST":
-        try:
-            password = request.form["password"]
-        except BadRequestKeyError:
-            return Response(status=400)
 
+    password = request.values.get("password")
+    if password:
         change_user_password(current_user.id, password)
         msg = "Password changed"
-
 
     return render_template("user_editor.html",
                            company=config.company_name,

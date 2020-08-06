@@ -123,7 +123,7 @@
                 <div>
                     <fieldset class="legend_caption">
                         <legend>Passwort ändern</legend>
-                        <form method="post" action="{{ url_for("user_routes.user_editor") }}">
+                        <form method="get" action="{{ url_for("user_routes.user_editor") }}">
                             <label for="username" class="gui_label_normal">E-Mail Adresse</label>
                             <input id="username" name="username" type="text" disabled value="{{ user.email }}"/>
                             <br/>
