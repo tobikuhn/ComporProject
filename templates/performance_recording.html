@@ -75,9 +75,10 @@
                 &gt;
                 Aufwandserfassung
             </div>
-            <div class="right">Nutzer: {{ user.generate_username() }}
-                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
-            </div>
+             <div class="right">
+                    Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
+                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+                </div>
         </td>
     </tr>
     <tr>

@@ -37,3 +37,10 @@ def get_user_count():
 
         if result:
             return result["COUNT(*)"]
+
+
+def change_user_password(user_id, new_password):
+    sql = "UPDATE User SET password = '" + new_password + "' WHERE id = " + str(user_id)
+    with get_mysql_connection().cursor() as cursor:
+        cursor.execute(sql)
+        return True

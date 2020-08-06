@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>{{ application }} Hauptmenü</title>
+    <script type="text/javascript">
+        //<![CDATA[
+        let gui_focus_id;
+
+        function SetFocusId(i_id) {
+            gui_focus_id = i_id;
+        }
+
+        function SetFocus() {
+            let el = document.getElementById(gui_focus_id);
+            if (el) {
+                el.focus();
+                if (el.select) {
+                    el.select();
+                }
+
+            }
+
+        }
+
+        //]]>
+    </script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
+    <style type="text/css">
+        .bgclr {
+            background-color: white;
+        }
+
+        .head, .head_big {
+            border-color: white;
+        }
+    </style>
+</head>
+<body>
+<table class="default_layout main_layout">
+    <tbody>
+    <tr>
+        <td class="bgclr" rowspan="2">
+            <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
+                    src="{{ url_for('static', filename="compor-plus.logo.png") }}" alt="{{ application }} Hauptmenü"
+                    title="{{ application }} Hauptmenü"></a>
+        </td>
+        <td class="head">
+            <div class="left"><a href="{{ url_for("main_menu.main_menu") }}">Sicht:
+                {{ company }}</a>
+            </div>
+            <div class="right"><a href="{{ url_for("main_menu.main_menu") }}"
+                                  title="Öffnet die Informations-Seite in einem neuen Fenster."
+                                  target="_blank">{{ application }}-Info</a>
+                <a href="{{ url_for("main_menu.main_menu") }}">Hilfe</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="head_big">
+            <div class="left">{{ application }}</div>
+        </td>
+    </tr>
+    <tr>
+        <td class="head">
+        </td>
+        <td class="head">
+            <div class="left">Sie sind hier:
+                Hauptmenü
+            </div>
+            {% if user.is_authenticated %}
+                <div class="right">
+                    Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
+                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+                </div>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td class="navigation">
+            <ul class="navigation">
+                <li class="navigation">
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
+                        {% if user.is_authenticated %}
+                            <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
+                        {% else %}
+                            <a href="{{ url_for("main_menu.main_menu") }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
+                        {% endif %}
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            SetFocusId('MEI_M110');
+                            //]]>
+                        </script>
+                    </div>
+                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
+                        {% if user.is_authenticated %}
+                            <a href="{{ url_for("reports.reports", user_id=user.id) }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
+                        {% else %}
+                            <a href="{{ url_for("main_menu.main_menu") }}"
+                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
+                        {% endif %}
+                        <script type="text/javascript">
+                            //<![CDATA[
+                            SetFocusId('MEI_M110');
+                            //]]>
+                        </script>
+                    </div>
+                </li>
+            </ul>
+        </td>
+        <td class="content">
+            <noscript>Java Script ist deaktiviert.</noscript>
+            <br>
+            <noscript>Bitte aktivieren Sie Java Script.</noscript>
+            <div id="waitDisplay" class="content" style="display: none;"><br>
+                Die Daten werden geladen. Bitte haben Sie etwas Geduld.
+            </div>
+            {% if user.is_authenticated %}
+                <div>
+                    <fieldset class="legend_caption">
+                        <legend>Passwort ändern</legend>
+                        <form method="post" action="{{ url_for("user_routes.user_editor") }}">
+                            <label for="username" class="gui_label_normal">E-Mail Adresse</label>
+                            <input id="username" name="username" type="text" disabled value="{{ user.email }}"/>
+                            <br/>
+                            <label for="password" class="gui_label_normal">Passwort</label>
+                            <input id="password" name="password" type="password"/>
+                            {% if msg %}
+                                <div style="color: #01ACE4">{{ msg }}</div>
+                            {% else %}
+                                <br/>
+                            {% endif %}
+                            <input type="submit" value="Passwort ändern">
+
+                        </form>
+                    </fieldset>
+                </div>
+            {% endif %}
+        </td>
+    </tr>
+    <tr>
+        <td class="navigation">
+        </td>
+        <td class="foot" id="foot_td_id">
+                  <span class="srvinfo"><span class="label">Server:</span>
+                  <span>mptp</span>
+                  <span class="label">Version:</span>
+                  <span>mp_04_24</span>
+                  <span class="label">Revision:</span>
+                  <span>13865</span>
+                  <span class="label">Patchlevel:</span>
+                  <span>p1</span>
+                  <span class="label">Installationsdatum:</span>
+                  <span>29.06.2020</span>
+                  </span><br>
+            <br>
+            {{ generate_server_signature() }}
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    //<![CDATA[
+    Init();
+    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    SetFocus();
+    //]]>
+</script>
+</body>
+</html>

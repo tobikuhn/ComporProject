@@ -32,7 +32,7 @@ a2enmod mod_wsgi
 ```bash
 cd /var/www/compor-plus
 python3 -m venv /venv
-./venv/bin/python3 install -r requirements.txt
+./venv/bin/python3 -m pip install -r requirements.txt
 ```
 
 ##### Add ComporPlus to Apache VirtualHost:
