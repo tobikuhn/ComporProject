@@ -17,4 +17,10 @@ con = pymysql.connect(host=config.MYSQL_DATABASE_HOST,
 
 
 def get_mysql_connection():
-    return con
+    return pymysql.connect(host=config.MYSQL_DATABASE_HOST,
+                      user=config.MYSQL_DATABASE_USER,
+                      password=config.MYSQL_DATABASE_PASSWORD,
+                      db=config.MYSQL_DATABASE_DB,
+                      charset='utf8mb4',
+                      cursorclass=pymysql.cursors.DictCursor,
+                      autocommit=True)

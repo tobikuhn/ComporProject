@@ -2,7 +2,9 @@
 
 ## Requirements
 ```
-sudo apt install -y apache2, apache2-dev, mysql-server, python3, python3-pip, python3-dev, python3-venv, make
+sudo apt install -y apache2, apache2-dev, mysql-server, make
+sudo apt install -y python3, python3-pip, python3-dev, python3-venv
+sudo apt install -y wkhtmltopdf
 ```
 ## Setup
 ##### Copy files to `/var/www/compor-plus`

@@ -1,4 +1,7 @@
+from flask import redirect
 from flask.blueprints import Blueprint
+from flask.globals import request
+from flask.helpers import send_file, url_for
 from flask.templating import render_template
 from flask_login.utils import login_required, current_user
 
@@ -6,6 +9,7 @@ from api.context_processors import generate_month_year_display, generate_server_
     get_current_week_number
 from extensions import config
 from services.projects_service import get_projects_for_user
+from services.report_service import save_report, resolve_report_file
 from services.user_service import get_user_by_id
 from services.working_hours_service import get_project_hours_per_day, get_available_calendar_weeks
 
@@ -16,12 +20,12 @@ reports_routes = Blueprint('reports', __name__, url_prefix="/user/<user_id>/")
 @login_required
 def reports(user_id):
     user = get_user_by_id(user_id)
-    calendar_weeks = get_available_calendar_weeks(user_id) or []
+    calendar_weeks = get_available_calendar_weeks(user_id)
     return render_template("reports.html",
                            company=config.company_name,
                            application=config.app_name,
                            user=current_user,
-                           projects=get_projects_for_user(user.id) or [],
+                           projects=get_projects_for_user(user.id),
                            calendar_weeks=calendar_weeks,
                            calendar_week=get_current_week_number())
 
@@ -48,12 +52,20 @@ def performance_record(user_id, calendar_week):
             # for invalid time strings
             pass
 
-    return render_template("reports.performance_report.html",
-                           company=config.company_name,
-                           user_name=user.name,
-                           calendar_week=calendar_week,
-                           sum_work=sum_work,
-                           work=work_per_days)
+    rendered_html = render_template("reports.performance_report.html",
+                                    company=config.company_name,
+                                    user_name=user.name,
+                                    calendar_week=calendar_week,
+                                    sum_work=sum_work,
+                                    work=work_per_days)
+    report_filename = save_report(rendered_html)
+    return redirect(url_for("reports.report_file", user_id=current_user.id, file=report_filename))
+
+
+@reports_routes.route("/berichte/leistungsnachweis/")
+@login_required
+def report_file(user_id):
+    return send_file(resolve_report_file(request.values.get("file")))
 
 
 @reports_routes.context_processor
