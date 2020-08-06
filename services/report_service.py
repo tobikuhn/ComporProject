@@ -6,7 +6,7 @@ from os.path import isfile, join
 import pdfkit
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-reports_dir = os.path.join(basedir, os.path.pardir, "reports")
+reports_dir = os.path.abspath(os.path.join(basedir, os.pardir, "reports"))
 
 pattern = "bericht_(\d+).pdf"
 
@@ -21,7 +21,7 @@ def save_report(rendered_template: str) -> str:
         filename = reports[0]
         new_number = int(re.search(pattern, filename).group(1)) + 1
 
-        filename = "bericht_" + str(new_number ) + ".pdf"
+        filename = "bericht_" + str(new_number) + ".pdf"
 
     try:
         pdfkit.from_string(rendered_template, resolve_report_file(filename))
@@ -32,4 +32,4 @@ def save_report(rendered_template: str) -> str:
 
 
 def resolve_report_file(filename):
-    return os.path.join(reports_dir, os.path.join(reports_dir, filename))
+    return os.path.join(reports_dir, filename)
