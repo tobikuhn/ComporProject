@@ -30,11 +30,12 @@ def reports(user_id):
                            calendar_week=get_current_week_number())
 
 
-@reports_routes.route("/berichte/leistungsnachweis/week/<calendar_week>",
+@reports_routes.route("/berichte/leistungsnachweis/",
                       methods=["GET", "POST"])
 @login_required
-def performance_record(user_id, calendar_week):
+def performance_record(user_id):
     user = get_user_by_id(user_id)
+    calendar_week = request.values.get("calendar_week")
 
     work_per_days = []
 
@@ -58,8 +59,12 @@ def performance_record(user_id, calendar_week):
                                     calendar_week=calendar_week,
                                     sum_work=sum_work,
                                     work=work_per_days)
-    report_filename = save_report(rendered_html)
-    return redirect(url_for("reports.report_file", user_id=current_user.id, file=report_filename))
+
+    if request.values.get("as_pdf"):
+        report_filename = save_report(rendered_html)
+        return redirect(url_for("reports.report_file", user_id=current_user.id, file=report_filename))
+    else:
+        return rendered_html
 
 
 @reports_routes.route("/berichte/leistungsnachweis/")

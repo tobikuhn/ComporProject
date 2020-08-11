@@ -75,10 +75,10 @@
                 &gt;
                 Aufwandserfassung
             </div>
-             <div class="right">
-                    Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
-                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
-                </div>
+            <div class="right">
+                Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
+                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+            </div>
         </td>
     </tr>
     <tr>
@@ -150,7 +150,7 @@
                         // Calculate full weeks to nearest Thursday
                         let weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
                         // Return array of year and week number
-                        return [d.getUTCFullYear(), weekNo];
+                        return weekNo;
                     }
 
                     function SubmitForm(action) {
@@ -161,8 +161,8 @@
                             // Tue Jul 14 2020 00:00:00 GMT+0200 (Mitteleuropäische Sommerzeit)
                             let selectedDate = cal.selectedDates[0];
                             let date = new Date(selectedDate);
-                            let weekNumber = getWeekNumber(date)[1];
-                            if (typeof weekNumber === "number") {
+                            let weekNumber = getWeekNumber(date);
+                            if (!isNaN(weekNumber)) {
                                 if (window.location.href.endsWith(weekNumber.toString()))
                                     return
 

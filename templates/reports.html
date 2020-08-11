@@ -76,10 +76,10 @@
                 &gt;
                 Berichte
             </div>
-             <div class="right">
-                    Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
-                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
-                </div>
+            <div class="right">
+                Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
+                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+            </div>
         </td>
     </tr>
     <tr>
@@ -143,7 +143,7 @@
                             <legend>Leistungsnachweis</legend>
                             <script>
                                 function onOpenPerformanceRecord() {
-                                    let selected = document.getElementById("i_bumo_id_ma").value
+                                    let selected = document.getElementById("calendar_week").value
                                     let redirect_to = "{{ url_for("reports.performance_record", user_id=user.id, calendar_week="")}}" + selected
                                     window.open(redirect_to)
                                 }
@@ -155,7 +155,7 @@
                                                                       class="gui_label_short">Kalenderwoche</label>
                                         </div>
                                         <div class="gui_input">
-                                            <select name="i_bumo_id" size="1" id="i_bumo_id_ma"
+                                            <select name="calendar_week" size="1" id="i_bumo_id_ma"
                                                     class="gui_label_short">
                                                 {% for week  in calendar_weeks | sort(reverse=True, attribute="calendar_week") %}
                                                     <option>{{ week.calendar_week }}</option>
@@ -165,47 +165,48 @@
                                     </div>
                                 </div>
                                 <div class="cleared_row"></div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_act" value="datum"
+                                <div class="gui_label_and_input"><input type="checkbox" value="datum"
                                                                         checked="checked" id="i_act_ma">
                                     <label for="i_act_ma" class="gui_checkbox">Druckdatum als Unterschriftsdatum
                                         anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_det" value="detail"
+                                <div class="gui_label_and_input"><input type="checkbox" value="detail"
                                                                         checked="checked" id="i_det_ma">
                                     <label for="i_det_ma" class="gui_checkbox">Aktivität anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_leistungsart" value="j"
+                                <div class="gui_label_and_input"><input type="checkbox" value="j"
                                                                         id="i_leistungsart_ma">
                                     <label for="i_leistungsart_ma" class="gui_checkbox">Leistungsart anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_ratetype" value="j"
+                                <div class="gui_label_and_input"><input type="checkbox" value="j"
                                                                         id="i_ratetype_ma">
                                     <label for="i_ratetype_ma" class="gui_checkbox">Ratetype anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_arbeitszeit" value="on"
+                                <div class="gui_label_and_input"><input type="checkbox" value="on"
                                                                         checked="checked" id="i_arbeitszeit_ma">
                                     <label for="i_arbeitszeit_ma" class="gui_checkbox">Arbeitszeit anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_reisezeit" value="on"
+                                <div class="gui_label_and_input"><input type="checkbox" value="on"
                                                                         checked="checked" id="i_reisezeit_ma">
                                     <label for="i_reisezeit_ma" class="gui_checkbox">Reisezeit anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_ruf_aktiv" value="on"
+                                <div class="gui_label_and_input"><input type="checkbox" value="on"
                                                                         id="i_ruf_aktiv_ma">
                                     <label for="i_ruf_aktiv_ma" class="gui_checkbox">Rufbereitschaft (aktiv)
                                         anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_ruf_passiv" value="on"
+                                <div class="gui_label_and_input"><input type="checkbox" value="on"
                                                                         id="i_ruf_passiv_ma">
                                     <label for="i_ruf_passiv_ma" class="gui_checkbox">Rufbereitschaft (passiv)
                                         anzeigen</label>
                                 </div>
-                                <div class="gui_label_and_input"><input type="checkbox" name="i_null_wert" value="on"
+                                <div class="gui_label_and_input"><input type="checkbox" value="on"
                                                                         id="i_null_wert_ma">
                                     <label for="i_null_wert_ma" class="gui_checkbox">Aktivitäten ohne Stundensatz
                                         unterdrücken</label>
                                 </div>
-                                <input type="submit" value="Anzeigen">
+                                <input type="submit" name="as_pdf" value="Als PDF">
+                                <input type="submit" name="as_html" value="Als HTML">
                             </form>
                         </fieldset>
 
