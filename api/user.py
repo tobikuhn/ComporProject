@@ -7,7 +7,8 @@ from flask.wrappers import Response
 from flask_login.utils import login_user, logout_user, login_required, current_user
 from werkzeug.exceptions import BadRequestKeyError
 
-from api.context_processors import generate_server_signature
+from api.context_processors import generate_server_signature, get_current_week_number
+
 from extensions import login_manager, config
 from services.user_service import get_user_by_id, verify_user_by_email, change_user_password
 
@@ -57,7 +58,8 @@ def user_editor():
                            company=config.company_name,
                            application=config.app_name,
                            user=current_user,
-                           msg=msg)
+                           msg=msg,
+                           calendar_week=get_current_week_number())
 
 
 @user_routes.context_processor
