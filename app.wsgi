@@ -2,7 +2,7 @@ import logging
 import os
 import sys
 
-sys.path.insert(0, '/var/www/compor-plus/')
+sys.path.insert(0, '/var/www/compor-project/')
 
 os.environ['FLASK_ENV'] = "development"
 

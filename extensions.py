@@ -1,7 +1,8 @@
 import pymysql
 from flask_login.login_manager import LoginManager
-
 from services.config import AppConfig
+from pymysql.constants import CLIENT
+
 
 config = AppConfig
 
@@ -13,7 +14,9 @@ con = pymysql.connect(host=config.MYSQL_DATABASE_HOST,
                       db=config.MYSQL_DATABASE_DB,
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor,
-                      autocommit=True)
+                      autocommit=True,
+                      client_flag=CLIENT.MULTI_STATEMENTS,
+                      )
 
 
 def get_mysql_connection():
@@ -23,4 +26,5 @@ def get_mysql_connection():
                       db=config.MYSQL_DATABASE_DB,
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor,
-                      autocommit=True)
+                      autocommit=True,
+                      client_flag=CLIENT.MULTI_STATEMENTS,)

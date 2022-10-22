@@ -1,0 +1,134 @@
+
+/*!!
+Epoch DHTML JavaScript Calendar - Version 2.0.2
+Deutsche Ausgabe
+CSS Style File
+(c) 2006-2007 MeanFreePath
+Free for NON-COMMERCIAL use - see website for details and updates
+http://www.meanfreepath.com/javascript_calendar/index.html
+!!*/
+table.calendar {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 80%;
+    border-collapse: collapse;
+    background-color: white;
+ //   border: solid #999999 1px;
+    border: none;
+    background-color: white;
+    width: 25em;
+    text-align: center;
+    /*prevent user from selecting text in Mozilla & Safari - check calendar constructor for IE code)*/
+    -moz-user-select: none;
+    /*-khtml-user-select: none;*/
+}
+
+table.calendar a:link, a:visited {
+    text-decoration: none;
+}
+
+table.calendar a:hover {
+}
+
+table.calendar td {
+    border: 0;
+    text-align: center;
+}
+
+div.mainheading {
+    margin: 2px;
+}
+
+
+
+TABLE.calendar TH {
+    BORDER-RIGHT: 0px;
+    BORDER-TOP: 0px;
+    BORDER-LEFT: 0px;
+    BORDER-BOTTOM: 0px;
+    TEXT-ALIGN: center
+}
+
+DIV.mainheading {
+    MARGIN: 2px 0px
+}
+
+TABLE.cells {
+    BORDER-RIGHT: #cccccc 1px solid;
+    BORDER-TOP: #cccccc 1px solid;
+    MARGIN: 1px 0px 3px 0px;
+    BORDER-LEFT: #cccccc 1px solid;
+    CURSOR: pointer;
+    BORDER-BOTTOM: #cccccc 1px solid;
+    BORDER-COLLAPSE: collapse;
+    empty-cells: show;
+    width: 100%;
+}
+
+TABLE.cells TH {
+    BORDER-style: none;
+    WIDTH: 2em;
+   font-size: larger;
+    background-color: #ffffff;
+    color: #26bcf7;
+    TEXT-ALIGN: center;
+    font-family: "Rajdhani", sans-serif;
+}
+
+table.cells th.wkhead {
+    BORDER-style: none;
+    cursor: default;
+    background-color: #ffffff;
+    WIDTH: 3em;
+}
+
+/*The date cells*/
+table.cells td {
+    border: solid #CCCCCC 1px;
+    vertical-align: top;
+    // text-align: left;
+    text-align: center;
+
+    /*	font-weight: bold;*/
+    height: 20px; /*IE doesn''t like ems*/
+}
+
+table.cells td.wkhead {
+    background-color: white;
+    text-align: center;
+    border-right: double #CCCCCC 3px;
+    background-color: #366578;
+    color: #ffffff;
+}
+
+table.cells td.noselect {
+    background-color: #EE00EE;
+    color: #BB00BB;
+    text-decoration: line-through;
+    cursor: default;
+}
+
+table.cells td.hlday {
+    background-color: #99FF99;
+}
+
+table.cells td.wkday {
+    background-color: #D9F4FF;
+}
+
+table.cells td.wkend {
+    background-color: #BCE9FB;
+    font-weight: bold;
+}
+
+table.cells td.curdate {
+    background-color: rgb(52, 139, 194); 
+}
+
+
+.monthselector {
+	height: 4em;
+}
+
+input[type="text"], textarea {
+background-color: #D9F4FF;
+}
