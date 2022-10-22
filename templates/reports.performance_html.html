@@ -12,7 +12,7 @@
 <link rel="shortlink" href="/de/node/29" />
 <link rel="revision" href="/de/node/29" />
 
-    <title>{{ application }} User Menu</title>
+    <title>{{ application }} Leistungsnachweis</title>
     <script type="text/javascript">
         //<![CDATA[
         let gui_focus_id;
@@ -114,7 +114,7 @@
                             class="navigation" accesskey="B">Berichte</a>
 			</li>
                   <li>
-                <a href="{{ url_for("user_routes.user_editor") }}"> {{user.name }}</a>
+                <a href="{{ url_for("user_routes.user_editor") }}"> {{user_name }}</a>
 		</li><li>
                 <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
 
@@ -148,7 +148,8 @@
       <div class="container">
           <div class="region region-page-title">
     <div id="block-businessgroup-zymphonies-theme-page-title" class="block block-core block-page-title-block">
-<h1>Passwort ändern      </h1>
+<h1>Leistungsnachweis KW {{ calendar_week }} </h1>
+<h2>Mitarbeiter: {{ user_name }}</h2>
       <div class="content">
     </div>
   </div>
@@ -195,33 +196,42 @@
 
 <noscript>Java Script ist deaktiviert.</noscript>
 
-<form method="get" action="{{ url_for("user_routes.user_editor") }}">
-<table border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
-	<tbody>
-		<tr>
-			<td><label class="gui_label_normal" for="username">E-Mail Adresse</label></td>
-			<td> <input id="username" name="username" type="text" disabled value="{{ user.email }}"/></td>
-		</tr>
-		<tr>
-			<td><label class="gui_label_normal" for="password">Passwort</label></td>
-			<td>
-                            <input id="password" name="password" type="password"/>
-                            {% if msg %}
-                                <div style="color: #26bcf7">{{ msg }}</div>
-                            {% else %}
-                                <br/>
-                            {% endif %}</td>
 
-		</tr>
-<tr><td>&nbsp;</td><td></td></tr>
-		<tr>
-			<td>&nbsp;</td>
-			<td style="text-align: center;"><input type="submit" class="pw_submit" value="Passwort ändern" /></td>
-		</tr>
-	</tbody>
-</table>
-</form>
-
+   <table class="termine">
+        <tbody>
+        <tr>
+            <th style="width=25%">Tag</th>
+            <th style="width=50%">Projekt</th>
+            <th style="width=25%">Billable</th>
+        </tr>
+        {% for w in work %}
+            <tr>
+                <th >
+                    {{ w.day|safe }}
+                </th>
+                <td class=" tdtop">
+                    {{ w.project|safe }}
+                </td>
+                <td class=" tdright tdtop">
+                    {{ w.work|safe }} h
+                </td>
+            </tr>
+        {% endfor %}
+        <tr></tr>
+        <tr>
+            <th class=" tdtop">
+                <b>Summe</b>
+            </th>
+            <td class=" tdtop">
+            </td>
+            <th class=" tdright tdtop">
+                <b>{{ sum_work|safe }} h</b>
+            </th>
+            <td class=" tdtop">
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
 
 

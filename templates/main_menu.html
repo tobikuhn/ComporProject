@@ -1,8 +1,18 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>{{ application }} Hauptmenü</title>
+<html lang="de" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" />
+<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="de" href="https://www.compor-ag.de/de/node/29" />
+<link rel="canonical" href="/de/node/29" />
+<link rel="shortlink" href="/de/node/29" />
+<link rel="revision" href="/de/node/29" />
+
+    <title>{{ application }}</title>
     <script type="text/javascript">
         //<![CDATA[
         let gui_focus_id;
@@ -25,8 +35,12 @@
 
         //]]>
     </script>
+    
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="print.css") }}" media="print">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css_cps_drupal.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css_UmV_drupal.css") }}">
+
+
     <style type="text/css">
         .bgclr {
             background-color: white;
@@ -36,256 +50,362 @@
             border-color: white;
         }
     </style>
-</head>
-<body>
-<table class="default_layout main_layout">
-    <tbody>
-    <tr>
-        <td class="bgclr" rowspan="2">
-            <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
-                    src="{{ url_for('static', filename="compor-plus.logo.png") }}" alt="{{ application }} Hauptmenü"
-                    title="{{ application }} Hauptmenü"></a>
-        </td>
-        <td class="head">
-            <div class="left"><a href="{{ url_for("main_menu.main_menu") }}">Sicht:
-                {{ company }}</a>
-            </div>
-            <div class="right"><a href="{{ url_for("main_menu.main_menu") }}"
-                                  title="Öffnet die Informations-Seite in einem neuen Fenster."
-                                  target="_blank">{{ application }}-Info</a>
-                <a href="{{ url_for("main_menu.main_menu") }}">Hilfe</a>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="head_big">
-            <div class="left">{{ application }}</div>
-        </td>
-    </tr>
-    <tr>
-        <td class="head">
-        </td>
-        <td class="head">
-            <div class="left">Sie sind hier:
-                Hauptmenü
-            </div>
-            {% if user.is_authenticated %}
-                <div class="right">
-                    Nutzer: <a href="{{ url_for("user_routes.user_editor") }}">{{ user.generate_username() }}</a>
-                    <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
-                </div>
-            {% endif %}
-        </td>
-    </tr>
-    <tr>
-        <td class="navigation">
-            <ul class="navigation">
-                <li class="navigation">
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
-                        {% if user.is_authenticated %}
-                            <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
-                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
-                        {% else %}
-                            <a href="{{ url_for("main_menu.main_menu") }}"
-                               id="MEI_M110" class="navigation" accesskey="Z">Zeitmanagement</a>
-                        {% endif %}
-                        <script type="text/javascript">
-                            //<![CDATA[
-                            SetFocusId('MEI_M110');
-                            //]]>
-                        </script>
-                    </div>
-                    <div class="navigation navig_lev1 navig_inactive menu_clr_ma1">
-                        {% if user.is_authenticated %}
-                            <a href="{{ url_for("reports.reports", user_id=user.id) }}"
-                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
-                        {% else %}
-                            <a href="{{ url_for("main_menu.main_menu") }}"
-                               id="MEI_M110" class="navigation" accesskey="Z">Berichte</a>
-                        {% endif %}
-                        <script type="text/javascript">
-                            //<![CDATA[
-                            SetFocusId('MEI_M110');
-                            //]]>
-                        </script>
-                    </div>
-                </li>
-            </ul>
-        </td>
-        <td class="content">
-            <noscript>Java Script ist deaktiviert.</noscript>
-            <br>
-            <noscript>Bitte aktivieren Sie Java Script.</noscript>
-            <div id="waitDisplay" class="content" style="display: none;"><br>
-                Die Daten werden geladen. Bitte haben Sie etwas Geduld.
-            </div>
-            {% if not user.is_authenticated %}
-                <div>
-                    <fieldset class="legend_caption">
-                        <legend>Login</legend>
-                        <form method="post" action="{{ url_for("user_routes.login") }}">
-                            <label for="username" class="gui_label_normal">E-Mail Adresse</label>
-                            <input id="username" name="username" type="text"/>
-                            <br/>
-                            <label for="password" class="gui_label_normal">Passwort</label>
-                            <input id="password" name="password" type="password"/>
-                            <br/>
-                            <input type="submit" value="Anmelden">
-                        </form>
-                    </fieldset>
-                </div>
-            {% endif %}
-            <div id="delayedDisplay" class="content" style="display: inline;">
-                <h1>WILLKOMMEN bei {{ application }}</h1>
-                <h2>Bitte beachten Sie:</h2>
-                <div>
-                    <h3>An {{ application }} bestehen keine besonderen
+
+    
+<!--[if lte IE 8]>
+<script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+<![endif]-->
+
+  </head>
+  <body class="path-node page-node-type-article" ">
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+<!-- Header and Navbar -->
+<header class="main-header">
+  <nav class="navbar topnav navbar-default" role="navigation">
+    <div class="container">
+      <div class="row">
+      <div class="navbar-header col-md-3">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                    <div class="region region-header">
+    <div id="block-businessgroup-zymphonies-theme-branding" class="site-branding block block-system block-system-branding-block">
+  
+      
+        <div class="brand logo">
+
+           <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
+                    src="{{ url_for('static', filename="compor-project.logo.png") }}" alt="{{ application }} Hauptmenü"
+                    title="{{ application }} Hauptmenü" style="height: 70px;"></a>
+
+    </div>
+    </div>
+
+  </div>
+
+              </div>
+
+      <!-- Navigation -->
+      <div class="col-md-9">
+                    <div class="region region-primary-menu">
+    <nav role="navigation" aria-labelledby="block-businessgroup-zymphonies-theme-main-menu-menu" id="block-businessgroup-zymphonies-theme-main-menu">
+            
+  <h2 class="visually-hidden" id="block-businessgroup-zymphonies-theme-main-menu-menu">Main navigation</h2>
+  
+
+        {% if user.is_authenticated %} 
+              <ul class="sm menu-base-theme" id="main-menu"  >
+                      <li>
+        <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
+                                    id="MEI_023" class="navigation" accesskey="A"> Zeiterfassung</a>
+                  </li>
+                  <li>
+                  <a href="{{ url_for("reports.reports", user_id=user.id) }}"
+                            id="MEI_022"
+                            class="navigation" accesskey="B">Berichte</a>
+			</li>
+                  <li>
+                <a href="{{ url_for("user_routes.user_editor") }}"> {{user.name }}</a>
+		</li><li>
+                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+
+                  </li>
+        </ul>
+{% endif %}
+
+
+
+  </nav>
+
+  </div>
+
+              
+      </div>
+      <!--End Navigation -->
+
+      </div>
+    </div>
+  </nav>
+
+</header>
+<!--End Header & Navbar -->
+
+
+
+<!-- Page Title -->
+  <div id="page-title">
+    <div id="page-title-inner">
+      <!-- start: Container -->
+      <div class="container">
+          <div class="region region-page-title">
+    <div id="block-businessgroup-zymphonies-theme-page-title" class="block block-core block-page-title-block">
+<h1>{{ application }} Übersicht</h1>  
+      
+      <div class="content">
+    </div>
+  </div>
+
+  </div>
+
+      </div>
+    </div>
+  </div>
+<!-- End Page Title ---- >
+
+
+<!-- layout -->
+<div id="wrapper">
+  <!-- start: Container -->
+  <div class="container">
+    
+    <!--start:content -->
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
+
+    <div class="row layout">
+      <!--- Start Left SideBar -->
+            <!---End Right SideBar -->
+
+      <!--- Start content -->
+              <div class="content_layout">
+          <div class=col-md-12>
+              <div class="region region-content">
+    <div id="block-businessgroup-zymphonies-theme-content" class="block block-system block-system-main-block">
+  
+      
+      <div class="content">
+      
+<article data-history-node-id="29" role="article" about="/de/node/29" typeof="schema:Article" class="node node--type-article node--promoted node--view-mode-full">
+  
+      <span property="schema:name" content="Zeiterfassung" class="hidden"></span>
+
+
+  
+  <div class="node__content">
+ {% if user.is_authenticated %}
+
+
+
+<h2>Termine für {{ generate_date_from_month() }} </h2>
+
+
+<table  class="termine">
+	<tbody>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<th class="ver">Buchungsschluss MA</th>
+			<th class="ver">Freigabe PV</th>
+			<th class="ver">Controlling</th>
+		</tr>
+		<tr>
+			<th>Compor AG</th>
+			<td><img src="{{ url_for('static', filename="bn-d.gif") }}" height="12"> </td>
+			<td>{{ generate_date_from_now(2, 12)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(5, 12)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(10, 12)|safe }} MEZ (UTC+1)</td>
+		</tr>
+		<tr>
+			<th>Compor AG Stifung</th>
+			<td><img src="{{ url_for('static', filename="bn-ch.gif") }}" height="12"></td>
+			<td>{{ generate_date_from_now(5, 0)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(10, 0)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(20, 0)|safe }} MEZ (UTC+1)</td>
+		</tr>
+		<tr>
+                        <th>Compor Ltd. Malaysia</th>
+			<td><img src="{{ url_for('static', filename="bn-mal.gif") }}" height="12"></td>
+                        <td>{{ generate_date_from_now(1, 20)|safe }} MYT (UTC+8)</td>
+                        <td>{{ generate_date_from_now(4, 20)|safe }} MYT (UTC+8)</td>
+                        <td>{{ generate_date_from_now(9, 20)|safe }} MYT (UTC+8)</td>
+
+		</tr>
+		<tr>
+			<th>Compor US LLC</th>
+			<td><img src="{{ url_for('static', filename="bn-usa.gif") }}" height="12"></td>
+                        <td>{{ generate_date_from_now(30, 0)|safe }} CST (UTC-6)</td>
+                        <td>{{ generate_date_from_now(30, 0)|safe }} CST (UTC-6)</td>
+                        <td>{{ generate_date_from_now(30, 0)|safe }} CST (UTC-6)</td>
+		</tr>
+		<tr>
+			<th>Compor Kanada S.A.R.F</th>
+			<td><img src="{{ url_for('static', filename="bn-cdn.gif") }}" height="12"></td>
+                        <td>{{ generate_date_from_now(10, 0)|safe }} CST (UTC-6)</td>
+                        <td>{{ generate_date_from_now(10, 0)|safe }} CST (UTC-6)</td>
+                        <td>{{ generate_date_from_now(10, 0)|safe }} CST (UTC-6)</td>
+		</tr>
+		<tr>
+			<th>Compor NV</th>
+			<td><img src="{{ url_for('static', filename="bn-nl.gif") }}" height="12"></td>
+			<td>{{ generate_date_from_now(7, 8)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(7, 8)|safe }} MEZ (UTC+1)</td>
+			<td>{{ generate_date_from_now(7, 8)|safe }} MEZ (UTC+1)</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>Informationen<h2>
+<ul>
+	    Die Produktivsetzung des {{ application }} Releases 4.24 p1 wurde
+                        erfolgreich abgeschlossen.<br>
+                        Sie können sich über die Inhalte in unseren <a target="_blank"
+                                                                       href="{{ url_for("main_menu.main_menu") }}">Releasenotes</a>
+                        informieren.</ul>
+                   
+<ul>                    An {{ application }} bestehen keine besonderen
                         Anforderungen in Bezug auf sensible Betriebs- oder Geschäftsdaten. <br>
                         Falls Sie Beratung im Zusammenhang mit {{ application }}
                         als Abrechnungstool für Verträge mit "German Eyes Only"-Vermerk benötigen, wenden Sie sich bitte
                         an
                         <span style="color:#01ACE4;"><a
-                                href="mailto:{{ email }}">{{ email }}</a></span>
-                    </h3>
-                    <hr>
-                    <h3 align="center">Die Produktivsetzung des {{ application }} Releases 4.24 p1 wurde
-                        erfolgreich abgeschlossen.<br>
-                        Sie können sich über die Inhalte in unseren <a target="_blank"
-                                                                       href="{{ url_for("main_menu.main_menu") }}"><u>Releasenotes</u></a>
-                        informieren.
-                    </h3>
-                    <hr>
-                    <br>
-                    <br>
-                    <!--Vorlage, Termine siehe unter AM_SharePoint\Monatsabschlusstermine\_Monatsabschlusstermine_Vorlage_für_Info_an_alle_MOH.docx-->
-                    <h3 style="margin-top:0em; margin-bottom:0em" align="center">Abschlusstermine für die
-                        Aufwandserfassung in {{ generate_date_from_month() }}
-                    </h3>
-                    <br><br>
-                    <img src="{{ url_for('static', filename="bn-d.gif") }}" height="12"> <span
-                        style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }}:</b></span><br>
-                    <b>Mitarbeiter:</b> Abschlusstermin zur Aufwandserfassung und Sicherung des
-                    Einsatzblattes {{ generate_date_from_now(-8, 12)|safe }} MESZ (UTC+2)
-                    <br>
-                    - Buchung der Tage bis zum Monatsende nach bestem Wissen und Gewissen<br>
-                    <b>Personalverantwortliche:</b> Prüfung und Sichern der
-                    Einsatzblätter {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 12)|safe }} MESZ
-                    (UTC+2)
-                    <br><br>
-                    <img src="{{ url_for('static', filename="bn-ch.gif") }}" height="12"> <span
-                        style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }} Schweiz:</b></span><br>
-                    <b>Mitarbeiter:</b> Aufwandserfassung und Sicherung des
-                    Einsatzblattes {{ generate_date_from_month() }}: {{ generate_date_from_now(3, 18)|safe }} MESZ
-                    (UTC+2)<br>
-                    <br>
-                    <img src="{{ url_for('static', filename="bn-nl.gif") }}" height="12"> <span
-                        style="color:#01ACE4;"><strong> Termine und Aktivitäten für die {{ company }} Niederlande:</strong></span><br>
-                    <strong>Übertragung</strong> der
-                    Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 12)|safe }} MESZ
-                    (UTC+2)
-                    <br>
-                    <strong>Übertragung </strong> der
-                    Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-3, 10)|safe }} MESZ
-                    (UTC+2)
-                    <br>
-                    <strong>Finale Übertragung</strong> der
-                    Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-2, 10)|safe }} MESZ
-                    (UTC+2)<br>
-                    <br>
-                    <br>
-                    <img src="{{ url_for('static', filename="bn-usa.gif") }}" height="12"> <img
-                        src="{{ url_for('static', filename="bn-cdn.gif") }}" height="12"> <span
-                        style="color:#01ACE4;"><b> Termine und Aktivitäten für die {{ company }} Nord Amerika:</b></span><br>
-                    <b>Mitarbeiter:</b> Abschlusstermin der
-                    Arbeitszeiten {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 16)|safe }} CST
-                    (UST-6)<br>
-                    &nbsp; ⚠ {{ generate_date_from_month() }}: {{ generate_date_from_now(-7, 23)|safe }} CST (UTC-6):
-                    Keinerlei Buchungen und
-                    Korrekturen für den
-                    Buchungszeitraum mehr möglich. <br><br>
-                    <img src="{{ url_for('static', filename="bn-mal.gif") }}" height="12"> <span style="color:#01ACE4;"><b>Termine und Aktivitäten für die {{ company }} Malaysia:</b></span><br>
-                    <b>Mitarbeiter:</b> Abschlusstermin der Arbeitszeiten
-                    (Reporting) {{ generate_date_from_month() }}: {{ generate_date_from_now(-5, 18)|safe }} MYT (UTC+8)
-                    <br>
-                    <b>Personalvorgestzter:</b> Freigabe der Arbeitszeiten
-                    (Reporting) {{ generate_date_from_month() }}: {{ generate_date_from_now(-2, 12)|safe }} MYT
-                    (UTC+8)<br>
-                    <br>
-                    Sie finden die aktuellen Termine auch im <a
-                        href="{{ url_for("main_menu.main_menu") }}"
-                        target="_blank"
-                        style="color:blue"><u>Monatsabschlussplan</u></a>.<br>
-                    <br>
-                </div>
-                <hr>
-                <br>
-                <h3 style=" margin-top:0em; margin-bottom:0em">Funktionseinschränkungen bei Nutzung des Internet
-                    Explorers in der Kompatibilitätsansicht
-                </h3>
-                <br>
-                Durch das <a
-                    href="{{ url_for("main_menu.main_menu") }}"
-                    target="_blank" style="color:blue"><u> Ausschalten der Kompatibilitätsansicht</u></a> oder den
-                Wechsel auf alternative Browser (<a href="{{ url_for("main_menu.main_menu") }}" target="_blank"
-                                                    style="color:blue"><u>Firefox</u></a> oder <a
-                    href="{{ url_for("main_menu.main_menu") }}" target="_blank"
-                    style="color:blue"><u> Chrome</u></a>) treten Probleme zu <strong>inaktive Buttons</strong>
-                nicht mehr auf.<br>
-                <a href="{{ url_for("main_menu.main_menu") }}" target="_blank" style="color:blue"><u>Weitere
-                    Informationen</u></a><br>
-                <br>
-                <hr>
-                <br>
-                <h3 style="margin-top:0em; margin-bottom:0em" align="center">Bei Fragen, Problemen und Anregungen zu
-                    {{ application }}
-                </h3>
-                <p align="center"> wenden Sie sich bitte an Ihre {{ application }}-<a
-                        href="{{ url_for("main_menu.main_menu") }}" target="_blank"
-                        style="color:blue"><u>Ansprechpartner</u></a>.
-                </p>
-                <hr>
-                <br>
-                <h3 style="margin-top:0em; margin-bottom:0em" align="center">Im Rahmen der <a
-                        href="{{ url_for("main_menu.main_menu") }}"
-                        target="_blank"><u>GBV</u></a> ist die <a
-                        href="{{ url_for("main_menu.main_menu") }}" target="_blank">Download
-                    Policy</a> beim Download von personenbezogenen Daten zu berücksichtigen
-                </h3>
-                <br>
-                <hr>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="navigation">
-        </td>
-        <td class="foot" id="foot_td_id">
-                  <span class="srvinfo"><span class="label">Server:</span>
-                  <span>mptp</span>
-                  <span class="label">Version:</span>
-                  <span>mp_04_24</span>
-                  <span class="label">Revision:</span>
-                  <span>13865</span>
-                  <span class="label">Patchlevel:</span>
-                  <span>p1</span>
-                  <span class="label">Installationsdatum:</span>
-                  <span>29.06.2020</span>
-                  </span><br>
-            <br>
-            {{ generate_server_signature() }}
-        </td>
-    </tr>
-    </tbody>
+                                href="mailto:{{ email }}">{{ email }}</a></span> </ul>
+<ul>Durch das <a
+                    href="https://support.microsoft.com/de-de/windows/beheben-von-problemen-beim-anzeigen-von-websites-mithilfe-der-kompatibilit%C3%A4tsansicht-in-internet-explorer-11-9a0a3a6e-89be-518f-ff56-c491b528b302"
+                    target="_blank" >Ausschalten der Kompatibilitätsansicht</a> oder den
+                Wechsel auf alternative Browser (<a href="https://www.google.com/intl/de_de/chrome/" target="_blank">Chrome</a> oder <a
+                    href="https://www.mozilla.org/de/firefox/new/">Firefox</u></a>) treten Probleme zu <strong>inaktive Buttons</strong>
+                nicht mehr auf.
+
+
+{% else %}
+
+
+<noscript>Java Script ist deaktiviert.</noscript>
+
+<form method="post" action="{{ url_for("user_routes.login") }}">
+<table border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
+	<tbody>
+		<tr>
+			<td><label class="gui_label_normal" for="username">E-Mail Adresse</label></td>
+			<td><input id="username" name="username" type="text" /></td>
+		</tr>
+		<tr>
+			<td><label class="gui_label_normal" for="password">Passwort</label></td>
+			<td><input id="password" name="password" type="password" /></td>
+		</tr>
+<tr><td>&nbsp;</td><td></td></tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td style="text-align: center;"><input type="submit" class="pw_submit" value="Anmelden" /></td>
+		</tr>
+	</tbody>
 </table>
-<script type="text/javascript">
-    //<![CDATA[
-    Init();
-    //]]>
-</script>
+</form>
+
+{% endif %}
+
+
 <script type="text/javascript">
     //<![CDATA[
     SetFocus();
     //]]>
 </script>
-</body>
+
+</div>
+      
+  </div>
+
+</article>
+
+    </div>
+  </div>
+
+  </div>
+
+          </div>
+        </div>
+            <!---End content -->
+
+      
+    </div>
+    <!--End Content -->
+  </div>
+</div>
+<!-- End layout -->
+
+
+
+<!-- Start bottom -->
+<!--End Bottom -->
+
+
+<!-- Start Footer Menu -->
+  <div class="footer-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="region region-footer-menu">
+    <nav role="navigation" aria-labelledby="block-businessgroup-zymphonies-theme-footer-menu" id="block-businessgroup-zymphonies-theme-footer">
+            
+  <h2 class="visually-hidden" id="block-businessgroup-zymphonies-theme-footer-menu">Footer menu</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="/de/node/10" data-drupal-link-system-path="node/10">Impressum</a>
+              </li>
+                <li class="menu-item">
+        <a href="/de/dsgvo" data-drupal-link-system-path="node/7">Datenschutz</a>
+              </li>
+                <li class="menu-item">
+        <a href="/de/contact" data-drupal-link-system-path="contact">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+        </div>
+              </div>
+    </div>
+  </div>
+<!-- End Footer Menu -->
+
+
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+
+      <!-- Copyright -->
+      <div class="col-sm-6">
+        <p>{{ generate_server_signature() }} </p>
+      </div>
+      <!-- End Copyright -->
+
+      <!-- Credit link -->
+              <div class="col-sm-6">
+
+          <p class="credit-link">Designed By <a href="http://www.zymphonies.com" target="_blank">Zymphonies</a></p>
+        </div>
+            <!-- End Credit link -->
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Google map -->
+<!-- End Google map -->
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"de\/","currentPath":"node\/29","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"de"},"pluralDelimiter":"\u0003","ajaxPageState":{"libraries":"businessgroup_zymphonies_theme\/bootstrap,businessgroup_zymphonies_theme\/global-components,classy\/node,core\/html5shiv,system\/base,views\/views.module","theme":"businessgroup_zymphonies_theme","theme_token":null},"ajaxTrustedUrl":{"\/de\/search\/node":true},"user":{"uid":0,"permissionsHash":"dcd9f19ac3a2784b5a604957a0a200e9a527e65cc216f6735af6bf882103da90"}}</script>
+<script src="/sites/default/files/js/js_1kKrUmbcBRipPuafli03XZ_PjPiWi5MRccA4XIqoiAg.js"></script>
+
+  </body>
 </html>
