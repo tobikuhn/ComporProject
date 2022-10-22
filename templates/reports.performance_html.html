@@ -108,7 +108,7 @@
         <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
                                     id="MEI_023" class="navigation" accesskey="A"> Zeiterfassung</a>
                   </li>
-                  <li>
+                  <li class="active">
                   <a href="{{ url_for("reports.reports", user_id=user.id) }}"
                             id="MEI_022"
                             class="navigation" accesskey="B">Berichte</a>
@@ -232,6 +232,34 @@
         </tr>
         </tbody>
     </table>
+
+<br>
+<noscript>Java Script ist deaktiviert.</noscript>
+<form target="_blank" >
+<table class="termine" border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
+        <tbody>
+                <tr>
+                        <th>Kalenderwoche</th>
+                        <td>
+                                        <div class="gui_input">
+                                            <select name="calendar_week" size="1" id="calendar_week"
+                                                    class="gui_label_short">
+                                                {% for week  in calendar_weeks | sort(reverse=True, attribute="calendar_week") %}
+							{% if (week.calendar_week|int == calendar_week|int) %} 
+                                                    <option value="{{ week.calendar_week }}" selected>KW {{ week.calendar_week }}</option>
+                                                        {% else %}
+                                                    <option value="{{ week.calendar_week }}">KW {{ week.calendar_week }}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+
+                        </td>
+                        <td> <input type="submit" class="pw_submit" name="as_pdf" value="Als PDF"> </td>
+                        <td> <input type="submit" class="pw_submit" name="as_html" value="Als HTML"> </td>
+                </tr>
+        </tbody>
+</table>
+</form>
 
 
 

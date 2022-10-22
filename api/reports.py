@@ -78,6 +78,7 @@ def performance_record(user_id, calendar_week, format):
         report_filename = save_report(rendered_html)
         return redirect(url_for("reports.report_file", user_id=current_user.id, file=report_filename))
     else:
+        calendar_weeks = get_available_calendar_weeks(user_id)
         rendered_html = render_template("reports.performance_html.html",
                                     company=config.company_name,
                                     application=config.app_name,
@@ -85,7 +86,8 @@ def performance_record(user_id, calendar_week, format):
                                     user=current_user,
                                     calendar_week=calendar_week,
                                     sum_work=sum_work,
-                                    work=work_per_days)
+                                    work=work_per_days,
+                                    calendar_weeks=calendar_weeks)
         return rendered_html
 
 
