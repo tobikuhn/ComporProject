@@ -1,5 +1,10 @@
 # Compor-Plus
 
+### Network
+- IP: 10.0.0.30
+- RDP: m.meier@10.0.0.110 ShowHack!
+- SSH: sysadmin@10.0.0.10 ShowHack!
+
 ## Requirements
 ```
 sudo apt install -y apache2, apache2-dev, mysql-server, make
@@ -7,12 +12,12 @@ sudo apt install -y python3, python3-pip, python3-dev, python3-venv
 sudo apt install -y wkhtmltopdf
 ```
 ## Setup
-##### Copy files to `/var/www/compor-plus`
+##### Copy files to `/var/www/compor-project`
 
 ##### Configure database: 
 ```bash
-mysql -u<user> -p<password> < compor-plus.structure.mysql.sql
-mysql -u<user> -p<password> < compor-plus.data.mysql.sql
+mysql -u<user> -p<password> < compor-project.structure.mysql.sql
+mysql -u<user> -p<password> < compor-project.data.mysql.sql
 
 ```
 
@@ -32,14 +37,14 @@ a2enmod mod_wsgi
 
 ##### Create virtualenv
 ```bash
-cd /var/www/compor-plus
+cd /var/www/compor-project
 python3 -m venv /venv
 ./venv/bin/python3 -m pip install -r requirements.txt
 ```
 
 ##### Add ComporPlus to Apache VirtualHost:
 ```
-WSGIScriptAlias /compor+ /var/www/compor-plus/app.wsgi
-WSGIProcessGroup compor-plus
-WSGIDaemonProcess compor-plus python-home=/var/www/compor-plus/venv/ user=www-data group=www-data threads=5
+WSGIScriptAlias /compor+ /var/www/compor-project/app.wsgi
+WSGIProcessGroup compor-project
+WSGIDaemonProcess compor-project python-home=/var/www/compor-project/venv/ user=www-data group=www-data threads=5
 ```
