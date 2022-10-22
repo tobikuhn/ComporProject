@@ -3,7 +3,7 @@ from flask_login.mixins import UserMixin
 
 class User(UserMixin):
 
-    def __init__(self, id, email, password, name):
+    def __init__(self, id, email, password, name, **kwargs):
         self.id = id
         self.email = email
         self.password = password
