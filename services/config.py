@@ -9,5 +9,5 @@ class FlaskConfig:
 
 class AppConfig(FlaskConfig, MySQLConfig):
     company_name = "Compor AG"
-    app_name = "Compor+"
-    company_email = "compor_plus@compor-ag.de"
+    app_name = "Compor Project"
+    company_email = "compor_project@compor-ag.de"
