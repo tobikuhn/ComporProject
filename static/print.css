@@ -4,5 +4,9 @@
 }
 
 .content {
-    width: 100%;
+    width: 10%;
+}
+
+h1 {
+ background-color: #ff00ff;
 }

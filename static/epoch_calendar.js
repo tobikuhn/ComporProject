@@ -37,8 +37,9 @@ function Epoch(name, mode, targetelement, multiselect) {
      * Check Date.dateFormat() for the Date object's language settings
      */
     function setLang() {
-        self.daylist = new Array('S', 'M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S');
-        self.months_sh = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+        self.daylist = new Array('So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa');
+        self.months_sh = new Array('Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
+
         self.monthup_title = 'Go to the next month';
         self.monthdn_title = 'Go to the previous month';
         self.clearbtn_caption = 'Clear';
@@ -99,11 +100,11 @@ function Epoch(name, mode, targetelement, multiselect) {
         tbody.appendChild(tr);
 
         //create the calendar footer
-        tr = document.createElement('tr');
-        td = document.createElement('td');
-        td.appendChild(createFooter());
-        tr.appendChild(td);
-        tbody.appendChild(tr);
+        //tr = document.createElement('tr');
+        //td = document.createElement('td');
+        //td.appendChild(createFooter());
+        //tr.appendChild(td);
+        //tbody.appendChild(tr);
 
         //add the tbody element to the main calendar table
         self.calendar.appendChild(tbody);
@@ -123,7 +124,9 @@ function Epoch(name, mode, targetelement, multiselect) {
         setClass(container, 'mainheading');
         //create the child elements and other variables
         self.monthSelect = document.createElement('select');
+        self.monthSelect.setAttribute('class', 'monthselector');
         self.yearSelect = document.createElement('select');
+	self.yearSelect.setAttribute('class', 'monthselector');
         var monthDn = document.createElement('input'), monthUp = document.createElement('input');
         var opt, i;
         //fill the month select box
@@ -150,9 +153,11 @@ function Epoch(name, mode, targetelement, multiselect) {
         //add the appropriate children for the month buttons
         monthUp.setAttribute('type', 'button');
         monthUp.setAttribute('value', '>');
+        monthUp.setAttribute('class', 'monthselector');
         monthUp.setAttribute('title', self.monthup_title);
         monthDn.setAttribute('type', 'button');
         monthDn.setAttribute('value', '<');
+        monthDn.setAttribute('class', 'monthselector');
         monthDn.setAttribute('title', self.monthdn_title);
         self.monthSelect.owner = self.yearSelect.owner = monthUp.owner = monthDn.owner = self;  //hack to allow us to access self calendar in the events (<fix>??)
 
