@@ -10,6 +10,17 @@ def change_user_password(user_id, new_password):
         return True
 
 
+def is_user_admin(user_id):
+    with get_mysql_connection().cursor() as cursor:
+        sql = "SELECT * FROM User WHERE id = " + str(user_id) + " AND admin=1"
+        debug_sql(sql)
+        cursor.execute(sql)
+        result = cursor.fetchone()
+        if result:
+            return True
+        else:
+            return False
+
 def get_user_by_id(user_id):
     with get_mysql_connection().cursor() as cursor:
         sql = "SELECT * FROM User WHERE id = " + str(user_id)

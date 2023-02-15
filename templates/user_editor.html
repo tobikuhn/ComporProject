@@ -115,7 +115,13 @@
 			</li>
                   <li class="active">
                 <a href="{{ url_for("user_routes.user_editor") }}"> {{user.name }}</a>
-		</li><li>
+		</li>
+{% if not admin %} <!-- {% endif %}
+                <li>
+                <a href="{{ url_for("controlling.controlling") }}" title="Controlling">Controlling</a>
+                </li>
+                {% if not admin %} --> {% endif %}
+<li>
                 <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
 
                   </li>
@@ -197,7 +203,11 @@
 
 <form method="get" action="{{ url_for("user_routes.user_editor") }}">
 <table border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
-	<tbody>
+	<tbody> <tr>
+                        <td><label class="gui_label_normal" >Rolle</label></td>
+                        <td> {% if admin %} Administrator {% else  %}User  {% endif %} </td>
+                </tr>
+
 		<tr>
 			<td><label class="gui_label_normal" for="username">E-Mail Adresse</label></td>
 			<td> <input id="username" name="username" type="text" disabled value="{{ user.email }}"/></td>

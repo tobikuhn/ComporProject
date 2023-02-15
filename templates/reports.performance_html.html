@@ -115,7 +115,13 @@
 			</li>
                   <li>
                 <a href="{{ url_for("user_routes.user_editor") }}"> {{user_name }}</a>
-		</li><li>
+		</li>
+{% if not admin %} <!-- {% endif %}
+                <li>
+                <a href="{{ url_for("controlling.controlling") }}" title="Controlling">Controlling</a>
+                </li>
+                {% if not admin %} --> {% endif %}
+<li>
                 <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
 
                   </li>
@@ -235,7 +241,7 @@
 
 <br>
 <noscript>Java Script ist deaktiviert.</noscript>
-<form target="_blank" >
+<form >
 <table class="termine" border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
         <tbody>
                 <tr>

@@ -12,6 +12,16 @@ def get_working_hour_for_user(user_id, calendar_week=get_current_week_number()):
         if result:
             return [WorkingHour(**r) for r in result] or []
 
+def get_working_hour_for_user_in_project(user_id, project_id, calendar_week=get_current_week_number()):
+    sql = """  SELECT WorkingHour.user_id, Project.id AS project_id, Project.name as project_name, WorkingHour.calendar_week, WorkingHour.monday, WorkingHour.tuesday, WorkingHour.wednesday, WorkingHour.thursday, WorkingHour.friday FROM WorkingHour, Project WHERE WorkingHour.project_id = Project.id AND WorkingHour.user_id = """ + str(user_id) + """ AND WorkingHour.calendar_week = """ + str(calendar_week) + """ AND Project.id =""" + str(project_id)
+
+    debug_sql(sql)
+    with get_mysql_connection().cursor() as cursor:
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        if result:
+            return [WorkingHour(**r) for r in result] or []
+
 
 def put_working_hour(working_hours, mysql=None):
     values = [working_hours.user_id, working_hours.project_id, working_hours.calendar_week,

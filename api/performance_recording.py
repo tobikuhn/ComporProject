@@ -10,7 +10,7 @@ from api.context_processors import generate_server_signature, format_date_day_mo
 from entities.WorkingHour import WorkingHour
 from extensions import config
 from services.projects_service import get_projects_for_user
-from services.user_service import get_user_by_id
+from services.user_service import get_user_by_id, is_user_admin
 from services.working_hours_service import get_working_hour_for_user, put_working_hour
 
 expense_recording_routes = Blueprint('performance_recording', __name__, url_prefix="/user/<user_id>/")
@@ -37,7 +37,8 @@ def performance_recording(user_id, calendar_week=get_current_week_number()):
                            projects=projects,
                            working_hours=working_hours,
                            calendar_week=calendar_week,
-                           weekdays=generate_array_of_weekdays_for_week())
+                           weekdays=generate_array_of_weekdays_for_week(),
+                           admin=is_user_admin(user_id))
 
 
 @expense_recording_routes.route("/aufwands-erfassung/week/<calendar_week>", methods=["POST"])

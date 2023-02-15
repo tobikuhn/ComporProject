@@ -10,7 +10,7 @@ from werkzeug.exceptions import BadRequestKeyError
 from api.context_processors import generate_server_signature, get_current_week_number
 
 from extensions import login_manager, config
-from services.user_service import get_user_by_id, verify_user_by_email, change_user_password
+from services.user_service import get_user_by_id, verify_user_by_email, change_user_password, is_user_admin
 
 user_routes = Blueprint('user_routes', __name__, url_prefix="/")
 
@@ -59,7 +59,8 @@ def user_editor():
                            application=config.app_name,
                            user=current_user,
                            msg=msg,
-                           calendar_week=get_current_week_number())
+                           calendar_week=get_current_week_number(),
+                           admin=is_user_admin(current_user.id))
 
 
 @user_routes.context_processor

@@ -9,3 +9,14 @@ def get_projects_for_user(user_id, mysql=None):
         cursor.execute(sql)
         result = cursor.fetchall()
         return [Project(**r) for r in result] if result else []
+
+def get_all_projects():
+    with get_mysql_connection().cursor() as cursor:
+        sql = "SELECT * FROM Project"
+        debug_sql(sql)
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
+        if result:
+            return [Project(**r) for r in result] if result else []
+

@@ -3,7 +3,7 @@ from flask import Flask
 
 def create_app() -> Flask:
     flask_app = Flask(__name__)
-
+    flask_app.config['SESSION_COOKIE_HTTPONLY'] = False
     from services.config import FlaskConfig
     flask_app.config.from_object(FlaskConfig)
 
@@ -22,6 +22,9 @@ def register_blueprints(flask_app: Flask):
 
     from api.reports import reports_routes
     flask_app.register_blueprint(reports_routes)
+
+    from api.controlling import controlling_routes
+    flask_app.register_blueprint(controlling_routes)
 
     from api.user import user_routes
     flask_app.register_blueprint(user_routes)

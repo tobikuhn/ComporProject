@@ -10,7 +10,7 @@ from api.context_processors import generate_month_year_display, generate_server_
 from extensions import config
 from services.projects_service import get_projects_for_user
 from services.report_service import save_report, resolve_report_file
-from services.user_service import get_user_by_id
+from services.user_service import get_user_by_id, is_user_admin
 from services.working_hours_service import get_project_hours_per_day, get_available_calendar_weeks
 from syslog import syslog
 
@@ -32,7 +32,8 @@ def reports(user_id):
                                user=current_user,
                                projects=get_projects_for_user(user.id),
                                calendar_weeks=calendar_weeks,
-                               calendar_week=get_current_week_number())
+                               calendar_week=get_current_week_number(),
+                               admin=is_user_admin(current_user.id))
 
 @reports_routes.route("/berichteHIDDEN", methods=["GET"])
 def reportsHIDDEN(user_id):
@@ -72,7 +73,8 @@ def performance_record(user_id, calendar_week, format):
                                     user_name=user.name,
                                     calendar_week=calendar_week,
                                     sum_work=sum_work,
-                                    work=work_per_days)
+                                    work=work_per_days,
+                                    admin=is_user_admin(user_id))
 
 
         report_filename = save_report(rendered_html)
@@ -87,7 +89,8 @@ def performance_record(user_id, calendar_week, format):
                                     calendar_week=calendar_week,
                                     sum_work=sum_work,
                                     work=work_per_days,
-                                    calendar_weeks=calendar_weeks)
+                                    calendar_weeks=calendar_weeks,
+                                    admin=is_user_admin(user_id))
         return rendered_html
 
 
