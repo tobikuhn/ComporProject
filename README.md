@@ -1,10 +1,5 @@
 # Compor-Plus
 
-### Network
-- IP: 10.0.0.30
-- RDP: m.meier@10.0.0.110 ShowHack!
-- SSH: sysadmin@10.0.0.10 ShowHack!
-
 ## Requirements
 ```
 sudo apt install -y apache2, apache2-dev, mysql-server, make
