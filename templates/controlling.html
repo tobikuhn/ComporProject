@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" />
+<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/sites/default/files/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="de" href="https://www.compor-ag.de/de/node/29" />
+<link rel="canonical" href="/de/node/29" />
+<link rel="shortlink" href="/de/node/29" />
+<link rel="revision" href="/de/node/29" />
+
+    <title>{{ application }} Controlling</title>
+    <script type="text/javascript">
+        //<![CDATA[
+        let gui_focus_id;
+
+        function SetFocusId(i_id) {
+            gui_focus_id = i_id;
+        }
+
+        function SetFocus() {
+            let el = document.getElementById(gui_focus_id);
+            if (el) {
+                el.focus();
+                if (el.select) {
+                    el.select();
+                }
+
+            }
+
+        }
+
+        //]]>
+    </script>
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="style.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css_cps_drupal.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename="css_UmV_drupal.css") }}">
+
+
+    <style type="text/css">
+        .bgclr {
+            background-color: white;
+        }
+
+        .head, .head_big {
+            border-color: white;
+        }
+    </style>
+
+    
+<!--[if lte IE 8]>
+<script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+<![endif]-->
+
+  </head>
+  <body class="path-node page-node-type-article" ">
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+
+<!-- Header and Navbar -->
+<header class="main-header">
+  <nav class="navbar topnav navbar-default" role="navigation">
+    <div class="container">
+      <div class="row">
+      <div class="navbar-header col-md-3">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navigation">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                    <div class="region region-header">
+    <div id="block-businessgroup-zymphonies-theme-branding" class="site-branding block block-system block-system-branding-block">
+  
+      
+        <div class="brand logo">
+
+           <a href="{{ url_for("main_menu.main_menu") }}" class="logo"><img
+                    src="{{ url_for('static', filename="compor-project.logo.png") }}" alt="{{ application }} Hauptmenü"
+                    title="{{ application }} Hauptmenü" style="height: 70px;"></a>
+
+    </div>
+    </div>
+
+  </div>
+
+              </div>
+
+      <!-- Navigation -->
+      <div class="col-md-9">
+                    <div class="region region-primary-menu">
+    <nav role="navigation" aria-labelledby="block-businessgroup-zymphonies-theme-main-menu-menu" id="block-businessgroup-zymphonies-theme-main-menu">
+            
+  <h2 class="visually-hidden" id="block-businessgroup-zymphonies-theme-main-menu-menu">Main navigation</h2>
+  
+
+        {% if user.is_authenticated %} 
+              <ul class="sm menu-base-theme" id="main-menu"  >
+                      <li>
+        <a href="{{ url_for("performance_recording.performance_recording", user_id=user.id, calendar_week=calendar_week) }}"
+                                    id="MEI_023" class="navigation" accesskey="A"> Zeiterfassung</a>
+                  </li>
+                  <li>
+                  <a href="{{ url_for("reports.reports", user_id=user.id) }}"
+                            id="MEI_022"
+                            class="navigation" accesskey="B">Berichte</a>
+			</li>
+                  <li>
+                <a href="{{ url_for("user_routes.user_editor") }}"> {{user_name }}</a>
+		</li>
+                {% if not admin %} <!-- {% endif %}
+                <li class="active">
+                <a href="{{ url_for("controlling.controlling") }}" title="Controlling">Controlling</a>
+		</li>
+                {% if not admin %} --> {% endif %}
+		<li>
+                <a href="{{ url_for("user_routes.logout") }}" title="Abmelden vom Anmeldeverbund">Abmelden</a>
+                  </li>
+        </ul>
+{% endif %}
+
+
+
+  </nav>
+
+  </div>
+
+              
+      </div>
+      <!--End Navigation -->
+
+      </div>
+    </div>
+  </nav>
+
+</header>
+<!--End Header & Navbar -->
+
+
+
+<!-- Page Title -->
+  <div id="page-title">
+    <div id="page-title-inner">
+      <!-- start: Container -->
+      <div class="container">
+          <div class="region region-page-title">
+    <div id="block-businessgroup-zymphonies-theme-page-title" class="block block-core block-page-title-block">
+<h1>Projektübersicht KW {{ calendar_week }} </h1>
+      <div class="content">
+    </div>
+  </div>
+
+  </div>
+
+      </div>
+    </div>
+  </div>
+<!-- End Page Title ---- >
+
+
+<!-- layout -->
+<div id="wrapper">
+  <!-- start: Container -->
+  <div class="container">
+    
+    <!--start:content -->
+    <div class="row">
+      <div class="col-md-12"></div>
+    </div>
+
+    <div class="row layout">
+      <!--- Start Left SideBar -->
+            <!---End Right SideBar -->
+
+      <!--- Start content -->
+              <div class="content_layout">
+          <div class=col-md-12>
+              <div class="region region-content">
+    <div id="block-businessgroup-zymphonies-theme-content" class="block block-system block-system-main-block">
+  
+      
+      <div class="content">
+      
+<article data-history-node-id="29" role="article" about="/de/node/29" typeof="schema:Article" class="node node--type-article node--promoted node--view-mode-full">
+  
+      <span property="schema:name" content="Zeiterfassung" class="hidden"></span>
+
+
+  
+  <div class="node__content">
+
+
+<noscript>Java Script ist deaktiviert.</noscript>
+
+
+   <table class="termine">
+        <tbody>
+        <tr>
+            <th style="width=25%">Projekt</th>
+            <th style="width=40%">Mitarbeiter</th>
+            <th style="width=5%">Mo.</th>
+            <th style="width=5%">Di.</th>
+            <th style="width=5%">Mi.</th>
+            <th style="width=5%">Do.</th>
+            <th style="width=5%">Fr.</th>
+            <th style="width=10%">Total</th>
+        </tr>
+        {% for t in table %}
+            <tr>
+                <th >
+                    {{ t.project|safe }}
+                </th>
+                <td class=" tdtop">
+                    {{ t.user|safe }}
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.hours[0]|safe }} 
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.hours[1]|safe }} 
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.hours[2]|safe }} 
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.hours[3]|safe }} 
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.hours[4]|safe }} 
+                </td>
+                <td class=" tdright tdtop">
+                    {{ t.total|safe }} h
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+<br>
+<noscript>Java Script ist deaktiviert.</noscript>
+<form >
+<table class="termine" border="0" cellpadding="2" cellspacing="1" style="margin-left: auto; margin-right: auto;">
+        <tbody>
+                <tr>
+                        <th>Kalenderwoche</th>
+                        <td>
+                                        <div class="gui_input">
+                                            <select name="calendar_week" size="1" id="calendar_week"
+                                                    class="gui_label_short">
+                                                {% for week  in calendar_weeks | sort(reverse=True, attribute="calendar_week") %}
+							{% if (week.calendar_week|int == calendar_week|int) %} 
+                                                    <option value="{{ week.calendar_week }}" selected>KW {{ week.calendar_week }}</option>
+                                                        {% else %}
+                                                    <option value="{{ week.calendar_week }}">KW {{ week.calendar_week }}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+
+                        </td>
+                        <td> <input type="submit" class="pw_submit"  value="OK"> </td>
+                </tr>
+        </tbody>
+</table>
+</form>
+
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    SetFocus();
+    //]]>
+</script>
+
+</div>
+      
+  </div>
+
+</article>
+
+    </div>
+  </div>
+
+  </div>
+
+          </div>
+        </div>
+            <!---End content -->
+
+      
+    </div>
+    <!--End Content -->
+  </div>
+</div>
+<!-- End layout -->
+
+
+
+<!-- Start bottom -->
+<!--End Bottom -->
+
+
+<!-- Start Footer Menu -->
+  <div class="footer-menu">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+            <div class="region region-footer-menu">
+    <nav role="navigation" aria-labelledby="block-businessgroup-zymphonies-theme-footer-menu" id="block-businessgroup-zymphonies-theme-footer">
+            
+  <h2 class="visually-hidden" id="block-businessgroup-zymphonies-theme-footer-menu">Footer menu</h2>
+  
+
+        
+              <ul class="menu">
+                    <li class="menu-item">
+        <a href="/de/node/10" data-drupal-link-system-path="node/10">Impressum</a>
+              </li>
+                <li class="menu-item">
+        <a href="/de/dsgvo" data-drupal-link-system-path="node/7">Datenschutz</a>
+              </li>
+                <li class="menu-item">
+        <a href="/de/contact" data-drupal-link-system-path="contact">Contact</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </div>
+
+        </div>
+              </div>
+    </div>
+  </div>
+<!-- End Footer Menu -->
+
+
+<div class="copyright">
+  <div class="container">
+    <div class="row">
+
+      <!-- Copyright -->
+      <div class="col-sm-6">
+       <p>{{ generate_server_signature() }} </p>
+      </div>
+      <!-- End Copyright -->
+
+      <!-- Credit link -->
+              <div class="col-sm-6">
+
+          <p class="credit-link">Designed By <a href="http://www.zymphonies.com" target="_blank">Zymphonies</a></p>
+        </div>
+            <!-- End Credit link -->
+      
+    </div>
+  </div>
+</div>
+
+
+<!-- Google map -->
+<!-- End Google map -->
+
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"de\/","currentPath":"node\/29","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"de"},"pluralDelimiter":"\u0003","ajaxPageState":{"libraries":"businessgroup_zymphonies_theme\/bootstrap,businessgroup_zymphonies_theme\/global-components,classy\/node,core\/html5shiv,system\/base,views\/views.module","theme":"businessgroup_zymphonies_theme","theme_token":null},"ajaxTrustedUrl":{"\/de\/search\/node":true},"user":{"uid":0,"permissionsHash":"dcd9f19ac3a2784b5a604957a0a200e9a527e65cc216f6735af6bf882103da90"}}</script>
+<script src="/sites/default/files/js/js_1kKrUmbcBRipPuafli03XZ_PjPiWi5MRccA4XIqoiAg.js"></script>
+
+  </body>
+</html>
